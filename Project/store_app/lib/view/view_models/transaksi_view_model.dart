@@ -10,8 +10,9 @@ class TransaksiProvider extends ChangeNotifier {
 
   Future<void> getData() async {
     try {
-      final data = await service.fetchProduk();
+      final data = await service.fetchTransaksi();
       transaksiList = data;
+      print(transaksiList[0].inProcess);
       notifyListeners();
     } catch (error) {
       throw Exception('Gagal mengambil data dari API: $error');

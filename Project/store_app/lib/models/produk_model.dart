@@ -28,14 +28,14 @@ class Produk {
   });
 
   factory Produk.fromJson(Map<String, dynamic> json) => Produk(
-        id: json["id"],
-        namaProduk: json["namaProduk"],
-        img: json["img"],
-        hargaJual: json["hargaJual"],
-        hargaBeli: json["hargaBeli"],
-        kategori: json["kategori"],
-        deskripsi: json["deskripsi"],
-        stock: json["stock"],
+        id: json["id"] ?? "",
+        namaProduk: json["namaProduk"] ?? "",
+        img: json["img"] ?? "",
+        hargaJual: json["hargaJual"] ?? 0,
+        hargaBeli: json["hargaBeli"] ?? 0,
+        kategori: json["kategori"] ?? "",
+        deskripsi: json["deskripsi"] ?? "",
+        stock: json["stock"] ?? 0,
       );
 
   Map<String, dynamic> toJson() => {
@@ -48,8 +48,4 @@ class Produk {
         "deskripsi": deskripsi,
         "stock": stock,
       };
-
-  
 }
-
-

@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -16,26 +18,9 @@ class TambahProduk extends StatefulWidget {
 
 class _TambahProdukState extends State<TambahProduk> {
   final _formKey = GlobalKey<FormState>();
-  List<DropdownMenuItem<String>> get dropdownItems {
-    List<DropdownMenuItem<String>> kategori = [
-      const DropdownMenuItem(
-          value: "none", child: Text("Pilih Kategori Produk")),
-      const DropdownMenuItem(value: "ATK", child: Text("ATK")),
-      const DropdownMenuItem(
-          value: "Craft Supply", child: Text("Craft Supply")),
-      const DropdownMenuItem(
-          value: "Keperluan Jahit", child: Text("Keperluan Jahit")),
-      const DropdownMenuItem(value: "Dekorasi", child: Text("Dekorasi")),
-    ];
-    return kategori;
-  }
+ 
 
-  List semuaKategori = [
-    'ATK',
-    'Craft Supply',
-    'Keperluan Jahit',
-    'Dekorasi',
-  ];
+  
 
   @override
   Widget build(BuildContext context) {
@@ -59,12 +44,7 @@ class _TambahProdukState extends State<TambahProduk> {
                   controller: formProv.namaProdukController,
                   decoration: const InputDecoration(
                       labelText: 'Nama Produk', border: OutlineInputBorder()),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return "Nama Produk tidak boleh kosong";
-                    }
-                    return null;
-                  },
+                  validator: formProv.validateNamaProduk
                 ),
               ),
               Padding(
@@ -82,7 +62,7 @@ class _TambahProdukState extends State<TambahProduk> {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
                 child: DropdownButtonFormField(
-                  items: dropdownItems,
+                  items: produkProv.dropdownItems,
                   value: formProv.getKategoriSelected,
                   decoration: const InputDecoration(
                       labelText: 'Kategori', border: OutlineInputBorder()),
@@ -154,12 +134,7 @@ class _TambahProdukState extends State<TambahProduk> {
                   keyboardType: TextInputType.number,
                   decoration: const InputDecoration(
                       labelText: 'Jumlah Stok', border: OutlineInputBorder()),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return "Jumlah Stok tidak boleh kosong";
-                    }
-                    return null;
-                  },
+                  validator: formProv.validateStok
                 ),
               ),
               Padding(
@@ -173,12 +148,7 @@ class _TambahProdukState extends State<TambahProduk> {
                   ],
                   decoration: const InputDecoration(
                       labelText: 'Harga Beli', border: OutlineInputBorder()),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return "Harga Beli tidak boleh kosong";
-                    }
-                    return null;
-                  },
+                  validator: formProv.validateHarga
                 ),
               ),
               Padding(
@@ -192,12 +162,7 @@ class _TambahProdukState extends State<TambahProduk> {
                   ],
                   decoration: const InputDecoration(
                       labelText: 'Harga Jual', border: OutlineInputBorder()),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return "Harga Jual tidak boleh kosong";
-                    }
-                    return null;
-                  },
+                  validator: formProv.validateHarga
                 ),
               ),
               Padding(
@@ -207,7 +172,7 @@ class _TambahProdukState extends State<TambahProduk> {
                   children: [
                     Expanded(
                       child: ElevatedButton(
-                        onPressed: () {
+                        onPressed: () async{
                           if (_formKey.currentState!.validate()) {
                             if (imgProv.imagePath == null) {
                               Fluttertoast.showToast(
@@ -220,7 +185,7 @@ class _TambahProdukState extends State<TambahProduk> {
                                 fontSize: 16.0,
                               );
                             } else {
-                              produkProv.addProduk(
+                              await produkProv.addProduk(
                                   namaProduk: formProv.getNama,
                                   img: '${imgProv.imagePath}',
                                   hargaJual: int.parse(formProv.getHargaJual

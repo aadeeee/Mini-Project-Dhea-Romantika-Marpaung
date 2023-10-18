@@ -1,20 +1,26 @@
-import 'package:colours/colours.dart';
-import 'package:flutter/material.dart';
 
-class TabNavigasiTransaksi extends StatelessWidget {
-  const TabNavigasiTransaksi({super.key});
+import 'package:flutter/material.dart';
+import 'package:store_app/models/transaksi_model.dart';
+import 'package:store_app/view/screen/transaksi/list_transaksi.dart';
+
+
+class TransaksiTab extends StatelessWidget {
+  final List<Transaksi> transaksiList;
+  final bool inProcess;
+
+  const TransaksiTab(this.transaksiList, {super.key, required this.inProcess});
 
   @override
   Widget build(BuildContext context) {
-    return TabBar(
-      labelPadding: const EdgeInsets.symmetric(horizontal: 12),
-      labelStyle: const TextStyle(fontSize: 15),
-      tabs: const [
-        Tab(text: "Dalam Proses"),
-        Tab(text: "Selesai"),
-      ],
-      indicatorColor: Colours.lightSalmon,
-      labelColor: Colours.lightSalmon[500],
+    final filteredTransaksiList =
+        transaksiList.where((transaksi) => transaksi.inProcess == inProcess).toList();
+
+    return ListView.builder(
+      itemCount: filteredTransaksiList.length,
+      itemBuilder: (context, index) {
+        final transaksi = filteredTransaksiList[index];
+        return TransaksiCard(transaksi: transaksi);
+      },
     );
   }
 }

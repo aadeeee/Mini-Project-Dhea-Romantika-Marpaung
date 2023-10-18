@@ -6,14 +6,17 @@ import 'package:dio/dio.dart';
 class TransaksiApiService {
   final Dio _dio = Dio();
 
-  Future<List<Transaksi>> fetchProduk() async {
+  Future<List<Transaksi>> fetchTransaksi() async {
     try {
       final response = await _dio.get(Url.urlTransaksi);
       final List<dynamic> transaksiData = response.data;
-
+      print(response.data);
       final List<Transaksi> transaksiList = transaksiData.map((data) {
-        return Transaksi.fromJson(data);
-      }).toList();
+      return Transaksi.fromJson(data)
+        ..id = data['_id']; 
+        
+    }).toList();
+    
 
       return transaksiList;
     } catch (error) {
@@ -35,7 +38,7 @@ class TransaksiApiService {
 
   Future<Transaksi> updateTransaksi(Transaksi transaksi) async {
     try {
-      final response = await _dio.put('${Url.urlTransaksi}/$transaksi.id',
+      final response = await _dio.put('${Url.urlTransaksi}/${transaksi.id}',
           data: transaksi.toJson());
 
       final updatedTransaksi = Transaksi.fromJson(response.data);

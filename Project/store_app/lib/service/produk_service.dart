@@ -7,42 +7,22 @@ import 'package:dio/dio.dart';
 class ProdukApiService {
   final Dio _dio = Dio();
 
-  // Future<List<Produk>> fetchProduk() async {
-  //   try {
-  //     final response = await _dio.get(Url.urlProduk);
-  //     final List<dynamic> produkData = response.data;
 
-  //     final List<Produk> produkList = produkData.map((data) {
-        
-  //       return Produk.fromJson(data);
-        
-  //     }).toList();
-      
-  //     return produkList;
-      
-  //   } catch (error) {
-  //     throw Exception('Gagal mengambil data dari API: $error');
-  //   }
-  // }
   Future<List<Produk>> fetchProduk() async {
-  try {
-    final response = await _dio.get(Url.urlProduk);
+    try {
+      final response = await _dio.get(Url.urlProduk);
 
-    if (response.data != null) {
       final List<dynamic> produkData = response.data;
-      print(response);
-      final List<Produk> produkList = produkData.map((data) {
-        return Produk.fromJson(data);
-      }).toList();
-      return produkList;
-    } else {
-      throw Exception('API response data is null.');
-    }
-  } catch (error) {
-    throw Exception('Gagal mengambil data dari API: $error');
-  }
-}
 
+      final List<Produk> produkList = produkData.map((data) {
+        return Produk.fromJson(data)..id = data['_id'];
+      }).toList();
+
+      return produkList;
+    } catch (error) {
+      throw Exception('Gagal mengambil data dari API: $error');
+    }
+  }
 
   Future<void> addProduk({
     required String namaProduk,
@@ -72,13 +52,9 @@ class ProdukApiService {
 
   Future<void> updateProduk(Produk produk) async {
     try {
-      
-
       final response = await _dio.put(
         '${Url.urlProduk}/${produk.id}',
-        queryParameters: {
-          'paramName': 'paramValue'
-        }, 
+        queryParameters: {'paramName': 'paramValue'},
         data: produk.toJson(),
       );
 
@@ -97,7 +73,6 @@ class ProdukApiService {
     try {
       final response = await _dio.delete('${Url.urlProduk}/$id');
       if (response.statusCode == 200) {
-        // Product deleted successfully
         print('Product deleted successfully.');
       } else {
         print('Failed to delete product. Status code: ${response.statusCode}');

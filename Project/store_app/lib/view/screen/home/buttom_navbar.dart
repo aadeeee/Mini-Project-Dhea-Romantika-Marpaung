@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:store_app/view/screen/home/home.dart';
 import 'package:store_app/view/screen/produk/produk.dart';
-import 'package:store_app/view/screen/transaksi/list_transaksi.dart';
+import 'package:store_app/view/screen/transaksi/transaksi.dart';
 import 'package:store_app/view/view_models/buttom_navigation_provider.dart';
 
 class BottomNavbar extends StatefulWidget {
@@ -17,7 +17,7 @@ class _BottomNavbarState extends State<BottomNavbar> {
   List halamanBottomNav = [
     const Home(),
     const MyProduk(),
-    const ListTransaksi(),
+    const TransaksiListScreen(),
   ];
 
   @override

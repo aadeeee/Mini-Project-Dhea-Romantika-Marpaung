@@ -14,7 +14,7 @@ class Transaksi {
     'ShopeePay',
     'DANA'
   ];
-
+  String id;
   int nomorAntrian;
   bool inProcess;
   String metodePembayaran;
@@ -24,6 +24,7 @@ class Transaksi {
   List<String> listProdukAkhir;
 
   Transaksi({
+    required this.id,
     required this.nomorAntrian,
     required this.inProcess,
     required this.metodePembayaran,
@@ -34,6 +35,7 @@ class Transaksi {
   });
 
   factory Transaksi.fromJson(Map<String, dynamic> json) => Transaksi(
+        id: json['id'],
         nomorAntrian: json["nomorAntrian"],
         inProcess: json["inProcess"],
         metodePembayaran: json["metodePembayaran"],

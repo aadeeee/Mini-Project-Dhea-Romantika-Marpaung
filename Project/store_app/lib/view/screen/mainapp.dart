@@ -3,12 +3,11 @@ import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:provider/provider.dart';
 import 'package:quickalert/models/quickalert_type.dart';
 import 'package:quickalert/widgets/quickalert_dialog.dart';
-
 import 'package:store_app/view/screen/home/buttom_navbar.dart';
 import 'package:store_app/view/screen/home/home.dart';
 import 'package:store_app/view/screen/produk/produk.dart';
 import 'package:store_app/view/screen/produk/tambah_produk.dart';
-import 'package:store_app/view/screen/transaksi/list_transaksi.dart';
+import 'package:store_app/view/screen/transaksi/transaksi.dart';
 import 'package:store_app/view/view_models/buttom_navigation_provider.dart';
 import 'package:store_app/view/view_models/img_view_model.dart';
 
@@ -23,7 +22,7 @@ class _MainAppState extends State<MainApp> {
   List halamanBottomNav = [
     const Home(),
     const MyProduk(),
-    const ListTransaksi(),
+    const TransaksiListScreen(),
   ];
 
   @override
@@ -87,8 +86,7 @@ class _MainAppState extends State<MainApp> {
                 },
                 tooltip: 'Buat Transaksi Baru',
                 backgroundColor: Colors.teal[700],
-                child: const Icon(Icons.add_shopping_cart)
-              ),
+                child: const Icon(Icons.add_shopping_cart)),
       ),
     );
   }

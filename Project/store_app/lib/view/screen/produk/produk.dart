@@ -28,19 +28,9 @@ class _MyProdukState extends State<MyProduk> {
       length: prov.kategoriProduk.length + 1,
       child: Scaffold(
         appBar: AppBar(
-          
           bottom: TabBar(
             isScrollable: true,
-            tabs: [
-              const Tab(
-                text: 'Semua Produk',
-              ),
-              ...prov.kategoriProduk
-                  .map((category) => Tab(
-                        text: category,
-                      ))
-                  .toList(),
-            ],
+            tabs: prov.getTabs(),
           ),
         ),
         body: TabBarView(
@@ -72,7 +62,6 @@ class _MyProdukState extends State<MyProduk> {
         itemCount: filteredProducts.length,
         itemBuilder: (context, index) {
           final produk = filteredProducts[index];
-          print(produk.namaProduk);
           return Card(
             child: InkWell(
               onTap: () {
