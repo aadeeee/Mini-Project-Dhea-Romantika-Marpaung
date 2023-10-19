@@ -7,7 +7,6 @@ import 'package:dio/dio.dart';
 class ProdukApiService {
   final Dio _dio = Dio();
 
-
   Future<List<Produk>> fetchProduk() async {
     try {
       final response = await _dio.get(Url.urlProduk);
@@ -17,7 +16,6 @@ class ProdukApiService {
       final List<Produk> produkList = produkData.map((data) {
         return Produk.fromJson(data)..id = data['_id'];
       }).toList();
-
       return produkList;
     } catch (error) {
       throw Exception('Gagal mengambil data dari API: $error');

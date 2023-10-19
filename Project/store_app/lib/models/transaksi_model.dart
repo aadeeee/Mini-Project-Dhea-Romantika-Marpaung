@@ -1,27 +1,22 @@
 import 'dart:convert';
 
-List<Transaksi> dataFromJson(String str) =>
+List<Transaksi> transaksiFromJson(String str) =>
     List<Transaksi>.from(json.decode(str).map((x) => Transaksi.fromJson(x)));
 
-String dataToJson(List<Transaksi> data) =>
-    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+String transaksiToJson(List<Transaksi> transaksi) =>
+    json.encode(List<dynamic>.from(transaksi.map((x) => x.toJson())));
 
 class Transaksi {
-  List<String> listMetodePembayaran = [
-    'Tunai',
-    'OVO',
-    'GoPay',
-    'ShopeePay',
-    'DANA'
-  ];
   String id;
   int nomorAntrian;
   bool inProcess;
   String metodePembayaran;
   DateTime date;
   String time;
-  Map<String, int> listProduk;
-  List<String> listProdukAkhir;
+  int qty;
+  int price;
+  String namaProduk;
+  int v;
 
   Transaksi({
     required this.id,
@@ -30,31 +25,35 @@ class Transaksi {
     required this.metodePembayaran,
     required this.date,
     required this.time,
-    required this.listProduk,
-    required this.listProdukAkhir,
+    required this.qty,
+    required this.price,
+    required this.namaProduk,
+    required this.v,
   });
 
   factory Transaksi.fromJson(Map<String, dynamic> json) => Transaksi(
-        id: json['id'],
+        id: json["_id"],
         nomorAntrian: json["nomorAntrian"],
         inProcess: json["inProcess"],
         metodePembayaran: json["metodePembayaran"],
         date: DateTime.parse(json["date"]),
         time: json["time"],
-        listProduk: Map.from(json["listProduk"])
-            .map((k, v) => MapEntry<String, int>(k, v)),
-        listProdukAkhir:
-            List<String>.from(json["listProdukAkhir"].map((x) => x)),
+        qty: json["qty"],
+        price: json["price"],
+        namaProduk: json["namaProduk"],
+        v: json["__v"],
       );
 
   Map<String, dynamic> toJson() => {
+        "_id": id,
         "nomorAntrian": nomorAntrian,
         "inProcess": inProcess,
         "metodePembayaran": metodePembayaran,
         "date": date.toIso8601String(),
         "time": time,
-        "listProduk":
-            Map.from(listProduk).map((k, v) => MapEntry<String, dynamic>(k, v)),
-        "listProdukAkhir": List<dynamic>.from(listProdukAkhir.map((x) => x)),
+        "qty": qty,
+        "price": price,
+        "namaProduk": namaProduk,
+        "__v": v,
       };
 }

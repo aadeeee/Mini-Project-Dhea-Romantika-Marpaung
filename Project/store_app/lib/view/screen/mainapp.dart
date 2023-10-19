@@ -43,6 +43,21 @@ class _MainAppState extends State<MainApp> {
           context: context,
           type: QuickAlertType.info,
           confirmBtnColor: Colors.teal[700]!,
+          title: 'Tambah Transaksi Baru',
+          confirmBtnText: 'Tambah',
+          cancelBtnText: 'Tutup',
+          showCancelBtn: true,
+          onConfirmBtnTap: () {
+            bottomnavProvider.setSelectedIdx = 2;
+
+            Navigator.pop(context);
+          });
+    }
+    void viewProduct() {
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.info,
+          confirmBtnColor: Colors.teal[700]!,
           title: 'Lihat Produk?',
           confirmBtnText: 'Lihat',
           cancelBtnText: 'Tutup',
@@ -70,7 +85,7 @@ class _MainAppState extends State<MainApp> {
                         label: 'Buat Transaksi Baru',
                         child: const Icon(Icons.add_shopping_cart),
                         onTap: () {
-                          createNewOrder();
+                         Navigator.push(context, MaterialPageRoute(builder: (_) => TransaksiListScreen()));
                         }),
                     SpeedDialChild(
                         label: 'Tambah Produk',
@@ -82,7 +97,7 @@ class _MainAppState extends State<MainApp> {
                   ])
             : FloatingActionButton(
                 onPressed: () {
-                  createNewOrder();
+                  viewProduct();
                 },
                 tooltip: 'Buat Transaksi Baru',
                 backgroundColor: Colors.teal[700],

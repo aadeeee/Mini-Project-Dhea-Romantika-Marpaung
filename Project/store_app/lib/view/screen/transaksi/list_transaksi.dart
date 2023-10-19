@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:store_app/models/transaksi_model.dart';
+import 'package:store_app/view/screen/transaksi/rincian_transaksi.dart';
 
 class TransaksiCard extends StatefulWidget {
   final Transaksi transaksi;
@@ -15,32 +16,69 @@ class _TransaksiCardState extends State<TransaksiCard> {
   Widget build(BuildContext context) {
     return Card(
       margin: const EdgeInsets.all(8),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8.0),
+        side: BorderSide(
+          color: Colors.teal[700]!,
+          width: 1.0,
+        ),
+      ),
       child: Column(
         children: [
           ListTile(
-            title: Text('Nomor Antrian: ${widget.transaksi.nomorAntrian}'),
-          ),
-          ListTile(
-            title: Text('Status: ${widget.transaksi.inProcess ? 'Sedang Diproses' : 'Selesai'}'),
-          ),
-          ListTile(
-            title: Text('Metode Pembayaran: ${widget.transaksi.metodePembayaran}'),
-          ),
-          ListTile(
-            title: Text('Tanggal: ${widget.transaksi.date.toString()}'),
-          ),
-          ListTile(
-            title: Text('Waktu: ${widget.transaksi.time}'),
-          ),
-          ExpansionTile(
-            title: const Text('Daftar Produk'),
-            children: widget.transaksi.listProduk.entries
-                .map((entry) =>
-                    ListTile(title: Text('${entry.key}: ${entry.value}')))
-                .toList(),
-          ),
-          ListTile(
-            title: Text('Produk Akhir: ${widget.transaksi.listProdukAkhir.join(', ')}'),
+            title: Text('Antrian: ${widget.transaksi.nomorAntrian}'),
+            subtitle: Text(widget.transaksi.inProcess ? 'Diproses' : 'Selesai'),
+            trailing: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (_) => RincianTransaksi(transaksi: widget.transaksi)));
+                    },
+                    style: ButtonStyle(
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(
+                              0), 
+                        ),
+                      ),
+                      side: MaterialStateProperty.all<BorderSide>(
+                        const BorderSide(
+                          color: Colors.orangeAccent, 
+                          width: 1.0, 
+                        ),
+                      ),
+                    ),
+                    child: const Text('Rincian'),
+                  ),
+                ),
+
+     
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    style: ButtonStyle(
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(
+                              0), 
+                        ),
+                      ),
+                      side: MaterialStateProperty.all<BorderSide>(
+                        const BorderSide(
+                          color: Colors.orangeAccent, 
+                          width: 1.0, 
+                        ),
+                      ),
+                    ),
+                    child: const Text('Hapus'),
+                  ),
+                )
+              ],
+            ),
           ),
         ],
       ),

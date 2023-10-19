@@ -48,6 +48,7 @@ class _DetailProdukState extends State<DetailProduk> {
                             EditProduk(idxProduk: widget.produk.id)));
               } else if (value == 'delete') {
                 handleDelete();
+                Navigator.pop(context);
               }
             },
             itemBuilder: (BuildContext context) {

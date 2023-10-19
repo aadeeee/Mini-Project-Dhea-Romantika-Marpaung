@@ -23,7 +23,7 @@ class _MyProdukState extends State<MyProduk> {
 
   @override
   Widget build(BuildContext context) {
-    final prov = Provider.of<ProdukProvider>(context, listen: false);
+    final prov = Provider.of<ProdukProvider>(context);
     return DefaultTabController(
       length: prov.kategoriProduk.length + 1,
       child: Scaffold(

@@ -10,14 +10,14 @@ class TransaksiApiService {
     try {
       final response = await _dio.get(Url.urlTransaksi);
       final List<dynamic> transaksiData = response.data;
-      print(response.data);
       final List<Transaksi> transaksiList = transaksiData.map((data) {
+        
       return Transaksi.fromJson(data)
         ..id = data['_id']; 
-        
+      
     }).toList();
     
-
+  
       return transaksiList;
     } catch (error) {
       throw Exception('Gagal mengambil data dari API: $error');

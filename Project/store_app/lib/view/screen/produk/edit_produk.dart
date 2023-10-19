@@ -22,8 +22,8 @@ class EditProduk extends StatefulWidget {
 class _EditProdukState extends State<EditProduk> {
   bool _dataAlreadyFetched = false;
   Future<void> initProdukData(BuildContext context) async {
-    final produkProv = Provider.of<ProdukProvider>(context, listen: false);
-    final formProv = Provider.of<ProdukFormProvider>(context, listen: false);
+    final produkProv = Provider.of<ProdukProvider>(context);
+    final formProv = Provider.of<ProdukFormProvider>(context);
     final imgProv = Provider.of<ImgProvider>(context);
 
     try {
@@ -39,11 +39,12 @@ class _EditProdukState extends State<EditProduk> {
         formProv.hargaJualController.text = produk.hargaJual.toString();
         formProv.hargaBeliController.text = produk.hargaBeli.toString();
         _dataAlreadyFetched = true;
-      }
-      if (imgProv.imagePath == null) {
         imgProv.setImage = produk.img;
-        print(imgProv.imagePath);
       }
+
+      setState(() {
+        
+      });
     } catch (error) {
       print(error);
     }
@@ -170,40 +171,37 @@ class _EditProdukState extends State<EditProduk> {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
                 child: TextFormField(
-                  controller: formProv.stokController,
-                  keyboardType: TextInputType.number,
-                  decoration: const InputDecoration(
-                      labelText: 'Jumlah Stok', border: OutlineInputBorder()),
-                  validator: formProv.validateStok
-                ),
+                    controller: formProv.stokController,
+                    keyboardType: TextInputType.number,
+                    decoration: const InputDecoration(
+                        labelText: 'Jumlah Stok', border: OutlineInputBorder()),
+                    validator: formProv.validateStok),
               ),
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
                 child: TextFormField(
-                  controller: formProv.hargaBeliController,
-                  keyboardType: TextInputType.number,
-                  inputFormatters: [
-                    FilteringTextInputFormatter.allow(RegExp(r'[0-9,]')),
-                  ],
-                  decoration: const InputDecoration(
-                      labelText: 'Harga Beli', border: OutlineInputBorder()),
-                  validator: formProv.validateHarga
-                ),
+                    controller: formProv.hargaBeliController,
+                    keyboardType: TextInputType.number,
+                    inputFormatters: [
+                      FilteringTextInputFormatter.allow(RegExp(r'[0-9,]')),
+                    ],
+                    decoration: const InputDecoration(
+                        labelText: 'Harga Beli', border: OutlineInputBorder()),
+                    validator: formProv.validateHarga),
               ),
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
                 child: TextFormField(
-                  controller: formProv.hargaJualController,
-                  keyboardType: TextInputType.number,
-                  inputFormatters: [
-                    FilteringTextInputFormatter.allow(RegExp(r'[0-9,]'))
-                  ],
-                  decoration: const InputDecoration(
-                      labelText: 'Harga Jual', border: OutlineInputBorder()),
-                  validator: formProv.validateHarga
-                ),
+                    controller: formProv.hargaJualController,
+                    keyboardType: TextInputType.number,
+                    inputFormatters: [
+                      FilteringTextInputFormatter.allow(RegExp(r'[0-9,]'))
+                    ],
+                    decoration: const InputDecoration(
+                        labelText: 'Harga Jual', border: OutlineInputBorder()),
+                    validator: formProv.validateHarga),
               ),
               Padding(
                 padding: const EdgeInsets.only(

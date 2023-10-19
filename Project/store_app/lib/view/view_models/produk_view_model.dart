@@ -12,7 +12,7 @@ class ProdukProvider extends ChangeNotifier {
     try {
       final data = await service.fetchProduk();
       produkList = data;
-      print(produkList[0].id);
+      // print(produkList[0].id);
       notifyListeners();
     } catch (error) {
       throw Exception('Gagal mengambil data dari API: $error');
