@@ -16,7 +16,6 @@ class Transaksi {
   int qty;
   int price;
   String namaProduk;
-  int v;
 
   Transaksi({
     required this.id,
@@ -28,20 +27,18 @@ class Transaksi {
     required this.qty,
     required this.price,
     required this.namaProduk,
-    required this.v,
   });
 
   factory Transaksi.fromJson(Map<String, dynamic> json) => Transaksi(
-        id: json["_id"],
-        nomorAntrian: json["nomorAntrian"],
-        inProcess: json["inProcess"],
-        metodePembayaran: json["metodePembayaran"],
-        date: DateTime.parse(json["date"]),
-        time: json["time"],
-        qty: json["qty"],
-        price: json["price"],
-        namaProduk: json["namaProduk"],
-        v: json["__v"],
+        id: json["_id"] ?? "",
+        nomorAntrian: json["nomorAntrian"] ?? 0,
+        inProcess: json["inProcess"] ?? false,
+        metodePembayaran: json["metodePembayaran"] ?? "",
+        date: DateTime.tryParse(json["date"] ?? "") ?? DateTime.now(),
+        time: json["time"] ?? "",
+        qty: json["qty"] ?? 0,
+        price: json["price"] ?? 0,
+        namaProduk: json["namaProduk"] ?? "",
       );
 
   Map<String, dynamic> toJson() => {
@@ -54,6 +51,5 @@ class Transaksi {
         "qty": qty,
         "price": price,
         "namaProduk": namaProduk,
-        "__v": v,
       };
 }

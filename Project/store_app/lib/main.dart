@@ -1,22 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:store_app/view/screen/mainapp.dart';
-import 'package:store_app/view/view_models/buttom_navigation_provider.dart';
-import 'package:store_app/view/view_models/form_produk.dart';
+import 'package:store_app/view/view_models/buttom_navigation_view_model.dart';
+import 'package:store_app/view/view_models/form_produk_view_model.dart';
 import 'package:store_app/view/view_models/img_view_model.dart';
+import 'package:store_app/view/view_models/payment_cash_view_model.dart';
 import 'package:store_app/view/view_models/produk_view_model.dart';
-import 'package:store_app/view/view_models/qty_provider.dart';
+import 'package:store_app/view/view_models/qty_provider_view_model.dart';
 import 'package:store_app/view/view_models/transaksi_view_model.dart';
 
-void main() {
+void main() async {
+  final transaksiProvider = TransaksiProvider();
+  await transaksiProvider.getData();
+
+  final produkProvider = ProdukProvider();
+  await produkProvider.getData();
   runApp(
     MultiProvider(providers: [
-      ChangeNotifierProvider(create: (_) => ProdukProvider()),
+      ChangeNotifierProvider.value(value: produkProvider),
       ChangeNotifierProvider(create: (_) => QtyProdukProvider()),
       ChangeNotifierProvider(create: (_) => ImgProvider()),
       ChangeNotifierProvider(create: (_) => ProdukFormProvider()),
-      ChangeNotifierProvider(create: (_) => TransaksiProvider()),
+      ChangeNotifierProvider.value(value: transaksiProvider),
       ChangeNotifierProvider(create: (_) => BottomNavbarProvider()),
+      ChangeNotifierProvider(create: (_) => TunaiProvider()),
     ], child: const MyApp()),
   );
 }
@@ -31,12 +38,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-    
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
       home: const MainApp(),
     );
   }
 }
-

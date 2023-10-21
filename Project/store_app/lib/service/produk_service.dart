@@ -67,6 +67,23 @@ class ProdukApiService {
     }
   }
 
+  Future<void> updateProductStock(String productId, int newStock) async {
+    try {
+      final response = await _dio.put(
+        '${Url.urlProduk}/$productId',
+        data: {'stok': newStock},
+      );
+
+      if (response.statusCode == 200) {
+        print('Stok produk berhasil diperbarui.');
+      } else {
+        print('Gagal memperbarui stok produk.');
+      }
+    } catch (error) {
+      print('Terjadi kesalahan: $error');
+    }
+  }
+
   Future<void> deleteProduk(String id) async {
     try {
       final response = await _dio.delete('${Url.urlProduk}/$id');

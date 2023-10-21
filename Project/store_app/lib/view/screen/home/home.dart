@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:store_app/view/screen/home/insight_page.dart';
+
 class Home extends StatefulWidget {
   const Home({super.key});
 
@@ -41,21 +43,11 @@ class _HomeState extends State<Home> {
               ),
             ),
           ),
-          // Padding(
-          //   padding: const EdgeInsets.only(left: 20, right: 20, bottom: 25),
-          //   child: Text(
-          //     "Kamu telah menjual $totalPesanan pesanan. Total ${formatCurrency.format(totalDikantongi)} telah kamu kantongi! Lanjuut! ",
-          //     style: const TextStyle(
-          //         fontWeight: FontWeight.w500,
-          //         fontFamily: 'Figtree',
-          //         fontSize: 16),
-          //     textAlign: TextAlign.start,
-          //   ),
-          // ),
+          const HomeInsight(),
         ],
       ),
     );
   }
 }
 
-class AccountProvider {}
+

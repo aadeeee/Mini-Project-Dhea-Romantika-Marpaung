@@ -1,13 +1,16 @@
-import 'dart:io';
+// ignore_for_file: use_build_context_synchronously
 
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:input_quantity/input_quantity.dart';
 import 'package:provider/provider.dart';
 import 'package:store_app/const/format.dart';
 import 'package:store_app/models/produk_model.dart';
 import 'package:store_app/view/screen/produk/edit_produk.dart';
+import 'package:store_app/view/screen/transaksi/daftar_transaksi.dart';
 import 'package:store_app/view/view_models/produk_view_model.dart';
-import 'package:store_app/view/view_models/qty_provider.dart';
+import 'package:store_app/view/view_models/qty_provider_view_model.dart';
+import 'package:store_app/view/view_models/transaksi_view_model.dart';
 
 class DetailProduk extends StatefulWidget {
   const DetailProduk({super.key, required this.produk});
@@ -23,6 +26,7 @@ class _DetailProdukState extends State<DetailProduk> {
   Widget build(BuildContext context) {
     final qtyProvider = Provider.of<QtyProdukProvider>(context);
     final produkProv = Provider.of<ProdukProvider>(context);
+    final transaksiProv = Provider.of<TransaksiProvider>(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text("Detail Produk"),
@@ -161,6 +165,54 @@ class _DetailProdukState extends State<DetailProduk> {
                       Text(formatCurrency.format(
                           widget.produk.hargaJual * qtyProvider.getQty)),
                     ],
+                  ),
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.only(left: 20, right: 25, bottom: 20),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text("Pilih Metode Pembayaran"),
+                      DropdownButton<String>(
+                        value: transaksiProv.selectedMetodePembayaran,
+                        items:
+                            transaksiProv.metodePembayaran.map((String metode) {
+                          return DropdownMenuItem<String>(
+                            value: metode,
+                            child: Text(metode),
+                          );
+                        }).toList(),
+                        onChanged: (String? newValue) {
+                          transaksiProv.setSelectedMetodePembayaran(newValue!);
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+                ElevatedButton(
+                  onPressed: () async {
+                    await transaksiProv.addTransaksi(
+                        metodePembayaran:
+                            transaksiProv.selectedMetodePembayaran,
+                        qty: qtyProvider.getQty,
+                        price: widget.produk.hargaJual,
+                        namaProduk: widget.produk.namaProduk);
+
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (_) => const TransaksiListScreen()));
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.teal[700],
+                  ),
+                  child: Text(
+                    'Buat Transaksi Baru',
+                    style: TextStyle(
+                      fontSize:
+                          Theme.of(context).textTheme.bodyMedium?.fontSize,
+                    ),
                   ),
                 ),
               ],

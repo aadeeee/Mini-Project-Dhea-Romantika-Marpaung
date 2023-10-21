@@ -1,4 +1,5 @@
 // ignore_for_file: deprecated_member_use, avoid_print
+import 'package:store_app/const/format.dart';
 import 'package:store_app/models/transaksi_model.dart';
 import 'package:store_app/utils/url.dart';
 import 'package:dio/dio.dart';
@@ -11,23 +12,33 @@ class TransaksiApiService {
       final response = await _dio.get(Url.urlTransaksi);
       final List<dynamic> transaksiData = response.data;
       final List<Transaksi> transaksiList = transaksiData.map((data) {
-        
-      return Transaksi.fromJson(data)
-        ..id = data['_id']; 
-      
-    }).toList();
-    
-  
+        return Transaksi.fromJson(data)..id = data['_id'];
+      }).toList();
+
       return transaksiList;
     } catch (error) {
       throw Exception('Gagal mengambil data dari API: $error');
     }
   }
 
-  Future<Transaksi> addTransaksi(Transaksi transaksi) async {
+  Future<Transaksi> addTransaksi(
+      {required int nomorAntrian,
+      required String metodePembayaran,
+      required int qty,
+      required int price,
+      required String namaProduk}) async {
     try {
-      final response =
-          await _dio.post(Url.urlTransaksi, data: transaksi.toJson());
+      final Map<String, dynamic> data = {
+        'nomorAntrian': nomorAntrian,
+        'inProcess': true,
+        'metodePembayaran': metodePembayaran,
+        'date': DateTime.now().toIso8601String(),
+        'time': getCurrentTime().toString(),
+        'qty': qty,
+        'price': price,
+        'namaProduk': namaProduk,
+      };
+      final response = await _dio.post(Url.urlTransaksi, data: data);
 
       final addedTransaksi = Transaksi.fromJson(response.data);
       return addedTransaksi;
@@ -36,15 +47,21 @@ class TransaksiApiService {
     }
   }
 
-  Future<Transaksi> updateTransaksi(Transaksi transaksi) async {
-    try {
-      final response = await _dio.put('${Url.urlTransaksi}/${transaksi.id}',
-          data: transaksi.toJson());
+  Future<void> updateTransaksi(String transaksiId) async {
+    '${Url.urlTransaksi}/$transaksiId';
+    final data = {'inProcess': false};
 
-      final updatedTransaksi = Transaksi.fromJson(response.data);
-      return updatedTransaksi;
+    try {
+      final response =
+          await _dio.put('${Url.urlTransaksi}/$transaksiId', data: data);
+
+      if (response.statusCode == 200) {
+        print('Berhasil mengubah transaksi');
+      } else {
+        print('Gagal mengubah transaksi');
+      }
     } catch (error) {
-      throw Exception('Gagal memperbarui transaksi: $error');
+      print('Terjadi kesalahan: $error');
     }
   }
 

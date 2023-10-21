@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:path/path.dart';
-import 'package:store_app/view/view_models/form_produk.dart';
+import 'package:store_app/view/view_models/form_produk_view_model.dart';
 import 'package:store_app/view/view_models/img_view_model.dart';
 import 'package:store_app/view/view_models/produk_view_model.dart';
 

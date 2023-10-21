@@ -5,6 +5,9 @@ import 'package:store_app/models/produk_model.dart';
 import 'package:store_app/service/produk_service.dart';
 
 class ProdukProvider extends ChangeNotifier {
+  final TextEditingController _searchController = TextEditingController();
+
+  TextEditingController get searchController => _searchController;
   final service = ProdukApiService();
   List<Produk> produkList = [];
 
@@ -61,6 +64,15 @@ class ProdukProvider extends ChangeNotifier {
     }
   }
 
+  Future<void> updateProdukStock(id, stock) async {
+    try {
+      await service.updateProductStock(id, stock);
+      await getData();
+    } catch (error) {
+      throw Exception('Gagal memperbarui produk: $error');
+    }
+  }
+
   Future<void> deleteProduk(String id) async {
     try {
       await service.deleteProduk(id);
@@ -97,16 +109,34 @@ class ProdukProvider extends ChangeNotifier {
     return kategori;
   }
 
+  List<Produk> getProdukHampirHabis() {
+    if (produkList.isEmpty) {
+      return [];
+    }
 
-  
+    return produkList
+        .where((produk) => produk.stock <= 5 && produk.stock != 0)
+        .toList();
+  }
 
-  // List<Produk> getProdukHampirHabis() {
-  //   return produkList
-  //       .where((produk) => produk.stock <= 5 && produk.stock != 0)
-  //       .toList();
-  // }
+  List<Produk> getProdukHabis() {
+    return produkList.where((produk) => produk.stock == 0).toList();
+  }
 
-  // List<Produk> getProdukHabis() {
-  //   return produkList.where((produk) => produk.stock == 0).toList();
-  // }
+  String searchQuery = '';
+  List<Produk> searchProducts(String query) {
+    searchQuery = query;
+    notifyListeners();
+    return produkList
+        .where((product) =>
+            product.namaProduk.toLowerCase().contains(query.toLowerCase()))
+        .toList();
+  }
+
+  bool showClearButton = false;
+
+  void updateClearButtonVisibility(String text) {
+    showClearButton = text.isNotEmpty;
+    notifyListeners();
+  }
 }

@@ -1,10 +1,9 @@
-import 'package:colours/colours.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:store_app/view/screen/home/home.dart';
-import 'package:store_app/view/screen/produk/produk.dart';
-import 'package:store_app/view/screen/transaksi/transaksi.dart';
-import 'package:store_app/view/view_models/buttom_navigation_provider.dart';
+import 'package:store_app/view/screen/produk/daftar_produk.dart';
+import 'package:store_app/view/screen/transaksi/daftar_transaksi.dart';
+import 'package:store_app/view/view_models/buttom_navigation_view_model.dart';
 
 class BottomNavbar extends StatefulWidget {
   const BottomNavbar({super.key});
@@ -40,7 +39,8 @@ class _BottomNavbarState extends State<BottomNavbar> {
         ),
       ],
       currentIndex: bottomnavProvider.getSelectedIdx,
-      selectedItemColor: Colours.lightSalmon,
+      unselectedItemColor: Colors.teal[700],
+      selectedItemColor: Colors.teal[700],
       onTap: (value) {
         bottomnavProvider.setSelectedIdx = value;
       },
