@@ -42,9 +42,7 @@ class _EditProdukState extends State<EditProduk> {
         imgProv.setImage = produk.img;
       }
 
-      setState(() {
-        
-      });
+      setState(() {});
     } catch (error) {
       print(error);
     }
@@ -249,11 +247,11 @@ class _EditProdukState extends State<EditProduk> {
                         child: Text(
                           'Simpan',
                           style: TextStyle(
-                            fontSize: Theme.of(context)
-                                .textTheme
-                                .bodyMedium
-                                ?.fontSize,
-                          ),
+                              fontSize: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium
+                                  ?.fontSize,
+                              color: Colors.white10),
                         ),
                       ),
                     )

@@ -116,8 +116,7 @@ class _RincianTransaksiState extends State<RincianTransaksi> {
               children: [
                 Expanded(
                   child: Visibility(
-                    visible: widget.transaksi
-                        .inProcess, 
+                    visible: widget.transaksi.inProcess,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         shape: RoundedRectangleBorder(
@@ -135,13 +134,25 @@ class _RincianTransaksiState extends State<RincianTransaksi> {
                       child: Text(
                         'Lanjutkan Transaksi',
                         style: TextStyle(
-                          fontSize:
-                              Theme.of(context).textTheme.bodyMedium?.fontSize,
-                        ),
+                            fontSize: Theme.of(context)
+                                .textTheme
+                                .bodyMedium
+                                ?.fontSize,
+                            color: Colors.white10),
                       ),
                       onPressed: () {
                         // await transaksiProvider.updateTransaksi(id: widget.transaksi.id);
-                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => ItemMetodePembayaran(idTransaksi: widget.transaksi.id, totalHarga: widget.transaksi.qty * widget.transaksi.price, metodePembayaran: widget.transaksi.metodePembayaran, nomorAntrean: widget.transaksi.nomorAntrian)));
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) => ItemMetodePembayaran(
+                                    idTransaksi: widget.transaksi.id,
+                                    totalHarga: widget.transaksi.qty *
+                                        widget.transaksi.price,
+                                    metodePembayaran:
+                                        widget.transaksi.metodePembayaran,
+                                    nomorAntrean:
+                                        widget.transaksi.nomorAntrian)));
                       },
                     ),
                   ),

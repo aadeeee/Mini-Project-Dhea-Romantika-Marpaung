@@ -163,7 +163,7 @@ class _HomeInsightState extends State<HomeInsight> {
           ),
         ),
         SizedBox(
-          height: 150, // Sesuaikan ketinggian sesuai kebutuhan
+          height: 150, 
           child: ListView.builder(
             itemCount: produkProvider.getProdukHampirHabis().length,
             itemBuilder: (BuildContext context, int index) {

@@ -110,7 +110,7 @@ class ItemMetodePembayaran extends StatelessWidget {
                                   child: const Text(
                                     'Konfirmasi Pembayaran',
                                     style: TextStyle(
-                                        fontFamily: 'Figtree', fontSize: 16),
+                                        fontFamily: 'Figtree', fontSize: 16,color: Colors.white10),
                                   )),
                             ),
                           ],

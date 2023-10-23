@@ -18,9 +18,6 @@ class TambahProduk extends StatefulWidget {
 
 class _TambahProdukState extends State<TambahProduk> {
   final _formKey = GlobalKey<FormState>();
- 
-
-  
 
   @override
   Widget build(BuildContext context) {
@@ -41,11 +38,10 @@ class _TambahProdukState extends State<TambahProduk> {
                 padding: const EdgeInsets.only(
                     left: 25, right: 25, top: 35, bottom: 15),
                 child: TextFormField(
-                  controller: formProv.namaProdukController,
-                  decoration: const InputDecoration(
-                      labelText: 'Nama Produk', border: OutlineInputBorder()),
-                  validator: formProv.validateNamaProduk
-                ),
+                    controller: formProv.namaProdukController,
+                    decoration: const InputDecoration(
+                        labelText: 'Nama Produk', border: OutlineInputBorder()),
+                    validator: formProv.validateNamaProduk),
               ),
               Padding(
                 padding:
@@ -130,40 +126,37 @@ class _TambahProdukState extends State<TambahProduk> {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
                 child: TextFormField(
-                  controller: formProv.stokController,
-                  keyboardType: TextInputType.number,
-                  decoration: const InputDecoration(
-                      labelText: 'Jumlah Stok', border: OutlineInputBorder()),
-                  validator: formProv.validateStok
-                ),
+                    controller: formProv.stokController,
+                    keyboardType: TextInputType.number,
+                    decoration: const InputDecoration(
+                        labelText: 'Jumlah Stok', border: OutlineInputBorder()),
+                    validator: formProv.validateStok),
               ),
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
                 child: TextFormField(
-                  controller: formProv.hargaBeliController,
-                  keyboardType: TextInputType.number,
-                  inputFormatters: [
-                    FilteringTextInputFormatter.allow(RegExp(r'[0-9,]')),
-                  ],
-                  decoration: const InputDecoration(
-                      labelText: 'Harga Beli', border: OutlineInputBorder()),
-                  validator: formProv.validateHarga
-                ),
+                    controller: formProv.hargaBeliController,
+                    keyboardType: TextInputType.number,
+                    inputFormatters: [
+                      FilteringTextInputFormatter.allow(RegExp(r'[0-9,]')),
+                    ],
+                    decoration: const InputDecoration(
+                        labelText: 'Harga Beli', border: OutlineInputBorder()),
+                    validator: formProv.validateHarga),
               ),
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
                 child: TextFormField(
-                  controller: formProv.hargaJualController,
-                  keyboardType: TextInputType.number,
-                  inputFormatters: [
-                    FilteringTextInputFormatter.allow(RegExp(r'[0-9,]'))
-                  ],
-                  decoration: const InputDecoration(
-                      labelText: 'Harga Jual', border: OutlineInputBorder()),
-                  validator: formProv.validateHarga
-                ),
+                    controller: formProv.hargaJualController,
+                    keyboardType: TextInputType.number,
+                    inputFormatters: [
+                      FilteringTextInputFormatter.allow(RegExp(r'[0-9,]'))
+                    ],
+                    decoration: const InputDecoration(
+                        labelText: 'Harga Jual', border: OutlineInputBorder()),
+                    validator: formProv.validateHarga),
               ),
               Padding(
                 padding: const EdgeInsets.only(
@@ -172,7 +165,7 @@ class _TambahProdukState extends State<TambahProduk> {
                   children: [
                     Expanded(
                       child: ElevatedButton(
-                        onPressed: () async{
+                        onPressed: () async {
                           if (_formKey.currentState!.validate()) {
                             if (imgProv.imagePath == null) {
                               Fluttertoast.showToast(
@@ -225,7 +218,8 @@ class _TambahProdukState extends State<TambahProduk> {
                               fontSize: Theme.of(context)
                                   .textTheme
                                   .bodyMedium
-                                  ?.fontSize),
+                                  ?.fontSize,
+                              color: Colors.white10),
                         ),
                       ),
                     ),

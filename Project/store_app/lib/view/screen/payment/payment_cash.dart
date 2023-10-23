@@ -120,6 +120,7 @@ class _PembayaranTunaiState extends State<PembayaranTunai> {
                                   child: Text(
                                     'Konfirmasi Pembayaran',
                                     style: TextStyle(
+                                      color: Colors.white10,
                                       fontFamily: 'Figtree',
                                       fontSize: Theme.of(context)
                                           .textTheme

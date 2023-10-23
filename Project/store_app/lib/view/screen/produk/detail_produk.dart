@@ -210,9 +210,9 @@ class _DetailProdukState extends State<DetailProduk> {
                   child: Text(
                     'Buat Transaksi Baru',
                     style: TextStyle(
-                      fontSize:
-                          Theme.of(context).textTheme.bodyMedium?.fontSize,
-                    ),
+                        fontSize:
+                            Theme.of(context).textTheme.bodyMedium?.fontSize,
+                        color: Colors.white10),
                   ),
                 ),
               ],
