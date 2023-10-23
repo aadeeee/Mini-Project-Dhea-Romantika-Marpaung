@@ -44,7 +44,7 @@ class PaymentDone extends StatelessWidget {
                             },
                             child: const Text(
                               'Kembali ke Beranda',
-                              style: TextStyle(fontSize: 16,color: Colors.white10),
+                              style: TextStyle(fontSize: 16,color: Colors.white),
                              
                             )),
                       ),

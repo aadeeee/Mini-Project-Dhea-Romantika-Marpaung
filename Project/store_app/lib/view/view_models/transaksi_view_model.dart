@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:store_app/models/produk_model.dart';
 import 'package:store_app/models/transaksi_model.dart';
-import 'package:store_app/service/transaksi_service.dart';
+import 'package:store_app/services/produk_service.dart';
+import 'package:store_app/services/transaksi_service.dart';
 import 'package:store_app/view/view_models/produk_view_model.dart';
 
 class TransaksiProvider extends ChangeNotifier {
-  late final ProdukProvider produkProvider;
   final service = TransaksiApiService();
+  final service2 = ProdukApiService();
   List<Transaksi> transaksiList = [];
 
   Future<void> getData() async {
@@ -79,7 +80,13 @@ class TransaksiProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-
+  Future<void> updateProduk(Produk produk) async {
+    try {
+      await service2.updateProduk(produk);
+    } catch (error) {
+      throw Exception('Gagal memperbarui produk: $error');
+    }
+  }
   Future<void> transaksiSelesai(String idTransaksi, List<Produk> produkData) async {
     var currentTransaksi = transaksiList.firstWhere(
       (transaksi) => transaksi.id == idTransaksi,
@@ -89,8 +96,7 @@ class TransaksiProvider extends ChangeNotifier {
     for (var produk in produkData) {
       for (var transaksi in transaksiList) {
         if (transaksi.namaProduk == produk.namaProduk) {
-          produk.stock -= transaksi.qty;
-          await produkProvider.updateProdukStock(produk.id, produk.stock);
+          await updateProduk(Produk(id: produk.id, namaProduk: produk.namaProduk, img: produk.img, hargaJual: produk.hargaJual, hargaBeli: produk.hargaBeli, kategori: produk.kategori, deskripsi: produk.deskripsi, stock: produk.stock - transaksi.qty));
         }
       }
     }

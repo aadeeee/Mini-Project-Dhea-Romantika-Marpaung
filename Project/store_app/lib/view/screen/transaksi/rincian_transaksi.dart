@@ -1,11 +1,11 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+
 import 'package:store_app/const/format.dart';
+
 import 'package:store_app/models/transaksi_model.dart';
 import 'package:store_app/view/screen/payment/payment.dart';
-import 'package:store_app/view/view_models/transaksi_view_model.dart';
 
 class RincianTransaksi extends StatefulWidget {
   const RincianTransaksi({
@@ -22,7 +22,6 @@ class RincianTransaksi extends StatefulWidget {
 class _RincianTransaksiState extends State<RincianTransaksi> {
   @override
   Widget build(BuildContext context) {
-    final transaksiProvider = Provider.of<TransaksiProvider>(context);
     int totalHargaBelanja = widget.transaksi.qty * widget.transaksi.price;
 
     return Scaffold(
@@ -122,14 +121,7 @@ class _RincianTransaksiState extends State<RincianTransaksi> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(0),
                         ),
-                        side: BorderSide(
-                          color: Colors.teal[700]!,
-                          width: 2.0,
-                        ),
-                        disabledForegroundColor:
-                            Colors.teal[700]!.withOpacity(0.38),
-                        disabledBackgroundColor:
-                            Colors.teal[700]!.withOpacity(0.12),
+                        backgroundColor: Colors.teal[700],
                       ),
                       child: Text(
                         'Lanjutkan Transaksi',
@@ -138,10 +130,9 @@ class _RincianTransaksiState extends State<RincianTransaksi> {
                                 .textTheme
                                 .bodyMedium
                                 ?.fontSize,
-                            color: Colors.white10),
+                            color: Colors.white),
                       ),
                       onPressed: () {
-                        // await transaksiProvider.updateTransaksi(id: widget.transaksi.id);
                         Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(

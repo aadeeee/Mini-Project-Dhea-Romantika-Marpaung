@@ -219,7 +219,7 @@ class _TambahProdukState extends State<TambahProduk> {
                                   .textTheme
                                   .bodyMedium
                                   ?.fontSize,
-                              color: Colors.white10),
+                              color: Colors.white),
                         ),
                       ),
                     ),

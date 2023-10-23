@@ -8,7 +8,7 @@ import 'package:store_app/view/view_models/img_view_model.dart';
 import 'package:store_app/view/view_models/payment_cash_view_model.dart';
 import 'package:store_app/view/view_models/produk_view_model.dart';
 import 'package:store_app/view/view_models/qty_provider_view_model.dart';
-import 'package:store_app/view/view_models/register_view_model.dart';
+import 'package:store_app/view/view_models/account_view_model.dart';
 import 'package:store_app/view/view_models/transaksi_view_model.dart';
 
 void main() async {
@@ -26,7 +26,7 @@ void main() async {
       ChangeNotifierProvider.value(value: transaksiProvider),
       ChangeNotifierProvider(create: (_) => BottomNavbarProvider()),
       ChangeNotifierProvider(create: (_) => TunaiProvider()),
-      ChangeNotifierProvider(create: (_) => MyRegisProvider()),
+      ChangeNotifierProvider(create: (_) => AccountProvider()),
     ], child: const MyApp()),
   );
 }

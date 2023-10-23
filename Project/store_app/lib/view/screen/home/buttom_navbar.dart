@@ -17,6 +17,7 @@ class _BottomNavbarState extends State<BottomNavbar> {
     const Home(),
     const MyProduk(),
     const TransaksiListScreen(),
+    const TransaksiListScreen(),
   ];
 
   @override
@@ -30,17 +31,22 @@ class _BottomNavbarState extends State<BottomNavbar> {
           label: 'Beranda',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.store, color: Colors.transparent),
-          label: '',
+          icon: Icon(Icons.store),
+          label: 'Produk',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.receipt_long),
           label: 'Transaksi',
         ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.person),
+          label: 'Profil',
+        ),
       ],
       currentIndex: bottomnavProvider.getSelectedIdx,
-      unselectedItemColor: Colors.teal[700],
+      unselectedItemColor: Colors.teal[200],
       selectedItemColor: Colors.teal[700],
+      showUnselectedLabels: false,
       onTap: (value) {
         bottomnavProvider.setSelectedIdx = value;
       },

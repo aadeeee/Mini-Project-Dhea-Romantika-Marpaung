@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:store_app/models/produk_model.dart';
-import 'package:store_app/service/produk_service.dart';
+import 'package:store_app/services/produk_service.dart';
 
 class ProdukProvider extends ChangeNotifier {
   final TextEditingController _searchController = TextEditingController();

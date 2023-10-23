@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:store_app/models/transaksi_model.dart';
 import 'package:store_app/view/screen/transaksi/rincian_transaksi.dart';
 
@@ -27,7 +28,14 @@ class _TransaksiCardState extends State<TransaksiCard> {
         children: [
           ListTile(
             title: Text('Antrian: ${widget.transaksi.nomorAntrian}'),
-            subtitle: Text(widget.transaksi.inProcess ? 'Diproses' : 'Selesai'),
+            subtitle: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                if (widget.transaksi.inProcess) const Text('Diproses'),
+                if (!widget.transaksi.inProcess)
+                  Text(widget.transaksi.metodePembayaran),
+              ],
+            ),
             trailing: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -35,48 +43,51 @@ class _TransaksiCardState extends State<TransaksiCard> {
                   padding: const EdgeInsets.all(8.0),
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (_) => RincianTransaksi(transaksi: widget.transaksi)));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (_) => RincianTransaksi(
+                                    transaksi: widget.transaksi,
+                                  )));
                     },
                     style: ButtonStyle(
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(
-                              0), 
+                          borderRadius: BorderRadius.circular(0),
                         ),
                       ),
                       side: MaterialStateProperty.all<BorderSide>(
                         const BorderSide(
-                          color: Colors.orangeAccent, 
-                          width: 1.0, 
+                          color: Colors.orangeAccent,
+                          width: 1.0,
                         ),
                       ),
                     ),
                     child: const Text('Rincian'),
                   ),
                 ),
-
-     
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    style: ButtonStyle(
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(
-                              0), 
+                if (widget.transaksi.inProcess)
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      style: ButtonStyle(
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(0),
+                          ),
+                        ),
+                        side: MaterialStateProperty.all<BorderSide>(
+                          const BorderSide(
+                            color: Colors.orangeAccent,
+                            width: 1.0,
+                          ),
                         ),
                       ),
-                      side: MaterialStateProperty.all<BorderSide>(
-                        const BorderSide(
-                          color: Colors.orangeAccent, 
-                          width: 1.0, 
-                        ),
-                      ),
+                      child: const Text('Hapus'),
                     ),
-                    child: const Text('Hapus'),
-                  ),
-                )
+                  )
               ],
             ),
           ),

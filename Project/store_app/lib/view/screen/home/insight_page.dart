@@ -97,7 +97,7 @@ class _HomeInsightState extends State<HomeInsight> {
                           fontSize: 20, fontWeight: FontWeight.bold),
                     ),
                     const Text(
-                      'Jumlah Transaksi',
+                      'Transaksi',
                       style: TextStyle(color: Colors.teal),
                     ),
                   ],

@@ -1,22 +1,24 @@
-// ignore_for_file: prefer_const_constructors_in_immutables
+// ignore_for_file: prefer_const_constructors_in_immutables, use_build_context_synchronously
 
+import 'package:colours/colours.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:store_app/const/format.dart';
-import 'package:store_app/view/screen/payment/payment_cash.dart';
 import 'package:store_app/view/screen/payment/payment_done.dart';
 import 'package:store_app/view/view_models/payment_cash_view_model.dart';
 import 'package:store_app/view/view_models/produk_view_model.dart';
 import 'package:store_app/view/view_models/transaksi_view_model.dart';
 
 class ItemMetodePembayaran extends StatelessWidget {
-  ItemMetodePembayaran(
-      {super.key,
-      required this.idTransaksi,
-      required this.totalHarga,
-      required this.metodePembayaran,
-      required this.nomorAntrean});
+  ItemMetodePembayaran({
+    super.key,
+    required this.idTransaksi,
+    required this.totalHarga,
+    required this.metodePembayaran,
+    required this.nomorAntrean,
+  });
 
   final String idTransaksi;
   final int totalHarga;
@@ -29,7 +31,7 @@ class ItemMetodePembayaran extends StatelessWidget {
     var transaksiProvider = Provider.of<TransaksiProvider>(context);
     var tunaiProv = Provider.of<TunaiProvider>(context);
 
-    Future<void> konfirmasiPembayaran() async{
+    Future<void> konfirmasiPembayaran() async {
       await transaksiProvider.transaksiSelesai(
           idTransaksi, produkProvider.produkList);
 
@@ -73,9 +75,131 @@ class ItemMetodePembayaran extends StatelessWidget {
                   style: const TextStyle(fontSize: 30, color: Colors.green)),
             ),
             metodePembayaran == 'Tunai'
-                ? PembayaranTunai(
-                    totalHarga: totalHarga,
-                    konfirmasiPembayaran: konfirmasiPembayaran)
+                ? SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 8, bottom: 10),
+                          child: TextField(
+                            controller: tunaiProv.jumlahUangController,
+                            keyboardType: TextInputType.number,
+                            inputFormatters: [
+                              FilteringTextInputFormatter.allow(
+                                  RegExp(r'[0-9,]')),
+                            ],
+                            onChanged: (value) {
+                              if (value.isNotEmpty) {
+                                tunaiProv.setTotalHarga = totalHarga;
+                                final numericValue = int.tryParse(
+                                    value.replaceAll(RegExp(r'[^0-9]'), ''));
+                                tunaiProv.setJumlahUang = numericValue ?? 0;
+                              } else {
+                                tunaiProv.setJumlahUang = 0;
+                                tunaiProv.setKembalianHarga = -1; //-1 = invalid
+                                tunaiProv.kembalianController.clear();
+                              }
+                              tunaiProv.setKembalian();
+                            },
+                            decoration: InputDecoration(
+                              labelText: 'Jumlah Uang',
+                              enabled: tunaiProv.getChipStatus ? false : true,
+                              floatingLabelBehavior:
+                                  FloatingLabelBehavior.always,
+                              border: const OutlineInputBorder(),
+                            ),
+                          ),
+                        ),
+                        InputChip(
+                          label: const Text('Uang Pas'),
+                          selected: tunaiProv.getChipStatus,
+                          selectedColor: Colours.lightSalmon,
+                          onPressed: () {
+                            tunaiProv.setChipStatus = !tunaiProv.getChipStatus;
+
+                            if (tunaiProv.getChipStatus) {
+                              tunaiProv.setTotalHarga = totalHarga;
+                              tunaiProv.jumlahUangController.text =
+                                  formatCurrency.format(totalHarga).toString();
+                              tunaiProv.setJumlahUang = totalHarga;
+                              tunaiProv.setKembalian();
+                            } else {
+                              tunaiProv.jumlahUangController.clear();
+                              tunaiProv.kembalianController.clear();
+                              tunaiProv.setKembalianHarga = -1;
+                            }
+                          },
+                        ),
+                        tunaiProv.getChipStatus || tunaiProv.getKembalian >= 0
+                            ? SingleChildScrollView(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Padding(
+                                      padding:
+                                          EdgeInsets.only(top: 25, bottom: 8),
+                                      child: Text(
+                                        'Kembalian',
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 13,
+                                        ),
+                                      ),
+                                    ),
+                                    TextField(
+                                      enabled: false,
+                                      controller: tunaiProv.kembalianController,
+                                      decoration: const InputDecoration(
+                                        border: OutlineInputBorder(),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 40),
+                                      child: Row(
+                                        children: [
+                                          Expanded(
+                                            child: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                    backgroundColor:
+                                                        Colors.teal[700]),
+                                                onPressed: () async {
+                                                  tunaiProv.jumlahUangController
+                                                      .clear();
+                                                  tunaiProv.kembalianController
+                                                      .clear();
+                                                  tunaiProv.setKembalianHarga =
+                                                      -1;
+                                                  tunaiProv.setChipStatus =
+                                                      false;
+                                                  FocusScope.of(context)
+                                                      .unfocus();
+                                                  await transaksiProvider
+                                                      .updateTransaksi(
+                                                          id: idTransaksi);
+                                                  await konfirmasiPembayaran();
+                                                },
+                                                child: Text(
+                                                  'Konfirmasi Pembayaran',
+                                                  style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontFamily: 'Figtree',
+                                                    fontSize: Theme.of(context)
+                                                        .textTheme
+                                                        .bodyMedium
+                                                        ?.fontSize,
+                                                  ),
+                                                )),
+                                          ),
+                                        ],
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              )
+                            : Container()
+                      ],
+                    ),
+                  )
                 : Column(
                     children: [
                       const Padding(
@@ -102,15 +226,18 @@ class ItemMetodePembayaran extends StatelessWidget {
                               child: ElevatedButton(
                                   style: ElevatedButton.styleFrom(
                                       backgroundColor: Colors.teal[700]),
-                                  onPressed: () async{
+                                  onPressed: () async {
                                     print(idTransaksi);
-                                    await transaksiProvider.updateTransaksi(id: idTransaksi);
+                                    await transaksiProvider.updateTransaksi(
+                                        id: idTransaksi);
                                     await konfirmasiPembayaran();
                                   },
                                   child: const Text(
                                     'Konfirmasi Pembayaran',
                                     style: TextStyle(
-                                        fontFamily: 'Figtree', fontSize: 16,color: Colors.white10),
+                                        fontFamily: 'Figtree',
+                                        fontSize: 16,
+                                        color: Colors.white10),
                                   )),
                             ),
                           ],

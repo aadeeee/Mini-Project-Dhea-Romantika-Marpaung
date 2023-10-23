@@ -168,8 +168,8 @@ class _DetailProdukState extends State<DetailProduk> {
                   ),
                 ),
                 Padding(
-                  padding:
-                      const EdgeInsets.only(left: 20, right: 25, bottom: 20),
+                  padding: const EdgeInsets.only(
+                      top: 20, left: 20, right: 25, bottom: 20),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -191,6 +191,19 @@ class _DetailProdukState extends State<DetailProduk> {
                   ),
                 ),
                 ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    backgroundColor: Colors.teal[700],
+                  ),
+                  child: Text(
+                    'Buat Transaksi Baru',
+                    style: TextStyle(
+                        fontSize:
+                            Theme.of(context).textTheme.bodyMedium?.fontSize,
+                        color: Colors.white),
+                  ),
                   onPressed: () async {
                     await transaksiProv.addTransaksi(
                         metodePembayaran:
@@ -204,16 +217,6 @@ class _DetailProdukState extends State<DetailProduk> {
                         MaterialPageRoute(
                             builder: (_) => const TransaksiListScreen()));
                   },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.teal[700],
-                  ),
-                  child: Text(
-                    'Buat Transaksi Baru',
-                    style: TextStyle(
-                        fontSize:
-                            Theme.of(context).textTheme.bodyMedium?.fontSize,
-                        color: Colors.white10),
-                  ),
                 ),
               ],
             ),

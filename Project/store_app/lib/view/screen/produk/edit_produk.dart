@@ -228,7 +228,7 @@ class _EditProdukState extends State<EditProduk> {
                               ));
                               await produkProv.getData();
 
-                              Navigator.pop(context);
+                              Navigator.popUntil(context, (route) => route.isFirst);
 
                               Fluttertoast.showToast(
                                 msg: 'Produk Berhasil Diedit',
@@ -251,7 +251,7 @@ class _EditProdukState extends State<EditProduk> {
                                   .textTheme
                                   .bodyMedium
                                   ?.fontSize,
-                              color: Colors.white10),
+                              color: Colors.white),
                         ),
                       ),
                     )

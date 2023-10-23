@@ -23,6 +23,7 @@ class _MainAppState extends State<MainApp> {
     const Home(),
     const MyProduk(),
     const TransaksiListScreen(),
+    const TransaksiListScreen(),
   ];
 
   @override
@@ -55,7 +56,7 @@ class _MainAppState extends State<MainApp> {
     }
 
     return DefaultTabController(
-      length: bottomnavProvider.getSelectedIdx == 0 ? 1 : 1,
+      length: bottomnavProvider.getSelectedIdx == 0 ? 2 : 1,
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         body: halamanBottomNav[bottomnavProvider.getSelectedIdx],
