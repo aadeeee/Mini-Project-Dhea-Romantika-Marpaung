@@ -3,8 +3,6 @@ import 'package:store_app/models/produk_model.dart';
 import 'package:store_app/models/transaksi_model.dart';
 import 'package:store_app/services/produk_service.dart';
 import 'package:store_app/services/transaksi_service.dart';
-import 'package:store_app/view/view_models/produk_view_model.dart';
-
 class TransaksiProvider extends ChangeNotifier {
   final service = TransaksiApiService();
   final service2 = ProdukApiService();

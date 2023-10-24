@@ -1,8 +1,7 @@
-// ignore_for_file: use_build_context_synchronously
+// ignore_for_file: use_build_context_synchronously, avoid_print
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:store_app/view/screen/account/register.dart';
 import 'package:store_app/view/screen/mainapp.dart';
 import 'package:store_app/view/view_models/account_view_model.dart';
@@ -15,28 +14,10 @@ class MyLogin extends StatefulWidget {
 }
 
 class _MyLoginState extends State<MyLogin> {
-  late SharedPreferences loginData;
-  late bool newUser;
-
   @override
   void initState() {
     super.initState();
-    validateUser();
-  }
-
-  void validateUser() async {
-    loginData = await SharedPreferences.getInstance();
-    newUser = loginData.getBool('login') ?? true;
-
-    if (newUser == false) {
-      Navigator.pushAndRemoveUntil(
-        context,
-        MaterialPageRoute(
-          builder: (_) => const MainApp(),
-        ),
-        (route) => false,
-      );
-    }
+    Provider.of<AccountProvider>(context, listen: false).checkLoginStatus();
   }
 
   @override
@@ -157,30 +138,46 @@ class _MyLoginState extends State<MyLogin> {
                                 Padding(
                                   padding: const EdgeInsets.all(10),
                                   child: ElevatedButton(
-                                    onPressed: () {
-                                      
-                                      // showDialog(
-                                      //   context: context,
-                                      //   builder: (BuildContext context) {
-                                      //     return AlertDialog(
-                                      //       content: Text(
-                                      //         'Nama dan kata sandi Anda tidak sesuai atau belum terdaftar, cek kembali data Anda',
-                                      //       ),
-                                      //       actions: [
-                                      //         TextButton(
-                                      //           onPressed: () {
-                                      //             Navigator.of(context).pop();
-                                      //           },
-                                      //           child: Text(
-                                      //             'OK',
-                                      //           ),
-                                      //         ),
-                                      //       ],
-                                      //     );
-                                      Navigator.pushReplacement(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (_) => const MainApp()));
+                                    onPressed: () async {
+                                      try {
+                                        await prov.login(
+                                          prov.usernameController.text,
+                                          prov.passwordController.text,
+                                        );
+                                        print(prov.loggedIn);
+                                        if (!prov.loggedIn) {
+                                          Navigator.pushReplacement(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (_) =>
+                                                    const MainApp()),
+                                          );
+                                        } else if (prov.loggedIn) {
+                                          showDialog(
+                                            context: context,
+                                            builder: (BuildContext context) {
+                                              return AlertDialog(
+                                                content: const Text(
+                                                  'Nama dan kata sandi Anda tidak sesuai atau belum terdaftar, cek kembali data Anda',
+                                                ),
+                                                actions: [
+                                                  TextButton(
+                                                    onPressed: () {
+                                                      Navigator.of(context)
+                                                          .pop();
+                                                    },
+                                                    child: const Text('OK'),
+                                                  ),
+                                                ],
+                                              );
+                                            },
+                                          );
+                                        }
+                                      } catch (error) {
+                                        print(error);
+                                      }
+                                      prov.usernameController.clear();
+                                      prov.passwordController.clear();
                                     },
                                     style: ElevatedButton.styleFrom(
                                         backgroundColor: Colors.teal,
@@ -204,8 +201,6 @@ class _MyLoginState extends State<MyLogin> {
                                               fontSize: 16)),
                                       TextButton(
                                           onPressed: () {
-                                            prov.usernameController.clear();
-                                            prov.passwordController.clear();
                                             Navigator.pushReplacement(
                                                 context,
                                                 MaterialPageRoute(

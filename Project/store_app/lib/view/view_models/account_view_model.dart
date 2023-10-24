@@ -1,10 +1,14 @@
+// ignore_for_file: unnecessary_null_comparison
+
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:store_app/models/account_model.dart';
 import 'package:store_app/services/account_service.dart';
 
 class AccountProvider extends ChangeNotifier {
   final service = AccountApiService();
-  GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
+
+  final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
   TextEditingController nameController = TextEditingController();
   TextEditingController usernameController = TextEditingController();
   TextEditingController nohandphoneController = TextEditingController();
@@ -82,12 +86,12 @@ class AccountProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  List<Account> produkList = [];
+  List<Account> userList = [];
 
   Future<void> getData() async {
     try {
       final data = await service.fetchUser();
-      produkList = data;
+      userList = data;
       notifyListeners();
     } catch (error) {
       throw Exception('Gagal mengambil data dari API: $error');
@@ -188,5 +192,63 @@ class AccountProvider extends ChangeNotifier {
     }
     notifyListeners();
     return _errorMessagePassword;
+  }
+
+  bool loggedIn = false;
+
+  Future<void> login(String username, String password) async {
+    try {
+      final registered = await isUserRegistered(username, password);
+
+      if (registered) {
+        await saveLoginData(username);
+        notifyListeners();
+      } else {
+        throw Exception('Username atau password tidak valid');
+      }
+    } catch (error) {
+      throw Exception('Gagal login: $error');
+    }
+  }
+
+  String loggedInUsername = '';
+
+  Future<void> saveLoginData(String username) async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setBool('loggedIn', true);
+    prefs.setString('loggedInUsername', username);
+  }
+
+  Future<void> checkLoginStatus() async {
+    final prefs = await SharedPreferences.getInstance();
+    loggedIn = prefs.getBool('loggedIn') ?? true;
+    if (loggedIn) {
+      loggedInUsername = prefs.getString('loggedInUsername') ?? '';
+
+      notifyListeners();
+    }
+  }
+
+  void logout() async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setBool('loggedIn', false);
+    prefs.remove('loggedInUsername');
+    notifyListeners();
+  }
+
+  Future<bool> isUserRegistered(String username, String password) async {
+    if (userList.isNotEmpty) {
+      try {
+        final user = userList.firstWhere(
+          (user) => user.username == username && user.password == password,
+        );
+        print(user.noHp);
+        return user != null;
+      } catch (error) {
+        throw Exception('Gagal memeriksa pengguna: $error');
+      }
+    }
+
+    return false;
   }
 }

@@ -50,18 +50,11 @@ class _TransaksiCardState extends State<TransaksiCard> {
                                     transaksi: widget.transaksi,
                                   )));
                     },
-                    style: ButtonStyle(
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(0),
-                        ),
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(0),
                       ),
-                      side: MaterialStateProperty.all<BorderSide>(
-                        const BorderSide(
-                          color: Colors.orangeAccent,
-                          width: 1.0,
-                        ),
-                      ),
+                      backgroundColor: Colors.teal,
                     ),
                     child: const Text('Rincian'),
                   ),
@@ -71,19 +64,11 @@ class _TransaksiCardState extends State<TransaksiCard> {
                     padding: const EdgeInsets.all(8.0),
                     child: ElevatedButton(
                       onPressed: () {},
-                      style: ButtonStyle(
-                        shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(0),
-                          ),
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(0),
                         ),
-                        side: MaterialStateProperty.all<BorderSide>(
-                          const BorderSide(
-                            color: Colors.orangeAccent,
-                            width: 1.0,
-                          ),
-                        ),
+                        backgroundColor: Colors.teal,
                       ),
                       child: const Text('Hapus'),
                     ),

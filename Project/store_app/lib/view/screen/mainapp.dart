@@ -3,6 +3,7 @@ import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:provider/provider.dart';
 import 'package:quickalert/models/quickalert_type.dart';
 import 'package:quickalert/widgets/quickalert_dialog.dart';
+import 'package:store_app/view/screen/account/profil.dart';
 import 'package:store_app/view/screen/home/buttom_navbar.dart';
 import 'package:store_app/view/screen/home/home.dart';
 import 'package:store_app/view/screen/produk/daftar_produk.dart';
@@ -23,7 +24,7 @@ class _MainAppState extends State<MainApp> {
     const Home(),
     const MyProduk(),
     const TransaksiListScreen(),
-    const TransaksiListScreen(),
+    const MyProfil()
   ];
 
   @override

@@ -24,6 +24,7 @@ class _TransaksiListScreenState extends State<TransaksiListScreen> {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
+          backgroundColor: Colors.teal,
           title: const Text('Daftar Transaksi'),
           bottom: const TabBar(
             tabs: [
@@ -31,12 +32,15 @@ class _TransaksiListScreenState extends State<TransaksiListScreen> {
               Tab(text: 'Selesai'),
               
             ],
+            labelColor: Colors.white,
+            indicatorColor: Colors.white,
           ),
         ),
         body: TabBarView(
           children: [
             TransaksiTab(transaksiProvider.transaksiList, inProcess: true),
             TransaksiTab(transaksiProvider.transaksiList, inProcess: false),
+
           ],
         ),
       ),

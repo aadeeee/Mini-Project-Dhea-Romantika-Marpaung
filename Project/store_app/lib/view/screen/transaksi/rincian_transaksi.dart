@@ -25,7 +25,7 @@ class _RincianTransaksiState extends State<RincianTransaksi> {
     int totalHargaBelanja = widget.transaksi.qty * widget.transaksi.price;
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Rincian Transaksi')),
+      appBar: AppBar(title: const Text('Rincian Transaksi'), backgroundColor: Colors.teal,),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
@@ -121,7 +121,7 @@ class _RincianTransaksiState extends State<RincianTransaksi> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(0),
                         ),
-                        backgroundColor: Colors.teal[700],
+                        backgroundColor: Colors.teal,
                       ),
                       child: Text(
                         'Lanjutkan Transaksi',

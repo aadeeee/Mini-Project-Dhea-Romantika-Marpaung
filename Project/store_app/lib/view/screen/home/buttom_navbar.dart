@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:store_app/view/screen/account/profil.dart';
 import 'package:store_app/view/screen/home/home.dart';
 import 'package:store_app/view/screen/produk/daftar_produk.dart';
 import 'package:store_app/view/screen/transaksi/daftar_transaksi.dart';
@@ -17,7 +18,7 @@ class _BottomNavbarState extends State<BottomNavbar> {
     const Home(),
     const MyProduk(),
     const TransaksiListScreen(),
-    const TransaksiListScreen(),
+    const MyProfil(),
   ];
 
   @override

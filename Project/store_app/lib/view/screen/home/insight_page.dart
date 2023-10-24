@@ -46,66 +46,72 @@ class _HomeInsightState extends State<HomeInsight> {
 
     return Column(
       children: [
-        Text(
-          "Insight Harian - ${formattedDate(DateTime.now())}",
-          style: const TextStyle(
-              fontSize: 20,
-              fontFamily: 'Plus Jakarta Sans',
-              fontWeight: FontWeight.w500),
+        Padding(
+          padding: const EdgeInsets.only(bottom: 20),
+          child: Text(
+            "Insight Harian - ${formattedDate(DateTime.now())}",
+            style: const TextStyle(
+                fontSize: 20,
+                fontFamily: 'Plus Jakarta Sans',
+                fontWeight: FontWeight.w500),
+          ),
         ),
-        Row(children: [
-          Expanded(
-            child: Column(children: [
-              Container(
-                decoration: BoxDecoration(
-                  border: Border.all(
-                      color: Colors.teal, width: 1), 
-                  borderRadius: BorderRadius.circular(5), 
+        Padding(
+          padding: const EdgeInsets.only(bottom: 20),
+          child:
+              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+            Expanded(
+              child: Column(children: [
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.teal, width: 1),
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                  padding: const EdgeInsets.all(16),
+                  child: Column(
+                    children: [
+                      Text(
+                        transaksiProvider.getTotalProdukTerjual().toString(),
+                        style: const TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                      const Text(
+                        'Produk Terjual',
+                        style: TextStyle(color: Colors.teal),
+                      ),
+                    ],
+                  ),
                 ),
-                padding: const EdgeInsets.all(16),
-                child: Column(
-                  children: [
-                    Text(
-                      transaksiProvider.getTotalProdukTerjual().toString(),
-                      style: const TextStyle(
-                          fontSize: 20, fontWeight: FontWeight.bold),
-                    ),
-                    const Text(
-                      'Produk Terjual',
-                      style: TextStyle(color: Colors.teal),
-                    ),
-                  ],
+              ]),
+            ),
+            Expanded(
+              child: Column(children: [
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.teal, width: 1),
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                  padding: const EdgeInsets.all(16),
+                  child: Column(
+                    children: [
+                      Text(
+                        formatCurrency
+                            .format(transaksiProvider.getTotalPenjualan())
+                            .toString(),
+                        style: const TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                      const Text(
+                        'Transaksi',
+                        style: TextStyle(color: Colors.teal),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ]),
-          ),
-          Expanded(
-            child: Column(children: [
-              Container(
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.teal, width: 1),
-                  borderRadius: BorderRadius.circular(5),
-                ),
-                padding: const EdgeInsets.all(16),
-                child: Column(
-                  children: [
-                    Text(
-                      formatCurrency
-                          .format(transaksiProvider.getTotalPenjualan())
-                          .toString(),
-                      style: const TextStyle(
-                          fontSize: 20, fontWeight: FontWeight.bold),
-                    ),
-                    const Text(
-                      'Transaksi',
-                      style: TextStyle(color: Colors.teal),
-                    ),
-                  ],
-                ),
-              ),
-            ]),
-          ),
-        ]),
+              ]),
+            ),
+          ]),
+        ),
         Column(
           children: [
             const Padding(
@@ -146,24 +152,17 @@ class _HomeInsightState extends State<HomeInsight> {
           ],
         ),
         const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 15),
-          child: Row(
-            children: [
-              Padding(
-                padding: EdgeInsets.only(bottom: 12),
-                child: Text(
-                  "Produk Hampir Habis",
-                  style: TextStyle(
-                    fontFamily: 'Figtree',
-                    fontSize: 20,
-                  ),
-                ),
-              ),
-            ],
+          padding: EdgeInsets.only(top: 20),
+          child: Text(
+            "Produk Hampir Habis",
+            style: TextStyle(
+              fontFamily: 'Figtree',
+              fontSize: 20,
+            ),
           ),
         ),
         SizedBox(
-          height: 150, 
+          height: 150,
           child: ListView.builder(
             itemCount: produkProvider.getProdukHampirHabis().length,
             itemBuilder: (BuildContext context, int index) {

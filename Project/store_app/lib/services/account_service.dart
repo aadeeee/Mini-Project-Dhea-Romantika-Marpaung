@@ -16,6 +16,7 @@ class AccountApiService {
       final List<Account> accountList = accountData.map((data) {
         return Account.fromJson(data)..id = data['_id'];
       }).toList();
+      print(accountList);
       return accountList;
     } catch (error) {
       throw Exception('Gagal mengambil data dari API: $error');

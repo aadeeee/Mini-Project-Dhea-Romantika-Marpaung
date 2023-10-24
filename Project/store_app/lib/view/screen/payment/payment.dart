@@ -227,7 +227,6 @@ class ItemMetodePembayaran extends StatelessWidget {
                                   style: ElevatedButton.styleFrom(
                                       backgroundColor: Colors.teal[700]),
                                   onPressed: () async {
-                                    print(idTransaksi);
                                     await transaksiProvider.updateTransaksi(
                                         id: idTransaksi);
                                     await konfirmasiPembayaran();

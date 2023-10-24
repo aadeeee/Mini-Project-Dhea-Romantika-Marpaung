@@ -22,10 +22,11 @@ class _MyProdukState extends State<MyProduk> {
       length: prov.kategoriProduk.length + 1,
       child: Scaffold(
         appBar: AppBar(
+          backgroundColor: Colors.teal,
           title: TextField(
             controller: prov.searchController,
             keyboardType: TextInputType.name,
-            cursorColor: Colors.teal,
+            cursorColor: Colors.black,
             onChanged: (text) {
               prov.searchProducts(text);
               prov.updateClearButtonVisibility(text);
@@ -42,7 +43,7 @@ class _MyProdukState extends State<MyProduk> {
                   : null,
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(5.0),
-                borderSide: const BorderSide(color: Colors.teal)
+                borderSide: const BorderSide(color: Colors.black)
               ),
               contentPadding: const EdgeInsets.symmetric(vertical: 8.0)
             ),
@@ -51,8 +52,8 @@ class _MyProdukState extends State<MyProduk> {
           bottom: TabBar(
             isScrollable: true,
             tabs: prov.getTabs(),
-            labelColor: Colors.teal,
-            indicatorColor: Colors.teal,
+            labelColor: Colors.white,
+            indicatorColor: Colors.white,
           ),
         ),
         body: TabBarView(
