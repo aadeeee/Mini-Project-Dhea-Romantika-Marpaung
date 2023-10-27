@@ -3,4 +3,5 @@ class Url {
 
   static const String urlTransaksi = "https://mydata345.netlify.app/transaksi";
   static const String urlRegister = "https://mydata345.netlify.app/register";
+  static const String urllogin = "https://mydata345.netlify.app/login";
 }

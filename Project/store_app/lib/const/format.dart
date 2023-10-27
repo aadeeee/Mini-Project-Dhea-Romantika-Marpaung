@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:intl/intl.dart';
 
 final formatCurrency =
@@ -18,3 +20,5 @@ String getCurrentTime() {
 String getTodayDate() {
   return DateFormat(dateFormat).format(now);
 }
+
+ Color primaryColor = const Color(0xFF009D8F);

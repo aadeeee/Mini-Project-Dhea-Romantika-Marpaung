@@ -46,4 +46,45 @@ class AccountApiService {
       throw Exception('Gagal menambahkan user: $error');
     }
   }
+
+  // Future<void> loginUser({
+  //   required String username,
+  //   required String password,
+  // }) async {
+  //   try {
+  //     final Map<String, dynamic> data = {
+  //       "username": username,
+  //       "password": password,
+  //     };
+
+  //     await _dio.post(Url.urllogin, data: data);
+  //   } catch (error) {
+  //     throw Exception('Gagal login: $error');
+  //   }
+  // }
+  Future<Login> loginUser({
+    required String username,
+    required String password,
+  }) async {
+    try {
+      final Map<String, dynamic> data = {
+        "username": username,
+        "password": password,
+      };
+
+      final response = await _dio.post(Url.urllogin, data: data);
+
+      if (response.statusCode == 200) {
+        final Map<String, dynamic> userData = response.data;
+        final loginData = Login.fromJson(userData);
+        print(loginData.gender);
+        return loginData;
+      
+      } else {
+        throw Exception('Gagal login: ${response.statusCode}');
+      }
+    } catch (error) {
+      throw Exception('Gagal login: $error');
+    }
+  }
 }
