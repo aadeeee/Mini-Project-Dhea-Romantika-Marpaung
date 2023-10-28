@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:store_app/const/format.dart';
 import 'package:store_app/views/screen/transaksi/tab_transaksi.dart';
 import 'package:store_app/views/view_models/transaksi_view_model.dart';
 
@@ -24,7 +25,7 @@ class _TransaksiListScreenState extends State<TransaksiListScreen> {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.teal,
+          backgroundColor: primaryColor,
           title: const Text('Daftar Transaksi'),
           bottom: const TabBar(
             tabs: [

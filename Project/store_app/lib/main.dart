@@ -1,7 +1,9 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:store_app/const/format.dart';
 import 'package:store_app/views/screen/account/login.dart';
-import 'package:store_app/views/screen/mainapp.dart';
 import 'package:store_app/views/view_models/buttom_navigation_view_model.dart';
 import 'package:store_app/views/view_models/form_produk_view_model.dart';
 import 'package:store_app/views/view_models/img_view_model.dart';
@@ -30,7 +32,6 @@ void main() async {
       ChangeNotifierProvider(create: (_) => TunaiProvider()),
       ChangeNotifierProvider(create: (_) => ProfilProvider()),
       ChangeNotifierProvider(create: (_) => AccountProvider()),
-   
     ], child: const MyApp()),
   );
 }
@@ -46,14 +47,54 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: profilProvider.getTheme(),
-      home: Consumer<AccountProvider>(
-        builder: (context, prov, child) {
-          if (prov.loggedIn == true) {
-            return const MainApp();
-          } else {
-            return const MyLogin();
-          }
-        },
+      home: const SplashScreen(),
+    );
+  }
+}
+
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
+
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(const Duration(seconds: 3), () {
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => const MyLogin()));
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: primaryColor,
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(
+              'assets/images/splash.jpg',
+              height: 150,
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            if (defaultTargetPlatform == TargetPlatform.iOS)
+              const CupertinoActivityIndicator(
+                color: Colors.white,
+                radius: 20,
+              )
+            else
+              const CircularProgressIndicator(
+                color: Colors.white,
+              )
+          ],
+        ),
       ),
     );
   }

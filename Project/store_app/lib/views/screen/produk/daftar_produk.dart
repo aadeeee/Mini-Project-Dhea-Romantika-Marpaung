@@ -22,7 +22,7 @@ class _MyProdukState extends State<MyProduk> {
       length: prov.kategoriProduk.length + 1,
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.teal,
+          backgroundColor: primaryColor,
           title: TextField(
             controller: prov.searchController,
             keyboardType: TextInputType.name,

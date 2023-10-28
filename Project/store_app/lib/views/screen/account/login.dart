@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:store_app/const/format.dart';
 import 'package:store_app/views/screen/account/register.dart';
 import 'package:store_app/views/screen/mainapp.dart';
 import 'package:store_app/views/view_models/account_view_model.dart';
@@ -40,7 +41,7 @@ class _MyLoginState extends State<MyLogin> {
                         height: 170,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(150),
-                            color: Colors.teal),
+                            color: primaryColor),
                       )),
                   Positioned(
                       top: 100,
@@ -50,7 +51,7 @@ class _MyLoginState extends State<MyLogin> {
                         height: 100,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(50),
-                            color: Colors.teal),
+                            color: primaryColor),
                       )),
                   Align(
                     alignment: Alignment.center,
@@ -180,7 +181,7 @@ class _MyLoginState extends State<MyLogin> {
                                       prov.passwordController.clear();
                                     },
                                     style: ElevatedButton.styleFrom(
-                                        backgroundColor: Colors.teal,
+                                        backgroundColor: primaryColor,
                                         minimumSize: const Size.fromHeight(60),
                                         shape: RoundedRectangleBorder(
                                             borderRadius:
@@ -195,9 +196,9 @@ class _MyLoginState extends State<MyLogin> {
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      const Text("Belum Punya Akun ?",
+                                      Text("Belum Punya Akun ?",
                                           style: TextStyle(
-                                              color: Colors.teal,
+                                              color: primaryColor,
                                               fontSize: 16)),
                                       TextButton(
                                           onPressed: () {
@@ -207,12 +208,12 @@ class _MyLoginState extends State<MyLogin> {
                                                     builder: (_) =>
                                                         const MyRegister()));
                                           },
-                                          child: const Text(
+                                          child: Text(
                                             "Daftar disini",
                                             style: TextStyle(
                                                 decoration:
                                                     TextDecoration.underline,
-                                                color: Colors.teal,
+                                                color: primaryColor,
                                                 fontSize: 16),
                                           )),
                                     ],

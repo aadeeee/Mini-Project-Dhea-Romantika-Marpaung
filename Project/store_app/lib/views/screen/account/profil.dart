@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:store_app/const/format.dart';
 import 'package:store_app/views/screen/account/login.dart';
 import 'package:store_app/views/view_models/account_view_model.dart';
 import 'package:store_app/views/view_models/profile_view_model.dart';
@@ -24,7 +25,7 @@ class MyProfil extends StatelessWidget {
                   width: 150,
                   height: 150,
                   decoration: BoxDecoration(
-                      border: Border.all(width: 4, color: Colors.teal),
+                      border: Border.all(width: 4, color: primaryColor),
                       boxShadow: [
                         BoxShadow(
                             spreadRadius: 2,
@@ -75,7 +76,7 @@ class MyProfil extends StatelessWidget {
               child: Container(
                 alignment: Alignment.topLeft,
                 child: const Text(
-                  'E-mail / No.Hp' ,
+                  'E-mail / No.Hp',
                   style: TextStyle(
                       fontFamily: 'Figtree', fontSize: 16, color: Colors.grey),
                 ),
@@ -86,7 +87,7 @@ class MyProfil extends StatelessWidget {
               child: Container(
                 alignment: Alignment.topLeft,
                 child: Text(
-                  '${prov.loginData?.email ?? ""} / 0${prov.loginData?.noHp ?? ""}' ,
+                  '${prov.loginData?.email ?? ""} / 0${prov.loginData?.noHp ?? ""}',
                   style: const TextStyle(
                     fontFamily: 'Figtree',
                     fontSize: 20,
@@ -142,7 +143,7 @@ class MyProfil extends StatelessWidget {
                   height: 50,
                   child: ElevatedButton.icon(
                       style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.teal),
+                          backgroundColor: primaryColor),
                       onPressed: () {
                         showDialog(
                             context: context,
@@ -169,9 +170,9 @@ class MyProfil extends StatelessWidget {
                                             builder: (_) => const MyLogin()),
                                       );
                                     },
-                                    child: const Text(
+                                    child: Text(
                                       'Keluar',
-                                      style: TextStyle(color: Colors.teal),
+                                      style: TextStyle(color: primaryColor),
                                     ),
                                   ),
                                 ],

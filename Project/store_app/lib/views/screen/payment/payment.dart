@@ -45,7 +45,7 @@ class ItemMetodePembayaran extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Pembayaran $metodePembayaran'),
-        backgroundColor: Colors.teal,
+        backgroundColor: primaryColor,
         leading: IconButton(
             onPressed: () {
               Navigator.pop(context);

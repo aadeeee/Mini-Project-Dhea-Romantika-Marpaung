@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
+import 'package:store_app/const/format.dart';
 import 'package:store_app/views/screen/account/login.dart';
 import 'package:store_app/views/view_models/account_view_model.dart';
 
@@ -34,7 +35,7 @@ class _MyRegisterState extends State<MyRegister> {
                       height: 170,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(150),
-                        color: Colors.teal,
+                        color: primaryColor,
                       )),
                 ),
                 Positioned(
@@ -45,7 +46,7 @@ class _MyRegisterState extends State<MyRegister> {
                       height: 100,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(50),
-                        color: Colors.teal,
+                        color: primaryColor,
                       ),
                     )),
                 Align(
@@ -308,7 +309,7 @@ class _MyRegisterState extends State<MyRegister> {
                                       }
                                     },
                                     style: ElevatedButton.styleFrom(
-                                        backgroundColor: Colors.teal,
+                                        backgroundColor: primaryColor,
                                         minimumSize: const Size.fromHeight(60),
                                         shape: RoundedRectangleBorder(
                                             borderRadius:
@@ -334,9 +335,9 @@ class _MyRegisterState extends State<MyRegister> {
                                                   builder: (_) =>
                                                       const MyLogin()));
                                         },
-                                        child: const Text(
+                                        child: Text(
                                           "Masuk disini",
-                                          style: TextStyle(color: Colors.teal),
+                                          style: TextStyle(color: primaryColor),
                                         ),
                                       )
                                     ],

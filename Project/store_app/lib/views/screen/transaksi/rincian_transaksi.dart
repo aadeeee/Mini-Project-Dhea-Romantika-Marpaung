@@ -27,7 +27,7 @@ class _RincianTransaksiState extends State<RincianTransaksi> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Rincian Transaksi'),
-        backgroundColor: Colors.teal,
+        backgroundColor: primaryColor,
       ),
       body: Padding(
         padding: const EdgeInsets.all(20),

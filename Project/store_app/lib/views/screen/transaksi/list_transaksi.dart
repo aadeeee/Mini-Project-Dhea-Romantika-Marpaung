@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:store_app/const/format.dart';
 
 import 'package:store_app/models/transaksi_model.dart';
 import 'package:store_app/views/screen/transaksi/rincian_transaksi.dart';
@@ -57,7 +58,7 @@ class _TransaksiCardState extends State<TransaksiCard> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(0),
                       ),
-                      backgroundColor: Colors.teal,
+                      backgroundColor: primaryColor,
                     ),
                     child: const Text('Rincian'),
                   ),
@@ -73,7 +74,7 @@ class _TransaksiCardState extends State<TransaksiCard> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(0),
                         ),
-                        backgroundColor: Colors.teal,
+                        backgroundColor: primaryColor,
                       ),
                       child: const Text('Hapus'),
                     ),

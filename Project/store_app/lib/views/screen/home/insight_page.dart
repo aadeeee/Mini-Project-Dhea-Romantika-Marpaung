@@ -64,7 +64,7 @@ class _HomeInsightState extends State<HomeInsight> {
               child: Column(children: [
                 Container(
                   decoration: BoxDecoration(
-                    border: Border.all(color: Colors.teal, width: 1),
+                    border: Border.all(color: primaryColor, width: 1),
                     borderRadius: BorderRadius.circular(5),
                   ),
                   padding: const EdgeInsets.all(16),
@@ -75,9 +75,9 @@ class _HomeInsightState extends State<HomeInsight> {
                         style: const TextStyle(
                             fontSize: 20, fontWeight: FontWeight.bold),
                       ),
-                      const Text(
+                      Text(
                         'Produk Terjual',
-                        style: TextStyle(color: Colors.teal),
+                        style: TextStyle(color: primaryColor),
                       ),
                     ],
                   ),
@@ -88,7 +88,7 @@ class _HomeInsightState extends State<HomeInsight> {
               child: Column(children: [
                 Container(
                   decoration: BoxDecoration(
-                    border: Border.all(color: Colors.teal, width: 1),
+                    border: Border.all(color: primaryColor, width: 1),
                     borderRadius: BorderRadius.circular(5),
                   ),
                   padding: const EdgeInsets.all(16),
@@ -101,9 +101,9 @@ class _HomeInsightState extends State<HomeInsight> {
                         style: const TextStyle(
                             fontSize: 20, fontWeight: FontWeight.bold),
                       ),
-                      const Text(
+                      Text(
                         'Transaksi',
-                        style: TextStyle(color: Colors.teal),
+                        style: TextStyle(color: primaryColor),
                       ),
                     ],
                   ),

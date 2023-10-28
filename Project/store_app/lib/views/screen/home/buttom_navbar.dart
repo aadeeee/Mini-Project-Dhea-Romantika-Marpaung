@@ -45,7 +45,7 @@ class _BottomNavbarState extends State<BottomNavbar> {
         ),
       ],
       currentIndex: bottomnavProvider.getSelectedIdx,
-      unselectedItemColor: Colors.teal[200],
+      unselectedItemColor: Colors.teal[500],
       selectedItemColor: Colors.teal[700],
       showUnselectedLabels: false,
       onTap: (value) {
