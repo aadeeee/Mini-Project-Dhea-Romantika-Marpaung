@@ -29,8 +29,8 @@ class _MainAppState extends State<MainApp> {
 
   @override
   Widget build(BuildContext context) {
-    var bottomnavProvider = Provider.of<BottomNavbarProvider>(context);
-    var imgProv = Provider.of<ImgProvider>(context);
+    final bottomnavProvider = Provider.of<BottomNavbarProvider>(context);
+    final imgProv = Provider.of<ImgProvider>(context);
 
     void addProdukAndShowMessage() {
       Navigator.push(
