@@ -3,12 +3,12 @@ import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:provider/provider.dart';
 import 'package:quickalert/models/quickalert_type.dart';
 import 'package:quickalert/widgets/quickalert_dialog.dart';
-import 'package:store_app/views/screen/account/profil.dart';
-import 'package:store_app/views/screen/home/buttom_navbar.dart';
-import 'package:store_app/views/screen/home/home.dart';
-import 'package:store_app/views/screen/produk/daftar_produk.dart';
-import 'package:store_app/views/screen/produk/tambah_produk.dart';
-import 'package:store_app/views/screen/transaksi/daftar_transaksi.dart';
+import 'package:store_app/views/screens/account/profil.dart';
+import 'package:store_app/views/screens/home/buttom_navbar.dart';
+import 'package:store_app/views/screens/home/home.dart';
+import 'package:store_app/views/screens/produk/daftar_produk.dart';
+import 'package:store_app/views/screens/produk/tambah_produk.dart';
+import 'package:store_app/views/screens/transaksi/daftar_transaksi.dart';
 import 'package:store_app/views/view_models/buttom_navigation_view_model.dart';
 import 'package:store_app/views/view_models/img_view_model.dart';
 

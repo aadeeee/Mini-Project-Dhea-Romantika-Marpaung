@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:store_app/models/transaksi_model.dart';
-import 'package:store_app/views/screen/transaksi/list_transaksi.dart';
+import 'package:store_app/views/screens/transaksi/list_transaksi.dart';
 
 
 class TransaksiTab extends StatelessWidget {

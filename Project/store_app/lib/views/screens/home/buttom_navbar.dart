@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:store_app/views/screen/account/profil.dart';
-import 'package:store_app/views/screen/home/home.dart';
-import 'package:store_app/views/screen/produk/daftar_produk.dart';
-import 'package:store_app/views/screen/transaksi/daftar_transaksi.dart';
+import 'package:store_app/views/screens/account/profil.dart';
+import 'package:store_app/views/screens/home/home.dart';
+import 'package:store_app/views/screens/produk/daftar_produk.dart';
+import 'package:store_app/views/screens/transaksi/daftar_transaksi.dart';
 import 'package:store_app/views/view_models/buttom_navigation_view_model.dart';
 
 class BottomNavbar extends StatefulWidget {

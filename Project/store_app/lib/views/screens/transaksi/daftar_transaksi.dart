@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:store_app/const/format.dart';
-import 'package:store_app/views/screen/transaksi/tab_transaksi.dart';
+import 'package:store_app/views/screens/transaksi/tab_transaksi.dart';
 import 'package:store_app/views/view_models/transaksi_view_model.dart';
 
 class TransaksiListScreen extends StatefulWidget {
@@ -26,13 +26,14 @@ class _TransaksiListScreenState extends State<TransaksiListScreen> {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: primaryColor,
-          title: const Text('Daftar Transaksi'),
+          title: const Text('Daftar Transaksi', style: TextStyle(fontSize: 28),),
           bottom: const TabBar(
             tabs: [
               Tab(text: 'Sedang Diproses'),
               Tab(text: 'Selesai'),
               
             ],
+            labelStyle: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
             labelColor: Colors.white,
             indicatorColor: Colors.white,
           ),

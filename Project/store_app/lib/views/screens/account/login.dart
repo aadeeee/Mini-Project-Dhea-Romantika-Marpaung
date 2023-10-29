@@ -2,9 +2,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:quickalert/models/quickalert_type.dart';
+import 'package:quickalert/widgets/quickalert_dialog.dart';
 import 'package:store_app/const/format.dart';
-import 'package:store_app/views/screen/account/register.dart';
-import 'package:store_app/views/screen/mainapp.dart';
+import 'package:store_app/views/screens/account/register.dart';
+import 'package:store_app/views/screens/mainapp.dart';
 import 'package:store_app/views/view_models/account_view_model.dart';
 
 class MyLogin extends StatefulWidget {
@@ -74,67 +76,73 @@ class _MyLoginState extends State<MyLogin> {
                               child: Column(children: [
                                 Padding(
                                   padding: const EdgeInsets.all(10),
-                                  child: TextField(
+                                  child: TextFormField(
+                                    key: const Key('username'),
                                     controller: prov.usernameController,
                                     cursorColor: Colors.black,
                                     decoration: InputDecoration(
-                                        prefixIcon: const Icon(
-                                          Icons.account_circle,
+                                      prefixIcon: const Icon(
+                                        Icons.account_circle,
+                                        color: Colors.black,
+                                      ),
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(15),
+                                        borderSide: const BorderSide(
                                           color: Colors.black,
                                         ),
-                                        border: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(15),
-                                            borderSide: const BorderSide(
-                                                color: Colors.black)),
-                                        focusedBorder: const OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                                color: Colors.black)),
-                                        fillColor: Colors.black,
-                                        hintText: "Nama Pengguna",
-                                        errorText: prov.isUserNameEmpty == true
-                                            ? "wajib diisi"
-                                            : null),
+                                      ),
+                                      focusedBorder: const OutlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: Colors.black),
+                                      ),
+                                      fillColor: Colors.black,
+                                      hintText: "Nama Pengguna",
+                                    ),
+                                    validator: (value) =>
+                                        prov.validateName(value),
                                   ),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.all(10),
-                                  child: TextField(
+                                  child: TextFormField(
+                                    key: const Key('password'),
                                     obscureText: prov.getObsecureTextPasswword,
                                     controller: prov.passwordController,
                                     cursorColor: Colors.black,
                                     decoration: InputDecoration(
-                                        prefixIcon: const Icon(
-                                          Icons.lock,
+                                      prefixIcon: const Icon(
+                                        Icons.lock,
+                                        color: Colors.black,
+                                      ),
+                                      suffixIcon: IconButton(
+                                        icon: Icon(
+                                          prov.getObsecureTextPasswword
+                                              ? Icons.visibility_off
+                                              : Icons.visibility,
                                           color: Colors.black,
                                         ),
-                                        suffixIcon: IconButton(
-                                            icon: Icon(
-                                              prov.getObsecureTextPasswword
-                                                  ? Icons.visibility_off
-                                                  : Icons.visibility,
-                                              color: Colors.black,
-                                            ),
-                                            onPressed: () {
-                                              setState(() {
-                                                prov.setObsecureTextPassword =
-                                                    !prov
-                                                        .getObsecureTextPasswword;
-                                              });
-                                            }),
-                                        border: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(15),
-                                            borderSide: const BorderSide(
-                                                color: Colors.black)),
-                                        focusedBorder: const OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                                color: Colors.black)),
-                                        fillColor: Colors.black,
-                                        hintText: "Kata Sandi",
-                                        errorText: prov.isPasswordEmpty == true
-                                            ? "wajib diisi"
-                                            : null),
+                                        onPressed: () {
+                                          setState(() {
+                                            prov.setObsecureTextPassword =
+                                                !prov.getObsecureTextPasswword;
+                                          });
+                                        },
+                                      ),
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(15),
+                                        borderSide: const BorderSide(
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                      focusedBorder: const OutlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: Colors.black),
+                                      ),
+                                      fillColor: Colors.black,
+                                      hintText: "Kata Sandi",
+                                    ),
+                                    validator: (value) =>
+                                        prov.validatePassword(value),
                                   ),
                                 ),
                                 Padding(
@@ -146,6 +154,7 @@ class _MyLoginState extends State<MyLogin> {
                                           prov.usernameController.text,
                                           prov.passwordController.text,
                                         );
+
                                         if (prov.loggedIn) {
                                           Navigator.pushReplacement(
                                             context,
@@ -153,27 +162,14 @@ class _MyLoginState extends State<MyLogin> {
                                                 builder: (_) =>
                                                     const MainApp()),
                                           );
-                                        } else if (prov.loggedIn == false) {
-                                          showDialog(
+                                        } else if (
+                                            !prov.loggedIn) {}
+
+                                        QuickAlert.show(
                                             context: context,
-                                            builder: (BuildContext context) {
-                                              return AlertDialog(
-                                                content: const Text(
-                                                  'Nama dan kata sandi Anda tidak sesuai atau belum terdaftar, cek kembali data Anda',
-                                                ),
-                                                actions: [
-                                                  TextButton(
-                                                    onPressed: () {
-                                                      Navigator.of(context)
-                                                          .pop();
-                                                    },
-                                                    child: const Text('OK'),
-                                                  ),
-                                                ],
-                                              );
-                                            },
-                                          );
-                                        }
+                                            type: QuickAlertType.error,
+                                            text:
+                                                "Data yang Anda masukkan tidak sesuai, \ncek kembali data Anda");
                                       } catch (error) {
                                         print(error);
                                       }

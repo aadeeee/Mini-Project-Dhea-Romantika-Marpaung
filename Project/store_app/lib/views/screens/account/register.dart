@@ -1,10 +1,10 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:flutter/material.dart';
-
+import 'package:quickalert/quickalert.dart';
 import 'package:provider/provider.dart';
 import 'package:store_app/const/format.dart';
-import 'package:store_app/views/screen/account/login.dart';
+import 'package:store_app/views/screens/account/login.dart';
 import 'package:store_app/views/view_models/account_view_model.dart';
 
 class MyRegister extends StatefulWidget {
@@ -134,7 +134,7 @@ class _MyRegisterState extends State<MyRegister> {
                                     cursorColor: Colors.black,
                                     decoration: InputDecoration(
                                       prefixIcon: const Icon(
-                                        Icons.person,
+                                        Icons.wc,
                                         color: Colors.black,
                                       ),
                                       border: OutlineInputBorder(
@@ -157,6 +157,7 @@ class _MyRegisterState extends State<MyRegister> {
                                 Padding(
                                   padding: const EdgeInsets.all(10),
                                   child: TextFormField(
+                                    key: const Key('phone'),
                                     controller: prov.nohandphoneController,
                                     cursorColor: Colors.black,
                                     decoration: InputDecoration(
@@ -286,26 +287,11 @@ class _MyRegisterState extends State<MyRegister> {
 
                                         prov.passwordController.clear();
                                       } else {
-                                        showDialog(
-                                          context: context,
-                                          builder: (BuildContext context) {
-                                            return AlertDialog(
-                                              content: const Text(
-                                                'Data yang Anda masukkan tidak sesuai, cek kembali data Anda.',
-                                              ),
-                                              actions: [
-                                                TextButton(
-                                                  onPressed: () {
-                                                    Navigator.of(context).pop();
-                                                  },
-                                                  child: const Text(
-                                                    'OK',
-                                                  ),
-                                                ),
-                                              ],
-                                            );
-                                          },
-                                        );
+                                        QuickAlert.show(
+                                            context: context,
+                                            type: QuickAlertType.error,
+                                            text:
+                                                "Data yang Anda masukkan tidak sesuai, \ncek kembali data Anda");
                                       }
                                     },
                                     style: ElevatedButton.styleFrom(

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:store_app/const/format.dart';
 import 'package:store_app/models/produk_model.dart';
-import 'package:store_app/views/screen/produk/detail_produk.dart';
+import 'package:store_app/views/screens/produk/detail_produk.dart';
 import 'package:store_app/views/view_models/produk_view_model.dart';
 
 class MyProduk extends StatefulWidget {
@@ -51,21 +51,24 @@ class _MyProdukState extends State<MyProduk> {
                   borderSide: const BorderSide(color: Colors.white),
                 ),
                 contentPadding: const EdgeInsets.symmetric(vertical: 8.0)),
+                style: const TextStyle(color: Colors.white, fontSize: 25)
           ),
           bottom: TabBar(
             isScrollable: true,
             tabs: prov.getTabs(),
+            labelStyle: const TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
             labelColor: Colors.white,
             indicatorColor: Colors.white,
           ),
         ),
         body: TabBarView(
           children: [
-            buildProductsByCategory(context, prov.produkList, 'Semua Produk'),
+            buildProductsByCategory(context, prov.produkList, 'Semua Produk' ),
             ...prov.kategoriProduk.map((category) {
               return buildProductsByCategory(
                   context, prov.produkList, category);
             }).toList(),
+            
           ],
         ),
       ),
@@ -133,8 +136,8 @@ class _MyProdukState extends State<MyProduk> {
                       Padding(
                         padding: const EdgeInsets.only(left: 8),
                         child: Text(
-                          produk.namaProduk,
-                          style: const TextStyle(fontSize: 12),
+                          produk.namaProduk, 
+                          style: const TextStyle(fontSize: 15),
                         ),
                       ),
                       Padding(
@@ -142,7 +145,7 @@ class _MyProdukState extends State<MyProduk> {
                         child: Text(
                           formatCurrency.format(produk.hargaJual),
                           style: TextStyle(
-                            fontSize: 15,
+                            fontSize: 20,
                             color: Colors.teal[500],
                           ),
                         ),

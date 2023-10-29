@@ -1,9 +1,8 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:store_app/const/format.dart';
-import 'package:store_app/views/screen/account/login.dart';
+import 'package:store_app/views/screens/account/login.dart';
+import 'package:store_app/views/screens/mainapp.dart';
 import 'package:store_app/views/view_models/buttom_navigation_view_model.dart';
 import 'package:store_app/views/view_models/form_produk_view_model.dart';
 import 'package:store_app/views/view_models/img_view_model.dart';
@@ -12,6 +11,7 @@ import 'package:store_app/views/view_models/produk_view_model.dart';
 import 'package:store_app/views/view_models/profile_view_model.dart';
 import 'package:store_app/views/view_models/qty_provider_view_model.dart';
 import 'package:store_app/views/view_models/account_view_model.dart';
+import 'package:store_app/views/view_models/recomendation_view_model.dart';
 import 'package:store_app/views/view_models/transaksi_view_model.dart';
 
 void main() async {
@@ -32,6 +32,7 @@ void main() async {
       ChangeNotifierProvider(create: (_) => TunaiProvider()),
       ChangeNotifierProvider(create: (_) => ProfilProvider()),
       ChangeNotifierProvider(create: (_) => AccountProvider()),
+      ChangeNotifierProvider(create: (_) => RecomendationProvider()),
     ], child: const MyApp()),
   );
 }
@@ -39,10 +40,10 @@ void main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     final profilProvider = Provider.of<ProfilProvider>(context);
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
@@ -63,9 +64,17 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
+    Provider.of<AccountProvider>(context, listen: false).checkLoginStatus();
     Future.delayed(const Duration(seconds: 3), () {
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => const MyLogin()));
+      final accountProvider =
+          Provider.of<AccountProvider>(context, listen: false);
+      if (accountProvider.loggedIn == true) {
+        Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (context) => const MainApp()));
+      } else {
+        Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (context) => const MyLogin()));
+      }
     });
   }
 
@@ -84,15 +93,12 @@ class _SplashScreenState extends State<SplashScreen> {
             const SizedBox(
               height: 30,
             ),
-            if (defaultTargetPlatform == TargetPlatform.iOS)
-              const CupertinoActivityIndicator(
+            const Padding(
+              padding: EdgeInsets.only(top: 30),
+              child: CircularProgressIndicator(
                 color: Colors.white,
-                radius: 20,
-              )
-            else
-              const CircularProgressIndicator(
-                color: Colors.white,
-              )
+              ),
+            ),
           ],
         ),
       ),

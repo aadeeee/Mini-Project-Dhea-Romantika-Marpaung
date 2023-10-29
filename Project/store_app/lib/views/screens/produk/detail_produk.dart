@@ -7,8 +7,8 @@ import 'package:input_quantity/input_quantity.dart';
 import 'package:provider/provider.dart';
 import 'package:store_app/const/format.dart';
 import 'package:store_app/models/produk_model.dart';
-import 'package:store_app/views/screen/produk/edit_produk.dart';
-import 'package:store_app/views/screen/transaksi/daftar_transaksi.dart';
+import 'package:store_app/views/screens/produk/edit_produk.dart';
+import 'package:store_app/views/screens/transaksi/daftar_transaksi.dart';
 import 'package:store_app/views/view_models/produk_view_model.dart';
 import 'package:store_app/views/view_models/qty_provider_view_model.dart';
 import 'package:store_app/views/view_models/transaksi_view_model.dart';
@@ -88,14 +88,20 @@ class _DetailProdukState extends State<DetailProduk> {
               child: Column(
                 children: [
                   widget.produk.img.contains("https:")
-                      ? Image.network(
-                          widget.produk.img,
-                          height: 200,
-                        )
-                      : Image.file(
-                          File(widget.produk.img),
-                          height: 200,
-                        ),
+                      ? Padding(
+                        padding: const EdgeInsets.only(top: 50, bottom: 30),
+                        child: Image.network(
+                            widget.produk.img,
+                            height: 200,
+                          ),
+                      )
+                      : Padding(
+                        padding: const EdgeInsets.only(top: 50, bottom: 30),
+                        child: Image.file(
+                            File(widget.produk.img),
+                            height: 200,
+                          ),
+                      ),
                   Padding(
                     padding: const EdgeInsets.only(
                         top: 30, left: 20, right: 25, bottom: 16),
@@ -104,7 +110,7 @@ class _DetailProdukState extends State<DetailProduk> {
                       child: Text(
                         widget.produk.namaProduk,
                         style: const TextStyle(
-                            fontSize: 22, fontWeight: FontWeight.bold),
+                            fontSize: 28, fontWeight: FontWeight.bold),
                       ),
                     ),
                   ),
@@ -115,7 +121,7 @@ class _DetailProdukState extends State<DetailProduk> {
                         child: Text(
                           formatCurrency.format(widget.produk.hargaJual),
                           style:
-                              TextStyle(color: Colors.teal[700], fontSize: 20),
+                              TextStyle(color: Colors.teal[700], fontSize: 25),
                         )),
                   ),
                   widget.produk.deskripsi != ''
@@ -125,7 +131,7 @@ class _DetailProdukState extends State<DetailProduk> {
                           child: Container(
                               alignment: Alignment.topLeft,
                               child: Text(
-                                widget.produk.deskripsi,
+                                widget.produk.deskripsi, style: const TextStyle(fontSize: 17),
                               )),
                         )
                       : Container(),
@@ -142,7 +148,7 @@ class _DetailProdukState extends State<DetailProduk> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text("Stok"),
+                      const Text("Stok", style: TextStyle(fontSize: 17),),
                       Text(widget.produk.stock.toString()),
                     ],
                   ),
@@ -153,7 +159,7 @@ class _DetailProdukState extends State<DetailProduk> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text("Jumlah"),
+                      const Text("Jumlah", style: TextStyle(fontSize: 17)),
                       InputQty(
                         minVal: 1,
                         maxVal: widget.produk.stock,
@@ -171,7 +177,7 @@ class _DetailProdukState extends State<DetailProduk> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text("Subtotal"),
+                      const Text("Subtotal", style: TextStyle(fontSize: 17)),
                       Text(formatCurrency.format(
                           widget.produk.hargaJual * qtyProvider.getQty)),
                     ],
@@ -183,7 +189,7 @@ class _DetailProdukState extends State<DetailProduk> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text("Pilih Metode Pembayaran"),
+                      const Text("Pilih Metode Pembayaran", style: TextStyle(fontSize: 17)),
                       DropdownButton<String>(
                         value: transaksiProv.selectedMetodePembayaran,
                         items:
@@ -211,7 +217,8 @@ class _DetailProdukState extends State<DetailProduk> {
                   child: const Text(
                     'Buat Transaksi Baru',
                     style: TextStyle(
-                      fontSize: 18,
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
                       color: Colors.white,
                     ),
                   ),

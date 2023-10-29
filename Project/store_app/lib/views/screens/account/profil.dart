@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:store_app/const/format.dart';
-import 'package:store_app/views/screen/account/login.dart';
+import 'package:store_app/views/screens/account/login.dart';
 import 'package:store_app/views/view_models/account_view_model.dart';
 import 'package:store_app/views/view_models/profile_view_model.dart';
 
@@ -52,7 +52,7 @@ class MyProfil extends StatelessWidget {
                           'Nama',
                           style: TextStyle(
                               fontFamily: 'Figtree',
-                              fontSize: 16,
+                              fontSize: 20,
                               color: Colors.grey),
                         ),
                         Padding(
@@ -63,7 +63,7 @@ class MyProfil extends StatelessWidget {
                             prov.loginData?.name ?? "",
                             style: const TextStyle(
                               fontFamily: 'Figtree',
-                              fontSize: 20,
+                              fontSize: 25,
                             ),
                           ),
                         ),
@@ -78,7 +78,7 @@ class MyProfil extends StatelessWidget {
                 child: const Text(
                   'E-mail / No.Hp',
                   style: TextStyle(
-                      fontFamily: 'Figtree', fontSize: 16, color: Colors.grey),
+                      fontFamily: 'Figtree', fontSize: 20, color: Colors.grey),
                 ),
               ),
             ),
@@ -90,7 +90,7 @@ class MyProfil extends StatelessWidget {
                   '${prov.loginData?.email ?? ""} / 0${prov.loginData?.noHp ?? ""}',
                   style: const TextStyle(
                     fontFamily: 'Figtree',
-                    fontSize: 20,
+                    fontSize: 25,
                   ),
                 ),
               ),
@@ -102,7 +102,7 @@ class MyProfil extends StatelessWidget {
                 child: const Text(
                   'Jenis Kelamin',
                   style: TextStyle(
-                      fontFamily: 'Figtree', fontSize: 16, color: Colors.grey),
+                      fontFamily: 'Figtree', fontSize: 20, color: Colors.grey),
                 ),
               ),
             ),
@@ -114,7 +114,7 @@ class MyProfil extends StatelessWidget {
                   prov.loginData?.gender ?? "",
                   style: const TextStyle(
                     fontFamily: 'Figtree',
-                    fontSize: 20,
+                    fontSize: 25,
                   ),
                 ),
               ),
@@ -126,7 +126,7 @@ class MyProfil extends StatelessWidget {
                 children: [
                   const Text(
                     "Ubah Tema",
-                    style: TextStyle(fontSize: 16),
+                    style: TextStyle(fontSize: 25),
                   ),
                   Switch(
                       value: profilProvider.getterswitchvalue,

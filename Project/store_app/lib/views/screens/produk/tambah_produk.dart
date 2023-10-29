@@ -41,8 +41,16 @@ class _TambahProdukState extends State<TambahProduk> {
                     left: 25, right: 25, top: 35, bottom: 15),
                 child: TextFormField(
                     controller: formProv.namaProdukController,
+                    cursorColor: Colors.black,
                     decoration: const InputDecoration(
-                        labelText: 'Nama Produk', border: OutlineInputBorder()),
+                      labelText: 'Nama Produk',
+                      border: OutlineInputBorder(),
+                      hintStyle: TextStyle(color: Colors.black, fontSize: 18),
+                      labelStyle: TextStyle(color: Colors.black, fontSize: 15),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black),
+                      ),
+                    ),
                     validator: formProv.validateNamaProduk),
               ),
               Padding(
@@ -51,8 +59,15 @@ class _TambahProdukState extends State<TambahProduk> {
                 child: TextFormField(
                   controller: formProv.deskripsiController,
                   keyboardType: TextInputType.multiline,
+                  cursorColor: Colors.black,
                   decoration: const InputDecoration(
-                      labelText: 'Deskripsi', border: OutlineInputBorder()),
+                      hintStyle: TextStyle(color: Colors.black, fontSize: 18),
+                      labelStyle: TextStyle(color: Colors.black, fontSize: 15),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black),
+                      ),
+                      labelText: 'Deskripsi',
+                      border: OutlineInputBorder()),
                   maxLines: null,
                 ),
               ),
@@ -63,7 +78,13 @@ class _TambahProdukState extends State<TambahProduk> {
                   items: produkProv.dropdownItems,
                   value: formProv.getKategoriSelected,
                   decoration: const InputDecoration(
-                      labelText: 'Kategori', border: OutlineInputBorder()),
+                      hintStyle: TextStyle(color: Colors.black, fontSize: 18),
+                      labelStyle: TextStyle(color: Colors.black, fontSize: 15),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black),
+                      ),
+                      labelText: 'Kategori',
+                      border: OutlineInputBorder()),
                   validator: (value) => (value == null || value == "none")
                       ? "Pilih kategori"
                       : null,
@@ -78,13 +99,9 @@ class _TambahProdukState extends State<TambahProduk> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
+                      const Text(
                         "Gambar",
-                        style: TextStyle(
-                            fontSize: Theme.of(context)
-                                .textTheme
-                                .bodyLarge
-                                ?.fontSize),
+                        style: TextStyle(fontSize: 15),
                       ),
                       OutlinedButton(
                           onPressed: imgProv.pickImage,
@@ -94,7 +111,8 @@ class _TambahProdukState extends State<TambahProduk> {
                                 fontSize: Theme.of(context)
                                     .textTheme
                                     .bodyMedium
-                                    ?.fontSize),
+                                    ?.fontSize,
+                                color: primaryColor),
                           )),
                     ],
                   )),
@@ -103,20 +121,17 @@ class _TambahProdukState extends State<TambahProduk> {
                     const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
                 child: Row(
                   children: [
-                    Text(
+                    const Text(
                       'Image :',
-                      style: TextStyle(
-                          fontSize:
-                              Theme.of(context).textTheme.bodyLarge?.fontSize),
+                      style: TextStyle(fontSize: 15),
                     ),
                     Flexible(
                       child: Text(
                         imgProv.imagePath != null
                             ? basename('${imgProv.imagePath}')
                             : 'No Image Selected',
-                        style: TextStyle(
-                          fontSize:
-                              Theme.of(context).textTheme.bodyMedium?.fontSize,
+                        style: const TextStyle(
+                          fontSize: 15,
                         ),
                       ),
                     ),
@@ -130,8 +145,16 @@ class _TambahProdukState extends State<TambahProduk> {
                 child: TextFormField(
                     controller: formProv.stokController,
                     keyboardType: TextInputType.number,
+                    cursorColor: Colors.black,
                     decoration: const InputDecoration(
-                        labelText: 'Jumlah Stok', border: OutlineInputBorder()),
+                      labelText: 'Jumlah Stok',
+                      border: OutlineInputBorder(),
+                      hintStyle: TextStyle(color: Colors.black, fontSize: 18),
+                      labelStyle: TextStyle(color: Colors.black, fontSize: 15),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black),
+                      ),
+                    ),
                     validator: formProv.validateStok),
               ),
               Padding(
@@ -139,26 +162,64 @@ class _TambahProdukState extends State<TambahProduk> {
                     const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
                 child: TextFormField(
                     controller: formProv.hargaBeliController,
+                    cursorColor: Colors.black,
                     keyboardType: TextInputType.number,
                     inputFormatters: [
                       FilteringTextInputFormatter.allow(RegExp(r'[0-9,]')),
                     ],
                     decoration: const InputDecoration(
-                        labelText: 'Harga Beli', border: OutlineInputBorder()),
-                    validator: formProv.validateHarga),
+                      labelText: 'Harga Beli',
+                      border: OutlineInputBorder(),
+                      hintStyle: TextStyle(color: Colors.black, fontSize: 18),
+                      labelStyle: TextStyle(color: Colors.black, fontSize: 15),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black),
+                      ),
+                    ),
+                    validator: formProv.validateHarga,
+                    onChanged: (value) {
+                    final cleanValue = value.replaceAll(RegExp(r'[^\d]'), '');
+                    final formattedValue =
+                        formatCurrency.format(int.parse(cleanValue));
+                    formProv.hargaBeliController.value = TextEditingValue(
+                      text: formattedValue,
+                      selection: TextSelection.collapsed(
+                          offset: formattedValue.length),
+                    );
+                  },
+                    ),
               ),
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
                 child: TextFormField(
-                    controller: formProv.hargaJualController,
-                    keyboardType: TextInputType.number,
-                    inputFormatters: [
-                      FilteringTextInputFormatter.allow(RegExp(r'[0-9,]'))
-                    ],
-                    decoration: const InputDecoration(
-                        labelText: 'Harga Jual', border: OutlineInputBorder()),
-                    validator: formProv.validateHarga),
+                  controller: formProv.hargaJualController,
+                  cursorColor: Colors.black,
+                  keyboardType: TextInputType.number,
+                  inputFormatters: [
+                    FilteringTextInputFormatter.allow(RegExp(r'[0-9,]'))
+                  ],
+                  decoration: const InputDecoration(
+                    labelText: 'Harga Jual',
+                    border: OutlineInputBorder(),
+                    hintStyle: TextStyle(color: Colors.black, fontSize: 18),
+                    labelStyle: TextStyle(color: Colors.black, fontSize: 15),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black),
+                    ),
+                  ),
+                  validator: formProv.validateHarga,
+                  onChanged: (value) {
+                    final cleanValue = value.replaceAll(RegExp(r'[^\d]'), '');
+                    final formattedValue =
+                        formatCurrency.format(int.parse(cleanValue));
+                    formProv.hargaJualController.value = TextEditingValue(
+                      text: formattedValue,
+                      selection: TextSelection.collapsed(
+                          offset: formattedValue.length),
+                    );
+                  },
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.only(

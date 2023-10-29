@@ -6,7 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:store_app/const/format.dart';
-import 'package:store_app/views/screen/payment/payment_done.dart';
+import 'package:store_app/views/screens/payment/payment_done.dart';
 import 'package:store_app/views/view_models/payment_cash_view_model.dart';
 import 'package:store_app/views/view_models/produk_view_model.dart';
 import 'package:store_app/views/view_models/transaksi_view_model.dart';
@@ -151,6 +151,14 @@ class ItemMetodePembayaran extends StatelessWidget {
                                       enabled: false,
                                       controller: tunaiProv.kembalianController,
                                       decoration: const InputDecoration(
+                                        hintStyle: TextStyle(
+                                            color: Colors.black, fontSize: 18),
+                                        labelStyle: TextStyle(
+                                            color: Colors.black, fontSize: 15),
+                                        focusedBorder: OutlineInputBorder(
+                                          borderSide:
+                                              BorderSide(color: Colors.black),
+                                        ),
                                         border: OutlineInputBorder(),
                                       ),
                                     ),
@@ -188,7 +196,8 @@ class ItemMetodePembayaran extends StatelessWidget {
                                               child: const Text(
                                                 'Konfirmasi Pembayaran',
                                                 style: TextStyle(
-                                                  fontSize: 18,
+                                                  fontSize: 25,
+                                                  fontWeight: FontWeight.bold,
                                                   color: Colors.white,
                                                 ),
                                               ),
@@ -245,7 +254,8 @@ class ItemMetodePembayaran extends StatelessWidget {
                                     'Konfirmasi Pembayaran',
                                     style: TextStyle(
                                         fontFamily: 'Figtree',
-                                        fontSize: 16,
+                                        fontSize: 25,
+                                        fontWeight: FontWeight.bold,
                                         color: Colors.white),
                                   )),
                             ),

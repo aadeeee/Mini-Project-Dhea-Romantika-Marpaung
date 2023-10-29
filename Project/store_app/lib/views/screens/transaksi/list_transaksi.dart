@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:store_app/const/format.dart';
 
 import 'package:store_app/models/transaksi_model.dart';
-import 'package:store_app/views/screen/transaksi/rincian_transaksi.dart';
+import 'package:store_app/views/screens/transaksi/rincian_transaksi.dart';
 import 'package:store_app/views/view_models/transaksi_view_model.dart';
 
 class TransaksiCard extends StatefulWidget {
@@ -31,11 +31,11 @@ class _TransaksiCardState extends State<TransaksiCard> {
       child: Column(
         children: [
           ListTile(
-            title: Text('Antrian: ${widget.transaksi.nomorAntrian}'),
+            title: Text('Antrian: ${widget.transaksi.nomorAntrian}', style: const TextStyle(fontSize: 20)),
             subtitle: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                if (widget.transaksi.inProcess) const Text('Diproses'),
+                if (widget.transaksi.inProcess) const Text('Diproses', style: TextStyle(fontSize: 18),),
                 if (!widget.transaksi.inProcess)
                   Text(widget.transaksi.metodePembayaran),
               ],
@@ -60,7 +60,7 @@ class _TransaksiCardState extends State<TransaksiCard> {
                       ),
                       backgroundColor: primaryColor,
                     ),
-                    child: const Text('Rincian'),
+                    child: const Text('Rincian', style: TextStyle(fontSize: 18),),
                   ),
                 ),
                 if (widget.transaksi.inProcess)
@@ -76,7 +76,7 @@ class _TransaksiCardState extends State<TransaksiCard> {
                         ),
                         backgroundColor: primaryColor,
                       ),
-                      child: const Text('Hapus'),
+                      child: const Text('Hapus', style: TextStyle(fontSize: 18),),
                     ),
                   )
               ],

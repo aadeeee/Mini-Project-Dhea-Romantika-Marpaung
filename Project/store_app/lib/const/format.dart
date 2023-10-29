@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:intl/intl.dart';
+import 'package:store_app/env/env.dart';
 
 final formatCurrency =
     NumberFormat.currency(locale: 'id_ID', symbol: 'Rp.', decimalDigits: 0);
@@ -21,4 +22,6 @@ String getTodayDate() {
   return DateFormat(dateFormat).format(now);
 }
 
- Color primaryColor = const Color(0xFF009D8F);
+Color primaryColor = const Color(0xFF009D8F);
+
+String apiKey = Env.apiKey;

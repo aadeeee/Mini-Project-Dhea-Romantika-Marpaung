@@ -129,7 +129,7 @@ class AccountProvider extends ChangeNotifier {
   String? get errorMessageName => _errorMessageName;
   String? validateName(String? name) {
     if (name == null || name.isEmpty) {
-      _errorMessageName = 'Name is required';
+      _errorMessageName = 'Wajib Diisi';
     } else {
       _errorMessageName = null;
     }
@@ -145,9 +145,9 @@ class AccountProvider extends ChangeNotifier {
   String? get errorMessageEmail => _errorMessageEmail;
   String? validateEmail(String? email) {
     if (email == null || email.isEmpty) {
-      _errorMessageEmail = 'Email is required';
+      _errorMessageEmail = 'Wajib Diisi';
     } else if (!email.contains('@')) {
-      _errorMessageEmail = 'Invalid Email';
+      _errorMessageEmail = 'Email Tidak Valid';
     } else {
       _errorMessageEmail = null;
     }
@@ -164,10 +164,10 @@ class AccountProvider extends ChangeNotifier {
 
   String? validatePhoneNumber(String? phoneNumber) {
     if (phoneNumber == null || phoneNumber.isEmpty) {
-      _errorMessagePhone = 'Phone Number is required';
+      _errorMessagePhone = 'Wajib Diisi';
     } else if (!RegExp(r'^0[0-9]{7,14}$').hasMatch(phoneNumber)) {
       _errorMessagePhone =
-          'Phone numbers must start with 0 and have 8-15 digits';
+          'No harus dimulai dari 0, terdiri dari 8-15 digit';
     } else {
       _errorMessagePhone = null;
     }
@@ -183,12 +183,12 @@ class AccountProvider extends ChangeNotifier {
 
   String? validatePassword(String? value) {
     if (value == null || value.isEmpty) {
-      _errorMessagePassword = 'Password is required';
+      _errorMessagePassword = 'Wajib Diisi';
     } else if (value.length < 4 || value.length > 8) {
-      _errorMessagePassword = 'Password must be between 4 and 8 characters';
+      _errorMessagePassword = 'Minimal 4 dan maksimal 8 karakter';
     } else if (!RegExp(r'^(?=.*[a-zA-Z])(?=.*[0-9])').hasMatch(value)) {
       _errorMessagePassword =
-          'Password must contain at least one letter and one number';
+          'Password terdiri dari angka dan huruf';
     } else {
       _errorMessagePassword = null;
     }
