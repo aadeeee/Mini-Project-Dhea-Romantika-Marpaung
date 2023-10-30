@@ -45,8 +45,8 @@ class _TambahProdukState extends State<TambahProduk> {
                     decoration: const InputDecoration(
                       labelText: 'Nama Produk',
                       border: OutlineInputBorder(),
-                      hintStyle: TextStyle(color: Colors.black, fontSize: 18),
-                      labelStyle: TextStyle(color: Colors.black, fontSize: 15),
+                      hintStyle: TextStyle( fontSize: 18),
+                      labelStyle: TextStyle( fontSize: 15),
                       focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.black),
                       ),
@@ -61,8 +61,8 @@ class _TambahProdukState extends State<TambahProduk> {
                   keyboardType: TextInputType.multiline,
                   cursorColor: Colors.black,
                   decoration: const InputDecoration(
-                      hintStyle: TextStyle(color: Colors.black, fontSize: 18),
-                      labelStyle: TextStyle(color: Colors.black, fontSize: 15),
+                      hintStyle: TextStyle( fontSize: 18),
+                      labelStyle: TextStyle( fontSize: 15),
                       focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.black),
                       ),
@@ -78,8 +78,8 @@ class _TambahProdukState extends State<TambahProduk> {
                   items: produkProv.dropdownItems,
                   value: formProv.getKategoriSelected,
                   decoration: const InputDecoration(
-                      hintStyle: TextStyle(color: Colors.black, fontSize: 18),
-                      labelStyle: TextStyle(color: Colors.black, fontSize: 15),
+                      hintStyle: TextStyle( fontSize: 18),
+                      labelStyle: TextStyle(fontSize: 15),
                       focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.black),
                       ),
@@ -149,8 +149,8 @@ class _TambahProdukState extends State<TambahProduk> {
                     decoration: const InputDecoration(
                       labelText: 'Jumlah Stok',
                       border: OutlineInputBorder(),
-                      hintStyle: TextStyle(color: Colors.black, fontSize: 18),
-                      labelStyle: TextStyle(color: Colors.black, fontSize: 15),
+                      hintStyle: TextStyle(fontSize: 18),
+                      labelStyle: TextStyle(fontSize: 15),
                       focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.black),
                       ),
@@ -161,23 +161,23 @@ class _TambahProdukState extends State<TambahProduk> {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
                 child: TextFormField(
-                    controller: formProv.hargaBeliController,
-                    cursorColor: Colors.black,
-                    keyboardType: TextInputType.number,
-                    inputFormatters: [
-                      FilteringTextInputFormatter.allow(RegExp(r'[0-9,]')),
-                    ],
-                    decoration: const InputDecoration(
-                      labelText: 'Harga Beli',
-                      border: OutlineInputBorder(),
-                      hintStyle: TextStyle(color: Colors.black, fontSize: 18),
-                      labelStyle: TextStyle(color: Colors.black, fontSize: 15),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.black),
-                      ),
+                  controller: formProv.hargaBeliController,
+                  cursorColor: Colors.black,
+                  keyboardType: TextInputType.number,
+                  inputFormatters: [
+                    FilteringTextInputFormatter.allow(RegExp(r'[0-9,]')),
+                  ],
+                  decoration: const InputDecoration(
+                    labelText: 'Harga Beli',
+                    border: OutlineInputBorder(),
+                    hintStyle: TextStyle( fontSize: 18),
+                    labelStyle: TextStyle( fontSize: 15),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black),
                     ),
-                    validator: formProv.validateHarga,
-                    onChanged: (value) {
+                  ),
+                  validator: formProv.validateHarga,
+                  onChanged: (value) {
                     final cleanValue = value.replaceAll(RegExp(r'[^\d]'), '');
                     final formattedValue =
                         formatCurrency.format(int.parse(cleanValue));
@@ -187,7 +187,7 @@ class _TambahProdukState extends State<TambahProduk> {
                           offset: formattedValue.length),
                     );
                   },
-                    ),
+                ),
               ),
               Padding(
                 padding:
@@ -202,8 +202,8 @@ class _TambahProdukState extends State<TambahProduk> {
                   decoration: const InputDecoration(
                     labelText: 'Harga Jual',
                     border: OutlineInputBorder(),
-                    hintStyle: TextStyle(color: Colors.black, fontSize: 18),
-                    labelStyle: TextStyle(color: Colors.black, fontSize: 15),
+                    hintStyle: TextStyle( fontSize: 18),
+                    labelStyle: TextStyle( fontSize: 15),
                     focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.black),
                     ),
@@ -280,13 +280,11 @@ class _TambahProdukState extends State<TambahProduk> {
                           minimumSize: const Size(365, 40),
                           backgroundColor: primaryColor,
                         ),
-                        child: Text(
+                        child: const Text(
                           'Tambah',
                           style: TextStyle(
-                              fontSize: Theme.of(context)
-                                  .textTheme
-                                  .bodyMedium
-                                  ?.fontSize,
+                              fontSize: 25,
+                              fontWeight: FontWeight.bold,
                               color: Colors.white),
                         ),
                       ),

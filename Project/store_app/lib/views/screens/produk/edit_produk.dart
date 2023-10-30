@@ -85,8 +85,8 @@ class _EditProdukState extends State<EditProduk> {
                   controller: formProv.namaProdukController,
                   cursorColor: Colors.black,
                   decoration: const InputDecoration(
-                      labelText: 'Nama Produk', border: OutlineInputBorder(), hintStyle: TextStyle(color: Colors.black, fontSize: 18),
-                      labelStyle: TextStyle(color: Colors.black, fontSize: 15),
+                      labelText: 'Nama Produk', border: OutlineInputBorder(), hintStyle: TextStyle( fontSize: 18),
+                      labelStyle: TextStyle( fontSize: 15),
                       focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.black),
                       ),),
@@ -101,8 +101,8 @@ class _EditProdukState extends State<EditProduk> {
                   cursorColor: Colors.black,
                   keyboardType: TextInputType.multiline,
                   decoration: const InputDecoration(
-                      labelText: 'Deskripsi', border: OutlineInputBorder(),hintStyle: TextStyle(color: Colors.black, fontSize: 18),
-                      labelStyle: TextStyle(color: Colors.black, fontSize: 15),
+                      labelText: 'Deskripsi', border: OutlineInputBorder(),hintStyle: TextStyle( fontSize: 18),
+                      labelStyle: TextStyle( fontSize: 15),
                       focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.black),
                       ),),
@@ -116,8 +116,8 @@ class _EditProdukState extends State<EditProduk> {
                   items: produkProv.dropdownItems,
                   value: formProv.getKategoriSelected,
                   decoration: const InputDecoration(
-                      labelText: 'Kategori', border: OutlineInputBorder(),hintStyle: TextStyle(color: Colors.black, fontSize: 18),
-                      labelStyle: TextStyle(color: Colors.black, fontSize: 15),
+                      labelText: 'Kategori', border: OutlineInputBorder(),hintStyle: TextStyle(fontSize: 18),
+                      labelStyle: TextStyle( fontSize: 15),
                       focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.black),
                       ),),
@@ -162,8 +162,8 @@ class _EditProdukState extends State<EditProduk> {
                     keyboardType: TextInputType.number,
                     cursorColor: Colors.black,
                     decoration: const InputDecoration(
-                        labelText: 'Jumlah Stok', border: OutlineInputBorder(),hintStyle: TextStyle(color: Colors.black, fontSize: 18),
-                      labelStyle: TextStyle(color: Colors.black, fontSize: 15),
+                        labelText: 'Jumlah Stok', border: OutlineInputBorder(),hintStyle: TextStyle( fontSize: 18),
+                      labelStyle: TextStyle( fontSize: 15),
                       focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.black),
                       ),),
@@ -180,8 +180,8 @@ class _EditProdukState extends State<EditProduk> {
                       FilteringTextInputFormatter.allow(RegExp(r'[0-9,]')),
                     ],
                     decoration: const InputDecoration(
-                        labelText: 'Harga Beli', border: OutlineInputBorder(),hintStyle: TextStyle(color: Colors.black, fontSize: 18),
-                      labelStyle: TextStyle(color: Colors.black, fontSize: 15),
+                        labelText: 'Harga Beli', border: OutlineInputBorder(),hintStyle: TextStyle( fontSize: 18),
+                      labelStyle: TextStyle( fontSize: 15),
                       focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.black),
                       ),),
@@ -208,8 +208,8 @@ class _EditProdukState extends State<EditProduk> {
                       FilteringTextInputFormatter.allow(RegExp(r'[0-9,]'))
                     ],
                     decoration: const InputDecoration(
-                        labelText: 'Harga Jual', border: OutlineInputBorder(),hintStyle: TextStyle(color: Colors.black, fontSize: 18),
-                      labelStyle: TextStyle(color: Colors.black, fontSize: 15),
+                        labelText: 'Harga Jual', border: OutlineInputBorder(),hintStyle: TextStyle( fontSize: 18),
+                      labelStyle: TextStyle( fontSize: 15),
                       focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.black),
                       ),),
@@ -282,14 +282,12 @@ class _EditProdukState extends State<EditProduk> {
                           minimumSize: const Size(365, 40),
                           backgroundColor: primaryColor,
                         ),
-                        child: Text(
+                        child: const Text(
                           'SIMPAN',
                           style: TextStyle(
-                              fontSize: Theme.of(context)
-                                  .textTheme
-                                  .bodyMedium
-                                  ?.fontSize,
-                              color: Colors.white),
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
                         ),
                       ),
                     )

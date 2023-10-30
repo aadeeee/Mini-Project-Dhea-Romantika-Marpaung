@@ -80,6 +80,7 @@ class _MainAppState extends State<MainApp> {
             : FloatingActionButton(
                 onPressed: () {
                   viewProduct();
+                  
                 },
                 tooltip: 'Buat Transaksi Baru',
                 backgroundColor: Colors.teal[700],

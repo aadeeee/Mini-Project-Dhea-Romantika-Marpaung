@@ -162,14 +162,13 @@ class _MyLoginState extends State<MyLogin> {
                                                 builder: (_) =>
                                                     const MainApp()),
                                           );
-                                        } else if (
-                                            !prov.loggedIn) {}
-
-                                        QuickAlert.show(
-                                            context: context,
-                                            type: QuickAlertType.error,
-                                            text:
-                                                "Data yang Anda masukkan tidak sesuai, \ncek kembali data Anda");
+                                        } else if (!prov.loggedIn) {
+                                          QuickAlert.show(
+                                              context: context,
+                                              type: QuickAlertType.error,
+                                              text:
+                                                  "Data yang Anda masukkan tidak sesuai, \ncek kembali data Anda");
+                                        }
                                       } catch (error) {
                                         print(error);
                                       }
