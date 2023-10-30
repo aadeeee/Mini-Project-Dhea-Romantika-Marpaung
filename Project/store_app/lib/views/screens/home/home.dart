@@ -35,7 +35,10 @@ class _HomeState extends State<Home> {
               alignment: Alignment.topLeft,
               child: const Text(
                 'Masih semangat jualan hari ini???',
-                style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
+                style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 20,
+                    fontFamily: "Poppins"),
                 textAlign: TextAlign.start,
               ),
             ),

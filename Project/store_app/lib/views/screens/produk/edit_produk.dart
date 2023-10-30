@@ -71,7 +71,11 @@ class _EditProdukState extends State<EditProduk> {
             );
           },
         ),
-        title: const Text('Edit Produk'),backgroundColor: primaryColor,
+        title: const Text(
+          'Edit Produk',
+          style: TextStyle(fontFamily: "Poppins"),
+        ),
+        backgroundColor: primaryColor,
       ),
       body: SingleChildScrollView(
         child: Form(
@@ -85,11 +89,14 @@ class _EditProdukState extends State<EditProduk> {
                   controller: formProv.namaProdukController,
                   cursorColor: Colors.black,
                   decoration: const InputDecoration(
-                      labelText: 'Nama Produk', border: OutlineInputBorder(), hintStyle: TextStyle( fontSize: 18),
-                      labelStyle: TextStyle( fontSize: 15),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.black),
-                      ),),
+                    labelText: 'Nama Produk',
+                    border: OutlineInputBorder(),
+                    hintStyle: TextStyle(fontSize: 18),
+                    labelStyle: TextStyle(fontSize: 15),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black),
+                    ),
+                  ),
                   validator: formProv.validateNamaProduk,
                 ),
               ),
@@ -101,11 +108,14 @@ class _EditProdukState extends State<EditProduk> {
                   cursorColor: Colors.black,
                   keyboardType: TextInputType.multiline,
                   decoration: const InputDecoration(
-                      labelText: 'Deskripsi', border: OutlineInputBorder(),hintStyle: TextStyle( fontSize: 18),
-                      labelStyle: TextStyle( fontSize: 15),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.black),
-                      ),),
+                    labelText: 'Deskripsi',
+                    border: OutlineInputBorder(),
+                    hintStyle: TextStyle(fontSize: 18),
+                    labelStyle: TextStyle(fontSize: 15),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black),
+                    ),
+                  ),
                   maxLines: null,
                 ),
               ),
@@ -116,11 +126,14 @@ class _EditProdukState extends State<EditProduk> {
                   items: produkProv.dropdownItems,
                   value: formProv.getKategoriSelected,
                   decoration: const InputDecoration(
-                      labelText: 'Kategori', border: OutlineInputBorder(),hintStyle: TextStyle(fontSize: 18),
-                      labelStyle: TextStyle( fontSize: 15),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.black),
-                      ),),
+                    labelText: 'Kategori',
+                    border: OutlineInputBorder(),
+                    hintStyle: TextStyle(fontSize: 18),
+                    labelStyle: TextStyle(fontSize: 15),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black),
+                    ),
+                  ),
                   validator: (value) => (value == null || value == "none")
                       ? "Pilih kategori"
                       : null,
@@ -162,31 +175,37 @@ class _EditProdukState extends State<EditProduk> {
                     keyboardType: TextInputType.number,
                     cursorColor: Colors.black,
                     decoration: const InputDecoration(
-                        labelText: 'Jumlah Stok', border: OutlineInputBorder(),hintStyle: TextStyle( fontSize: 18),
-                      labelStyle: TextStyle( fontSize: 15),
+                      labelText: 'Jumlah Stok',
+                      border: OutlineInputBorder(),
+                      hintStyle: TextStyle(fontSize: 18),
+                      labelStyle: TextStyle(fontSize: 15),
                       focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.black),
-                      ),),
+                      ),
+                    ),
                     validator: formProv.validateStok),
               ),
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
                 child: TextFormField(
-                    controller: formProv.hargaBeliController,
-                    keyboardType: TextInputType.number,
-                    cursorColor: Colors.black,
-                    inputFormatters: [
-                      FilteringTextInputFormatter.allow(RegExp(r'[0-9,]')),
-                    ],
-                    decoration: const InputDecoration(
-                        labelText: 'Harga Beli', border: OutlineInputBorder(),hintStyle: TextStyle( fontSize: 18),
-                      labelStyle: TextStyle( fontSize: 15),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.black),
-                      ),),
-                    validator: formProv.validateHarga,
-                    onChanged: (value) {
+                  controller: formProv.hargaBeliController,
+                  keyboardType: TextInputType.number,
+                  cursorColor: Colors.black,
+                  inputFormatters: [
+                    FilteringTextInputFormatter.allow(RegExp(r'[0-9,]')),
+                  ],
+                  decoration: const InputDecoration(
+                    labelText: 'Harga Beli',
+                    border: OutlineInputBorder(),
+                    hintStyle: TextStyle(fontSize: 18),
+                    labelStyle: TextStyle(fontSize: 15),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black),
+                    ),
+                  ),
+                  validator: formProv.validateHarga,
+                  onChanged: (value) {
                     final cleanValue = value.replaceAll(RegExp(r'[^\d]'), '');
                     final formattedValue =
                         formatCurrency.format(int.parse(cleanValue));
@@ -195,7 +214,8 @@ class _EditProdukState extends State<EditProduk> {
                       selection: TextSelection.collapsed(
                           offset: formattedValue.length),
                     );
-                  },),
+                  },
+                ),
               ),
               Padding(
                 padding:
@@ -208,23 +228,25 @@ class _EditProdukState extends State<EditProduk> {
                       FilteringTextInputFormatter.allow(RegExp(r'[0-9,]'))
                     ],
                     decoration: const InputDecoration(
-                        labelText: 'Harga Jual', border: OutlineInputBorder(),hintStyle: TextStyle( fontSize: 18),
-                      labelStyle: TextStyle( fontSize: 15),
+                      labelText: 'Harga Jual',
+                      border: OutlineInputBorder(),
+                      hintStyle: TextStyle(fontSize: 18),
+                      labelStyle: TextStyle(fontSize: 15),
                       focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.black),
-                      ),),
+                      ),
+                    ),
                     validator: formProv.validateHarga,
                     onChanged: (value) {
-                    final cleanValue = value.replaceAll(RegExp(r'[^\d]'), '');
-                    final formattedValue =
-                        formatCurrency.format(int.parse(cleanValue));
-                    formProv.hargaJualController.value = TextEditingValue(
-                      text: formattedValue,
-                      selection: TextSelection.collapsed(
-                          offset: formattedValue.length),
-                    );
-                  }
-                    ),
+                      final cleanValue = value.replaceAll(RegExp(r'[^\d]'), '');
+                      final formattedValue =
+                          formatCurrency.format(int.parse(cleanValue));
+                      formProv.hargaJualController.value = TextEditingValue(
+                        text: formattedValue,
+                        selection: TextSelection.collapsed(
+                            offset: formattedValue.length),
+                      );
+                    }),
               ),
               Padding(
                 padding: const EdgeInsets.only(
@@ -251,7 +273,7 @@ class _EditProdukState extends State<EditProduk> {
                                 stock: int.parse(formProv.stokController.text
                                     .replaceAll(RegExp(r'[^0-9]'), '')),
                               ));
-                              
+
                               await produkProv.getData();
 
                               Navigator.popUntil(
@@ -267,12 +289,12 @@ class _EditProdukState extends State<EditProduk> {
                               );
                             }
                             formProv.namaProdukController.clear();
-                              formProv.deskripsiController.clear();
-                              formProv.hargaJualController.clear();
-                              formProv.stokController.clear();
-                              formProv.hargaBeliController.clear();
-                              formProv.updateKategori = "none";
-                              imgProv.clearImage();
+                            formProv.deskripsiController.clear();
+                            formProv.hargaJualController.clear();
+                            formProv.stokController.clear();
+                            formProv.hargaBeliController.clear();
+                            formProv.updateKategori = "none";
+                            imgProv.clearImage();
                           }
                         },
                         style: ElevatedButton.styleFrom(
@@ -285,9 +307,10 @@ class _EditProdukState extends State<EditProduk> {
                         child: const Text(
                           'SIMPAN',
                           style: TextStyle(
-                            fontSize: 25,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white),
+                              fontSize: 25,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                              fontFamily: "Poppins"),
                         ),
                       ),
                     )

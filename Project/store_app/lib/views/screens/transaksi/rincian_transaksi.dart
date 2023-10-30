@@ -28,7 +28,7 @@ class _RincianTransaksiState extends State<RincianTransaksi> {
       appBar: AppBar(
         title: const Text(
           'Rincian Transaksi',
-          style: TextStyle(fontSize: 25),
+          style: TextStyle(fontSize: 25, fontFamily: "Poppins"),
         ),
         backgroundColor: primaryColor,
       ),
@@ -43,12 +43,14 @@ class _RincianTransaksiState extends State<RincianTransaksi> {
                 children: [
                   const Expanded(
                       flex: 3,
-                      child:
-                          Text('Nomor Antrian', style: TextStyle(fontSize: 20))),
+                      child: Text('Nomor Antrian',
+                          style:
+                              TextStyle(fontSize: 20, fontFamily: "Poppins"))),
                   Expanded(
                       flex: 5,
                       child: Text(': ${widget.transaksi.nomorAntrian}',
-                          style: const TextStyle(fontSize: 20)))
+                          style: const TextStyle(
+                              fontSize: 20, fontFamily: "Poppins")))
                 ],
               ),
             ),
@@ -58,12 +60,15 @@ class _RincianTransaksiState extends State<RincianTransaksi> {
                 children: [
                   const Expanded(
                       flex: 3,
-                      child: Text('Status', style: TextStyle(fontSize: 20))),
+                      child: Text('Status',
+                          style:
+                              TextStyle(fontSize: 20, fontFamily: "Poppins"))),
                   Expanded(
                       flex: 5,
                       child: Text(
                           ': ${widget.transaksi.inProcess ? 'Dalam Proses' : 'Selesai'}',
-                          style: const TextStyle(fontSize: 20)))
+                          style: const TextStyle(
+                              fontSize: 20, fontFamily: "Poppins")))
                 ],
               ),
             ),
@@ -73,11 +78,14 @@ class _RincianTransaksiState extends State<RincianTransaksi> {
                 children: [
                   const Expanded(
                       flex: 3,
-                      child: Text('Pembayaran', style: TextStyle(fontSize: 20))),
+                      child: Text('Pembayaran',
+                          style:
+                              TextStyle(fontSize: 20, fontFamily: "Poppins"))),
                   Expanded(
                       flex: 5,
                       child: Text(': ${widget.transaksi.metodePembayaran}',
-                          style: const TextStyle(fontSize: 20)))
+                          style: const TextStyle(
+                              fontSize: 20, fontFamily: "Poppins")))
                 ],
               ),
             ),
@@ -87,11 +95,14 @@ class _RincianTransaksiState extends State<RincianTransaksi> {
                 children: [
                   const Expanded(
                       flex: 3,
-                      child: Text('Tanggal', style: TextStyle(fontSize: 20))),
+                      child: Text('Tanggal',
+                          style:
+                              TextStyle(fontSize: 20, fontFamily: "Poppins"))),
                   Expanded(
                       flex: 5,
                       child: Text(': ${formattedDate(widget.transaksi.date)}',
-                          style: const TextStyle(fontSize: 20)))
+                          style: const TextStyle(
+                              fontSize: 20, fontFamily: "Poppins")))
                 ],
               ),
             ),
@@ -101,11 +112,14 @@ class _RincianTransaksiState extends State<RincianTransaksi> {
                 children: [
                   const Expanded(
                       flex: 3,
-                      child: Text('Waktu', style: TextStyle(fontSize: 20))),
+                      child: Text('Waktu',
+                          style:
+                              TextStyle(fontSize: 20, fontFamily: "Poppins"))),
                   Expanded(
                       flex: 5,
                       child: Text(': ${widget.transaksi.time}',
-                          style: const TextStyle(fontSize: 20)))
+                          style: const TextStyle(
+                              fontSize: 20, fontFamily: "Poppins")))
                 ],
               ),
             ),
@@ -115,11 +129,14 @@ class _RincianTransaksiState extends State<RincianTransaksi> {
                 children: [
                   const Expanded(
                       flex: 3,
-                      child: Text('Qty', style: TextStyle(fontSize: 20))),
+                      child: Text('Qty',
+                          style:
+                              TextStyle(fontSize: 20, fontFamily: "Poppins"))),
                   Expanded(
                       flex: 5,
                       child: Text(': ${widget.transaksi.qty}',
-                          style: const TextStyle(fontSize: 20)))
+                          style: const TextStyle(
+                              fontSize: 20, fontFamily: "Poppins")))
                 ],
               ),
             ),
@@ -129,12 +146,15 @@ class _RincianTransaksiState extends State<RincianTransaksi> {
                 children: [
                   const Expanded(
                       flex: 3,
-                      child: Text('Harga', style: TextStyle(fontSize: 20))),
+                      child: Text('Harga',
+                          style:
+                              TextStyle(fontSize: 20, fontFamily: "Poppins"))),
                   Expanded(
                       flex: 5,
                       child: Text(
                           ': ${formatCurrency.format(widget.transaksi.price)}',
-                          style: const TextStyle(fontSize: 20)))
+                          style: const TextStyle(
+                              fontSize: 20, fontFamily: "Poppins")))
                 ],
               ),
             ),
@@ -144,24 +164,29 @@ class _RincianTransaksiState extends State<RincianTransaksi> {
                 children: [
                   const Expanded(
                       flex: 3,
-                      child: Text('Nama Produk', style: TextStyle(fontSize: 20))),
+                      child: Text('Nama Produk',
+                          style:
+                              TextStyle(fontSize: 20, fontFamily: "Poppins"))),
                   Expanded(
                       flex: 5,
                       child: Text(': ${widget.transaksi.namaProduk}',
-                          style: const TextStyle(fontSize: 20)))
+                          style: const TextStyle(
+                              fontSize: 20, fontFamily: "Poppins")))
                 ],
               ),
             ),
-            
             Padding(
               padding: const EdgeInsets.only(top: 20, bottom: 25),
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text('Total', style: TextStyle(fontSize: 23)),
+                    const Text('Total',
+                        style: TextStyle(fontSize: 23, fontFamily: "Poppins")),
                     Text(formatCurrency.format(totalHargaBelanja),
                         style: const TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.w600))
+                            fontSize: 18,
+                            fontWeight: FontWeight.w600,
+                            fontFamily: "Poppins"))
                   ]),
             ),
             Row(
@@ -182,7 +207,8 @@ class _RincianTransaksiState extends State<RincianTransaksi> {
                         style: TextStyle(
                             fontSize: 25,
                             fontWeight: FontWeight.bold,
-                            color: Colors.white),
+                            color: Colors.white,
+                            fontFamily: "Poppins"),
                       ),
                       onPressed: () {
                         Navigator.pushReplacement(

@@ -26,7 +26,7 @@ class _TransaksiListScreenState extends State<TransaksiListScreen> {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: primaryColor,
-          title: const Text('Daftar Transaksi', style: TextStyle(fontSize: 28),),
+          title: const Text('Daftar Transaksi', style: TextStyle(fontSize: 28, fontFamily: "Poppins"),),
           bottom: const TabBar(
             tabs: [
               Tab(text: 'Sedang Diproses'),

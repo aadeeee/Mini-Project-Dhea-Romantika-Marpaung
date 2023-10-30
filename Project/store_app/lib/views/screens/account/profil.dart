@@ -149,15 +149,15 @@ class MyProfil extends StatelessWidget {
                             context: context,
                             builder: (context) {
                               return AlertDialog(
-                                title: const Text("Keluar dari akun Anda?"),
+                                title: const Text("Keluar dari akun Anda?",style: TextStyle(fontFamily: "Poppins"),),
                                 actions: [
                                   TextButton(
                                       onPressed: () {
                                         Navigator.pop(context, false);
                                       },
                                       child: const Text(
-                                        'Batalkan',
-                                        style: TextStyle(color: Colors.black),
+                                        'Batal',
+                                        style: TextStyle( fontFamily: "Poppins"),
                                       )),
                                   TextButton(
                                     onPressed: () {
@@ -172,7 +172,7 @@ class MyProfil extends StatelessWidget {
                                     },
                                     child: Text(
                                       'Keluar',
-                                      style: TextStyle(color: primaryColor),
+                                      style: TextStyle(color: primaryColor, fontFamily: "Poppins"),
                                     ),
                                   ),
                                 ],
@@ -182,7 +182,7 @@ class MyProfil extends StatelessWidget {
                       icon: const Icon(Icons.logout),
                       label: const Text(
                         "Keluar",
-                        style: TextStyle(fontSize: 18),
+                        style: TextStyle(fontSize: 18, fontFamily: "Poppins"),
                       ))),
             ),
           ],

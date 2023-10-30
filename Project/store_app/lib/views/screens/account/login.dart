@@ -70,151 +70,176 @@ class _MyLoginState extends State<MyLogin> {
                               width: 130,
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 20, right: 20),
-                            child: SizedBox(
-                              child: Column(children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(10),
-                                  child: TextFormField(
-                                    key: const Key('username'),
-                                    controller: prov.usernameController,
-                                    cursorColor: Colors.black,
-                                    decoration: InputDecoration(
-                                      prefixIcon: const Icon(
-                                        Icons.account_circle,
-                                        color: Colors.black,
-                                      ),
-                                      border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(15),
-                                        borderSide: const BorderSide(
+                          Form(
+                            key: prov.globalKey,
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.only(left: 20, right: 20),
+                              child: SizedBox(
+                                child: Column(children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(10),
+                                    child: TextFormField(
+                                      key: const Key('username'),
+                                      controller: prov.usernameController,
+                                      cursorColor: Colors.black,
+                                      decoration: InputDecoration(
+                                        prefixIcon: const Icon(
+                                          Icons.account_circle,
                                           color: Colors.black,
                                         ),
+                                        border: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(15),
+                                          borderSide: const BorderSide(
+                                            color: Colors.black,
+                                          ),
+                                        ),
+                                        focusedBorder: const OutlineInputBorder(
+                                          borderSide:
+                                              BorderSide(color: Colors.black),
+                                        ),
+                                        fillColor: Colors.black,
+                                        hintText: "Nama Pengguna",
                                       ),
-                                      focusedBorder: const OutlineInputBorder(
-                                        borderSide:
-                                            BorderSide(color: Colors.black),
-                                      ),
-                                      fillColor: Colors.black,
-                                      hintText: "Nama Pengguna",
+                                      validator: (value) =>
+                                          prov.validateName(value),
                                     ),
-                                    validator: (value) =>
-                                        prov.validateName(value),
                                   ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(10),
-                                  child: TextFormField(
-                                    key: const Key('password'),
-                                    obscureText: prov.getObsecureTextPasswword,
-                                    controller: prov.passwordController,
-                                    cursorColor: Colors.black,
-                                    decoration: InputDecoration(
-                                      prefixIcon: const Icon(
-                                        Icons.lock,
-                                        color: Colors.black,
-                                      ),
-                                      suffixIcon: IconButton(
-                                        icon: Icon(
-                                          prov.getObsecureTextPasswword
-                                              ? Icons.visibility_off
-                                              : Icons.visibility,
+                                  Padding(
+                                    padding: const EdgeInsets.all(10),
+                                    child: TextFormField(
+                                      key: const Key('password'),
+                                      obscureText:
+                                          prov.getObsecureTextPasswword,
+                                      controller: prov.passwordController,
+                                      cursorColor: Colors.black,
+                                      decoration: InputDecoration(
+                                        prefixIcon: const Icon(
+                                          Icons.lock,
                                           color: Colors.black,
                                         ),
-                                        onPressed: () {
-                                          setState(() {
-                                            prov.setObsecureTextPassword =
-                                                !prov.getObsecureTextPasswword;
-                                          });
-                                        },
-                                      ),
-                                      border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(15),
-                                        borderSide: const BorderSide(
-                                          color: Colors.black,
-                                        ),
-                                      ),
-                                      focusedBorder: const OutlineInputBorder(
-                                        borderSide:
-                                            BorderSide(color: Colors.black),
-                                      ),
-                                      fillColor: Colors.black,
-                                      hintText: "Kata Sandi",
-                                    ),
-                                    validator: (value) =>
-                                        prov.validatePassword(value),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(10),
-                                  child: ElevatedButton(
-                                    onPressed: () async {
-                                      try {
-                                        await prov.login(
-                                          prov.usernameController.text,
-                                          prov.passwordController.text,
-                                        );
-
-                                        if (prov.loggedIn) {
-                                          Navigator.pushReplacement(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (_) =>
-                                                    const MainApp()),
-                                          );
-                                        } else if (!prov.loggedIn) {
-                                          QuickAlert.show(
-                                              context: context,
-                                              type: QuickAlertType.error,
-                                              text:
-                                                  "Data yang Anda masukkan tidak sesuai, \ncek kembali data Anda");
-                                        }
-                                      } catch (error) {
-                                        print(error);
-                                      }
-                                      prov.usernameController.clear();
-                                      prov.passwordController.clear();
-                                    },
-                                    style: ElevatedButton.styleFrom(
-                                        backgroundColor: primaryColor,
-                                        minimumSize: const Size.fromHeight(60),
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(15))),
-                                    child: const Text("MASUK",
-                                        style: TextStyle(color: Colors.white)),
-                                  ),
-                                ),
-                                Container(
-                                  margin: const EdgeInsets.symmetric(
-                                      horizontal: 10),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text("Belum Punya Akun ?",
-                                          style: TextStyle(
-                                              color: primaryColor,
-                                              fontSize: 16)),
-                                      TextButton(
+                                        suffixIcon: IconButton(
+                                          icon: Icon(
+                                            prov.getObsecureTextPasswword
+                                                ? Icons.visibility_off
+                                                : Icons.visibility,
+                                            color: Colors.black,
+                                          ),
                                           onPressed: () {
-                                            Navigator.pushReplacement(
+                                            setState(() {
+                                              prov.setObsecureTextPassword =
+                                                  !prov
+                                                      .getObsecureTextPasswword;
+                                            });
+                                          },
+                                        ),
+                                        border: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(15),
+                                          borderSide: const BorderSide(
+                                            color: Colors.black,
+                                          ),
+                                        ),
+                                        focusedBorder: const OutlineInputBorder(
+                                          borderSide:
+                                              BorderSide(color: Colors.black),
+                                        ),
+                                        fillColor: Colors.black,
+                                        hintText: "Kata Sandi",
+                                      ),
+                                      validator: (value) =>
+                                          prov.validatePassword(value),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(10),
+                                    child: ElevatedButton(
+                                      onPressed: () async {
+                                        if (prov.globalKey.currentState!
+                                            .validate()) {
+                                          try {
+                                            await prov.login(
+                                              prov.usernameController.text,
+                                              prov.passwordController.text,
+                                            );
+
+                                            if (prov.loggedIn) {
+                                              Navigator.pushReplacement(
                                                 context,
                                                 MaterialPageRoute(
                                                     builder: (_) =>
-                                                        const MyRegister()));
-                                          },
-                                          child: Text(
-                                            "Daftar disini",
-                                            style: TextStyle(
-                                                decoration:
-                                                    TextDecoration.underline,
-                                                color: primaryColor,
-                                                fontSize: 16),
-                                          )),
-                                    ],
+                                                        const MainApp()),
+                                              );
+                                            } else {
+                                              QuickAlert.show(
+                                                context: context,
+                                                type: QuickAlertType.warning,
+                                                text:
+                                                    "Data yang Anda masukkan tidak sesuai, \ncek kembali data Anda",
+                                              );
+                                            }
+                                          } catch (error) {
+                                            print(error);
+                                          }
+                                        } else {
+                                          QuickAlert.show(
+                                              context: context,
+                                              type: QuickAlertType.warning,
+                                              text:
+                                                  "Data yang Anda masukkan tidak sesuai, \ncek kembali data Anda");
+                                        }
+
+                                        prov.usernameController.clear();
+                                        prov.passwordController.clear();
+                                      },
+                                      style: ElevatedButton.styleFrom(
+                                          backgroundColor: primaryColor,
+                                          minimumSize:
+                                              const Size.fromHeight(60),
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(15))),
+                                      child: const Text("MASUK",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontFamily: "Poppins", fontSize: 20)),
+                                    ),
                                   ),
-                                )
-                              ]),
+                                  Container(
+                                    margin: const EdgeInsets.symmetric(
+                                        horizontal: 10),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text("Belum Punya Akun ?",
+                                            style: TextStyle(
+                                                color: primaryColor,
+                                                fontSize: 16,
+                                                fontFamily: "Poppins")),
+                                        TextButton(
+                                            onPressed: () {
+                                              Navigator.pushReplacement(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (_) =>
+                                                          const MyRegister()));
+                                            },
+                                            child: Text(
+                                              "Daftar disini",
+                                              style: TextStyle(
+                                                  decoration:
+                                                      TextDecoration.underline,
+                                                  color: primaryColor,
+                                                  fontSize: 16,
+                                                  fontFamily: "Poppins"),
+                                            )),
+                                      ],
+                                    ),
+                                  )
+                                ]),
+                              ),
                             ),
                           )
                         ],

@@ -17,7 +17,10 @@ class PaymentDone extends StatelessWidget {
                 Image.asset('assets/images/payment-done.png'),
                 const Text(
                   'Transaksi Berhasil!',
-                  style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                      fontSize: 26,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: "Poppins"),
                   textAlign: TextAlign.center,
                 ),
                 Padding(
@@ -26,7 +29,7 @@ class PaymentDone extends StatelessWidget {
                     'Yeay! Order pada antrian $nomorAntrean telah selesai diproses.',
                     style: const TextStyle(
                       fontSize: 18,
-                      fontFamily: 'Figtree',
+                      fontFamily: 'Poppins',
                     ),
                     textAlign: TextAlign.center,
                   ),
@@ -51,9 +54,9 @@ class PaymentDone extends StatelessWidget {
                             child: const Text(
                               'Kembali ke Beranda',
                               style: TextStyle(
-                                fontSize: 18,
-                                color: Colors.white,
-                              ),
+                                  fontSize: 18,
+                                  color: Colors.white,
+                                  fontFamily: "Poppins"),
                             ),
                           )),
                     ),

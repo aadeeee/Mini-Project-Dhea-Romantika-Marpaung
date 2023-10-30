@@ -30,7 +30,10 @@ class _DetailProdukState extends State<DetailProduk> {
     final transaksiProv = Provider.of<TransaksiProvider>(context);
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Detail Produk"),
+        title: const Text(
+          "Detail Produk",
+          style: TextStyle(fontFamily: "Poppins"),
+        ),
         backgroundColor: primaryColor,
         leading: IconButton(
           onPressed: () {
@@ -89,19 +92,19 @@ class _DetailProdukState extends State<DetailProduk> {
                 children: [
                   widget.produk.img.contains("https:")
                       ? Padding(
-                        padding: const EdgeInsets.only(top: 50, bottom: 30),
-                        child: Image.network(
+                          padding: const EdgeInsets.only(top: 50, bottom: 30),
+                          child: Image.network(
                             widget.produk.img,
                             height: 200,
                           ),
-                      )
+                        )
                       : Padding(
-                        padding: const EdgeInsets.only(top: 50, bottom: 30),
-                        child: Image.file(
+                          padding: const EdgeInsets.only(top: 50, bottom: 30),
+                          child: Image.file(
                             File(widget.produk.img),
                             height: 200,
                           ),
-                      ),
+                        ),
                   Padding(
                     padding: const EdgeInsets.only(
                         top: 30, left: 20, right: 25, bottom: 16),
@@ -131,7 +134,8 @@ class _DetailProdukState extends State<DetailProduk> {
                           child: Container(
                               alignment: Alignment.topLeft,
                               child: Text(
-                                widget.produk.deskripsi, style: const TextStyle(fontSize: 17),
+                                widget.produk.deskripsi,
+                                style: const TextStyle(fontSize: 17),
                               )),
                         )
                       : Container(),
@@ -148,7 +152,10 @@ class _DetailProdukState extends State<DetailProduk> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text("Stok", style: TextStyle(fontSize: 17),),
+                      const Text(
+                        "Stok",
+                        style: TextStyle(fontSize: 17, fontFamily: "Poppins"),
+                      ),
                       Text(widget.produk.stock.toString()),
                     ],
                   ),
@@ -159,7 +166,9 @@ class _DetailProdukState extends State<DetailProduk> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text("Jumlah", style: TextStyle(fontSize: 17)),
+                      const Text("Jumlah",
+                          style:
+                              TextStyle(fontSize: 17, fontFamily: "Poppins")),
                       InputQty(
                         minVal: 1,
                         maxVal: widget.produk.stock,
@@ -177,7 +186,9 @@ class _DetailProdukState extends State<DetailProduk> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text("Subtotal", style: TextStyle(fontSize: 17)),
+                      const Text("Subtotal",
+                          style:
+                              TextStyle(fontSize: 17, fontFamily: "Poppins")),
                       Text(formatCurrency.format(
                           widget.produk.hargaJual * qtyProvider.getQty)),
                     ],
@@ -189,7 +200,9 @@ class _DetailProdukState extends State<DetailProduk> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text("Pilih Metode Pembayaran", style: TextStyle(fontSize: 17)),
+                      const Text("Pilih Metode Pembayaran",
+                          style:
+                              TextStyle(fontSize: 17, fontFamily: "Poppins")),
                       DropdownButton<String>(
                         value: transaksiProv.selectedMetodePembayaran,
                         items:
@@ -217,10 +230,10 @@ class _DetailProdukState extends State<DetailProduk> {
                   child: const Text(
                     'Buat Transaksi Baru',
                     style: TextStyle(
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        fontFamily: "Poppins"),
                   ),
                   onPressed: () async {
                     await transaksiProv.addTransaksi(

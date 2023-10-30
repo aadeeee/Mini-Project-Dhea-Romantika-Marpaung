@@ -24,51 +24,50 @@ class _MyProdukState extends State<MyProduk> {
         appBar: AppBar(
           backgroundColor: primaryColor,
           title: TextField(
-            controller: prov.searchController,
-            keyboardType: TextInputType.name,
-            cursorColor: Colors.white,
-            onChanged: (text) {
-              prov.searchProducts(text);
-            },
-            decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(5.0),
-                  borderSide: const BorderSide(
-                    color: Colors.white,
-                    width: 10.0,
+              controller: prov.searchController,
+              keyboardType: TextInputType.name,
+              cursorColor: Colors.white,
+              onChanged: (text) {
+                prov.searchProducts(text);
+              },
+              decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5.0),
+                    borderSide: const BorderSide(
+                      color: Colors.white,
+                      width: 10.0,
+                    ),
                   ),
-                ),
-                prefixIcon: const Icon(
-                  Icons.search,
-                  color: Colors.white,
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(5.0),
-                  borderSide: const BorderSide(color: Colors.white),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(5.0),
-                  borderSide: const BorderSide(color: Colors.white),
-                ),
-                contentPadding: const EdgeInsets.symmetric(vertical: 8.0)),
-                style: const TextStyle(color: Colors.white, fontSize: 25)
-          ),
+                  prefixIcon: const Icon(
+                    Icons.search,
+                    color: Colors.white,
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5.0),
+                    borderSide: const BorderSide(color: Colors.white),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5.0),
+                    borderSide: const BorderSide(color: Colors.white),
+                  ),
+                  contentPadding: const EdgeInsets.symmetric(vertical: 8.0)),
+              style: const TextStyle(color: Colors.white, fontSize: 25)),
           bottom: TabBar(
             isScrollable: true,
             tabs: prov.getTabs(),
-            labelStyle: const TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+            labelStyle:
+                const TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
             labelColor: Colors.white,
             indicatorColor: Colors.white,
           ),
         ),
         body: TabBarView(
           children: [
-            buildProductsByCategory(context, prov.produkList, 'Semua Produk' ),
+            buildProductsByCategory(context, prov.produkList, 'Semua Produk'),
             ...prov.kategoriProduk.map((category) {
               return buildProductsByCategory(
                   context, prov.produkList, category);
             }).toList(),
-            
           ],
         ),
       ),
@@ -120,23 +119,24 @@ class _MyProdukState extends State<MyProduk> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      produk.img.contains("https:")
-                          ? Image.network(
-                              produk.img,
-                              height: 140,
-                              width: double.infinity,
-                              fit: BoxFit.fill,
-                            )
-                          : Image.file(
-                              File(produk.img),
-                              height: 140,
-                              width: double.infinity,
-                              fit: BoxFit.fill,
-                            ),
+                      Flexible(
+                        flex: 1,
+                        child: produk.img.contains("https:")
+                            ? Image.network(
+                                produk.img,
+                                width: double.infinity,
+                                fit: BoxFit.fill,
+                              )
+                            : Image.file(
+                                File(produk.img),
+                                width: double.infinity,
+                                fit: BoxFit.fill,
+                              ),
+                      ),
                       Padding(
                         padding: const EdgeInsets.only(left: 8),
                         child: Text(
-                          produk.namaProduk, 
+                          produk.namaProduk,
                           style: const TextStyle(fontSize: 15),
                         ),
                       ),

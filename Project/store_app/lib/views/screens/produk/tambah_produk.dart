@@ -28,7 +28,10 @@ class _TambahProdukState extends State<TambahProduk> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Tambah Produk'),
+        title: const Text(
+          'Tambah Produk',
+          style: TextStyle(fontFamily: "Poppins"),
+        ),
         backgroundColor: primaryColor,
       ),
       body: SingleChildScrollView(
@@ -45,8 +48,8 @@ class _TambahProdukState extends State<TambahProduk> {
                     decoration: const InputDecoration(
                       labelText: 'Nama Produk',
                       border: OutlineInputBorder(),
-                      hintStyle: TextStyle( fontSize: 18),
-                      labelStyle: TextStyle( fontSize: 15),
+                      hintStyle: TextStyle(fontSize: 18),
+                      labelStyle: TextStyle(fontSize: 15),
                       focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.black),
                       ),
@@ -61,8 +64,8 @@ class _TambahProdukState extends State<TambahProduk> {
                   keyboardType: TextInputType.multiline,
                   cursorColor: Colors.black,
                   decoration: const InputDecoration(
-                      hintStyle: TextStyle( fontSize: 18),
-                      labelStyle: TextStyle( fontSize: 15),
+                      hintStyle: TextStyle(fontSize: 18),
+                      labelStyle: TextStyle(fontSize: 15),
                       focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.black),
                       ),
@@ -78,7 +81,7 @@ class _TambahProdukState extends State<TambahProduk> {
                   items: produkProv.dropdownItems,
                   value: formProv.getKategoriSelected,
                   decoration: const InputDecoration(
-                      hintStyle: TextStyle( fontSize: 18),
+                      hintStyle: TextStyle(fontSize: 18),
                       labelStyle: TextStyle(fontSize: 15),
                       focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.black),
@@ -101,18 +104,16 @@ class _TambahProdukState extends State<TambahProduk> {
                     children: [
                       const Text(
                         "Gambar",
-                        style: TextStyle(fontSize: 15),
+                        style: TextStyle(fontSize: 15, fontFamily: "Poppins"),
                       ),
                       OutlinedButton(
                           onPressed: imgProv.pickImage,
                           child: Text(
                             "Upload Gambar",
                             style: TextStyle(
-                                fontSize: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium
-                                    ?.fontSize,
-                                color: primaryColor),
+                                fontSize: 18,
+                                color: primaryColor,
+                                fontFamily: "Poppins"),
                           )),
                     ],
                   )),
@@ -123,7 +124,7 @@ class _TambahProdukState extends State<TambahProduk> {
                   children: [
                     const Text(
                       'Image :',
-                      style: TextStyle(fontSize: 15),
+                      style: TextStyle(fontSize: 15, fontFamily: "Poppins"),
                     ),
                     Flexible(
                       child: Text(
@@ -131,8 +132,7 @@ class _TambahProdukState extends State<TambahProduk> {
                             ? basename('${imgProv.imagePath}')
                             : 'No Image Selected',
                         style: const TextStyle(
-                          fontSize: 15,
-                        ),
+                            fontSize: 15, fontFamily: "Poppins"),
                       ),
                     ),
                   ],
@@ -170,8 +170,8 @@ class _TambahProdukState extends State<TambahProduk> {
                   decoration: const InputDecoration(
                     labelText: 'Harga Beli',
                     border: OutlineInputBorder(),
-                    hintStyle: TextStyle( fontSize: 18),
-                    labelStyle: TextStyle( fontSize: 15),
+                    hintStyle: TextStyle(fontSize: 18),
+                    labelStyle: TextStyle(fontSize: 15),
                     focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.black),
                     ),
@@ -202,8 +202,8 @@ class _TambahProdukState extends State<TambahProduk> {
                   decoration: const InputDecoration(
                     labelText: 'Harga Jual',
                     border: OutlineInputBorder(),
-                    hintStyle: TextStyle( fontSize: 18),
-                    labelStyle: TextStyle( fontSize: 15),
+                    hintStyle: TextStyle(fontSize: 18),
+                    labelStyle: TextStyle(fontSize: 15),
                     focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.black),
                     ),
@@ -285,7 +285,8 @@ class _TambahProdukState extends State<TambahProduk> {
                           style: TextStyle(
                               fontSize: 25,
                               fontWeight: FontWeight.bold,
-                              color: Colors.white),
+                              color: Colors.white,
+                              fontFamily: "Poppins"),
                         ),
                       ),
                     ),

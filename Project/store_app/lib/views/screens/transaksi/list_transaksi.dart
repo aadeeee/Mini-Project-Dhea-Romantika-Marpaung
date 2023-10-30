@@ -31,11 +31,16 @@ class _TransaksiCardState extends State<TransaksiCard> {
       child: Column(
         children: [
           ListTile(
-            title: Text('Antrian: ${widget.transaksi.nomorAntrian}', style: const TextStyle(fontSize: 20)),
+            title: Text('Antrian: ${widget.transaksi.nomorAntrian}',
+                style: const TextStyle(fontSize: 20, fontFamily: "Poppins")),
             subtitle: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                if (widget.transaksi.inProcess) const Text('Diproses', style: TextStyle(fontSize: 18),),
+                if (widget.transaksi.inProcess)
+                  const Text(
+                    'Diproses',
+                    style: TextStyle(fontSize: 18, fontFamily: "Poppins"),
+                  ),
                 if (!widget.transaksi.inProcess)
                   Text(widget.transaksi.metodePembayaran),
               ],
@@ -60,7 +65,10 @@ class _TransaksiCardState extends State<TransaksiCard> {
                       ),
                       backgroundColor: primaryColor,
                     ),
-                    child: const Text('Rincian', style: TextStyle(fontSize: 18),),
+                    child: const Text(
+                      'Rincian',
+                      style: TextStyle(fontSize: 18, fontFamily: "Poppins"),
+                    ),
                   ),
                 ),
                 if (widget.transaksi.inProcess)
@@ -68,7 +76,8 @@ class _TransaksiCardState extends State<TransaksiCard> {
                     padding: const EdgeInsets.all(8.0),
                     child: ElevatedButton(
                       onPressed: () async {
-                        await transaksiProvider.deleteTransaksi(widget.transaksi.id);
+                        await transaksiProvider
+                            .deleteTransaksi(widget.transaksi.id);
                       },
                       style: ElevatedButton.styleFrom(
                         shape: RoundedRectangleBorder(
@@ -76,7 +85,10 @@ class _TransaksiCardState extends State<TransaksiCard> {
                         ),
                         backgroundColor: primaryColor,
                       ),
-                      child: const Text('Hapus', style: TextStyle(fontSize: 18),),
+                      child: const Text(
+                        'Hapus',
+                        style: TextStyle(fontSize: 18, fontFamily: "Poppins"),
+                      ),
                     ),
                   )
               ],

@@ -289,7 +289,7 @@ class _MyRegisterState extends State<MyRegister> {
                                       } else {
                                         QuickAlert.show(
                                             context: context,
-                                            type: QuickAlertType.error,
+                                            type: QuickAlertType.warning,
                                             text:
                                                 "Data yang Anda masukkan tidak sesuai, \ncek kembali data Anda");
                                       }
@@ -301,7 +301,10 @@ class _MyRegisterState extends State<MyRegister> {
                                             borderRadius:
                                                 BorderRadius.circular(15))),
                                     child: const Text("DAFTAR",
-                                        style: TextStyle(color: Colors.white)),
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontFamily: "Poppins",
+                                            fontSize: 20)),
                                   ),
                                 ),
                                 Container(
@@ -312,6 +315,7 @@ class _MyRegisterState extends State<MyRegister> {
                                     children: [
                                       const Text(
                                         "Sudah Punya Akun ?",
+                                        style: TextStyle(fontFamily: "Poppins"),
                                       ),
                                       TextButton(
                                         onPressed: () {
@@ -323,7 +327,9 @@ class _MyRegisterState extends State<MyRegister> {
                                         },
                                         child: Text(
                                           "Masuk disini",
-                                          style: TextStyle(color: primaryColor),
+                                          style: TextStyle(
+                                              color: primaryColor,
+                                              fontFamily: "Poppins"),
                                         ),
                                       )
                                     ],

@@ -56,65 +56,71 @@ class _HomeInsightState extends State<HomeInsight> {
               "Insight Harian - ${formattedDate(DateTime.now())}",
               style: TextStyle(
                   fontSize: 25,
-                  fontFamily: 'Plus Jakarta Sans',
-                  fontWeight: FontWeight.w500, color: primaryColor),
+                  fontFamily: "Poppins",
+                  fontWeight: FontWeight.w500,
+                  color: primaryColor),
             ),
           ),
           Padding(
             padding: const EdgeInsets.only(bottom: 20),
-            child:
-                Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-              Expanded(
-                child: Column(children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(color: primaryColor, width: 1),
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                    padding: const EdgeInsets.all(16),
-                    child: Column(
-                      children: [
-                        Text(
-                          transaksiProvider.getTotalProdukTerjual().toString(),
-                          style: const TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold),
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: Column(children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(color: primaryColor, width: 1),
+                          borderRadius: BorderRadius.circular(5),
                         ),
-                        Text(
-                          'Produk Terjual',
-                          style: TextStyle(color: primaryColor),
+                        padding: const EdgeInsets.all(16),
+                        child: Column(
+                          children: [
+                            Text(
+                              transaksiProvider
+                                  .getTotalProdukTerjual()
+                                  .toString(),
+                              style: const TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              'Produk Terjual',
+                              style: TextStyle(
+                                  color: primaryColor, fontFamily: "Poppins"),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
+                      ),
+                    ]),
+                  ),
+                  Expanded(
+                    child: Column(children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(color: primaryColor, width: 1),
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        padding: const EdgeInsets.all(16),
+                        child: Column(
+                          children: [
+                            Text(
+                              formatCurrency
+                                  .format(transaksiProvider.getTotalPenjualan())
+                                  .toString(),
+                              style: const TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              'Transaksi',
+                              style: TextStyle(
+                                  color: primaryColor, fontFamily: "Poppins"),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ]),
                   ),
                 ]),
-              ),
-              Expanded(
-                child: Column(children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(color: primaryColor, width: 1),
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                    padding: const EdgeInsets.all(16),
-                    child: Column(
-                      children: [
-                        Text(
-                          formatCurrency
-                              .format(transaksiProvider.getTotalPenjualan())
-                              .toString(),
-                          style: const TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold),
-                        ),
-                        Text(
-                          'Transaksi',
-                          style: TextStyle(color: primaryColor),
-                        ),
-                      ],
-                    ),
-                  ),
-                ]),
-              ),
-            ]),
           ),
           Column(
             children: [
@@ -127,10 +133,9 @@ class _HomeInsightState extends State<HomeInsight> {
                       child: Text(
                         "Profit Bulanan",
                         style: TextStyle(
-                          fontFamily: 'Figtree',
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold
-                        ),
+                            fontFamily: 'Poppins',
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold),
                       ),
                     ),
                   ],
@@ -140,7 +145,8 @@ class _HomeInsightState extends State<HomeInsight> {
                 padding: const EdgeInsets.all(8.0),
                 child: SfCartesianChart(
                     primaryXAxis: CategoryAxis(),
-                    primaryYAxis: NumericAxis(labelFormat: "{value}", numberFormat: formatCurrency),
+                    primaryYAxis: NumericAxis(
+                        labelFormat: "{value}", numberFormat: formatCurrency),
                     tooltipBehavior: TooltipBehavior(
                       enable: true,
                       activationMode: ActivationMode.singleTap,
@@ -157,23 +163,22 @@ class _HomeInsightState extends State<HomeInsight> {
             ],
           ),
           const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 15),
-                child: Row(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only(bottom: 12),
-                      child: Text(
-                        "Produk Hampir Habis",
-                        style: TextStyle(
-                          fontFamily: 'Figtree',
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold
-                        ),
-                      ),
-                    ),
-                  ],
+            padding: EdgeInsets.symmetric(horizontal: 15),
+            child: Row(
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(bottom: 12),
+                  child: Text(
+                    "Produk Hampir Habis",
+                    style: TextStyle(
+                        fontFamily: 'Poppins',
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold),
+                  ),
                 ),
-              ),
+              ],
+            ),
+          ),
           SizedBox(
             height: 150,
             child: ListView.builder(
@@ -184,12 +189,18 @@ class _HomeInsightState extends State<HomeInsight> {
                   padding: const EdgeInsets.only(left: 8, right: 8),
                   child: Card(
                     shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                  side: BorderSide(color: primaryColor, width: 2.0),
-                              ),
+                      borderRadius: BorderRadius.circular(10.0),
+                      side: BorderSide(color: primaryColor, width: 1.0),
+                    ),
                     child: ListTile(
-                      title: Text(produk.namaProduk, style: const TextStyle(fontSize: 18),),
-                      subtitle: Text("Stok Tersisa ${produk.stock} buah",style: const TextStyle(fontSize: 16)),
+                      title: Text(
+                        produk.namaProduk,
+                        style: const TextStyle(
+                            fontSize: 18, fontFamily: "Poppins"),
+                      ),
+                      subtitle: Text("Stok Tersisa ${produk.stock} buah",
+                          style: const TextStyle(
+                              fontSize: 16, fontFamily: "Poppins")),
                     ),
                   ),
                 );
@@ -197,29 +208,28 @@ class _HomeInsightState extends State<HomeInsight> {
             ),
           ),
           const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 15),
-                child: Row(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only(bottom: 12),
-                      child: Text(
-                        "Produk Rekomendasi",
-                        style: TextStyle(
-                          fontFamily: 'Figtree',
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold
-                        ),
-                      ),
-                    ),
-                  ],
+            padding: EdgeInsets.symmetric(horizontal: 15),
+            child: Row(
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(bottom: 12),
+                  child: Text(
+                    "Produk Rekomendasi",
+                    style: TextStyle(
+                        fontFamily: "Poppins",
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold),
+                  ),
                 ),
-              ),
+              ],
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.only(left: 8, right: 8),
             child: Card(
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15.0),
-                side: BorderSide(color: primaryColor, width: 2.0),
+                borderRadius: BorderRadius.circular(10.0),
+                side: BorderSide(color: primaryColor, width: 1.0),
               ),
               child: Padding(
                 padding: const EdgeInsets.only(left: 16, right: 16),
@@ -231,8 +241,10 @@ class _HomeInsightState extends State<HomeInsight> {
                       children: [
                         const Expanded(
                           child: Text(
-                            "Daftar produk yang paling banyak dicari saat ini, Direkomendasikan oleh OPENAI:",style: TextStyle(fontSize: 20),
-                            maxLines: 2,
+                            "Daftar produk yang paling banyak dicari saat ini, Direkomendasikan oleh OPENAI:",
+                            style:
+                                TextStyle(fontSize: 20, fontFamily: "Poppins"),
+                            maxLines: 3,
                             overflow: TextOverflow.ellipsis,
                           ),
                         ),
@@ -244,7 +256,11 @@ class _HomeInsightState extends State<HomeInsight> {
                               aiProvider.updateProdukRecomendations(
                                   result.choices[0].text);
                             },
-                            child:  Text("Tampilkan", style: TextStyle(color: primaryColor),),
+                            child: Text(
+                              "Tampilkan",
+                              style: TextStyle(
+                                  color: primaryColor, fontFamily: "Poppins"),
+                            ),
                           )
                         else
                           IconButton(
@@ -258,7 +274,10 @@ class _HomeInsightState extends State<HomeInsight> {
                           )
                       ],
                     ),
-                    Text(aiProvider.produkRecomendations, style: const TextStyle(fontSize: 18),),
+                    Text(
+                      aiProvider.produkRecomendations,
+                      style: const TextStyle(fontSize: 18),
+                    ),
                   ],
                 ),
               ),

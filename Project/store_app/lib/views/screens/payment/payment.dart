@@ -44,7 +44,10 @@ class ItemMetodePembayaran extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Pembayaran $metodePembayaran'),
+        title: Text(
+          'Pembayaran $metodePembayaran',
+          style: const TextStyle(fontFamily: "Poppins"),
+        ),
         backgroundColor: primaryColor,
         leading: IconButton(
             onPressed: () {
@@ -66,7 +69,7 @@ class ItemMetodePembayaran extends StatelessWidget {
               child: Text(
                 'Total Belanjaan',
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 23),
+                style: TextStyle(fontSize: 23, fontFamily: "Poppins"),
               ),
             ),
             Padding(
@@ -97,7 +100,7 @@ class ItemMetodePembayaran extends StatelessWidget {
                                 tunaiProv.setJumlahUang = numericValue ?? 0;
                               } else {
                                 tunaiProv.setJumlahUang = 0;
-                                tunaiProv.setKembalianHarga = -1; //-1 = invalid
+                                tunaiProv.setKembalianHarga = -1;
                                 tunaiProv.kembalianController.clear();
                               }
                               tunaiProv.setKembalian();
@@ -112,7 +115,10 @@ class ItemMetodePembayaran extends StatelessWidget {
                           ),
                         ),
                         InputChip(
-                          label: const Text('Uang Pas'),
+                          label: const Text(
+                            'Uang Pas',
+                            style: TextStyle(fontFamily: "Poppins"),
+                          ),
                           selected: tunaiProv.getChipStatus,
                           selectedColor: Colours.lightSalmon,
                           onPressed: () {
@@ -142,9 +148,9 @@ class ItemMetodePembayaran extends StatelessWidget {
                                       child: Text(
                                         'Kembalian',
                                         style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 13,
-                                        ),
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 13,
+                                            fontFamily: "Poppins"),
                                       ),
                                     ),
                                     TextField(
@@ -196,10 +202,10 @@ class ItemMetodePembayaran extends StatelessWidget {
                                               child: const Text(
                                                 'Konfirmasi Pembayaran',
                                                 style: TextStyle(
-                                                  fontSize: 25,
-                                                  fontWeight: FontWeight.bold,
-                                                  color: Colors.white,
-                                                ),
+                                                    fontSize: 25,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Colors.white,
+                                                    fontFamily: "Poppins"),
                                               ),
                                             ),
                                           ),
@@ -253,7 +259,7 @@ class ItemMetodePembayaran extends StatelessWidget {
                                   child: const Text(
                                     'Konfirmasi Pembayaran',
                                     style: TextStyle(
-                                        fontFamily: 'Figtree',
+                                        fontFamily: 'Poppins',
                                         fontSize: 25,
                                         fontWeight: FontWeight.bold,
                                         color: Colors.white),
