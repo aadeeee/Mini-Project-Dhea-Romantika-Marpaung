@@ -43,6 +43,7 @@ class _TambahProdukState extends State<TambahProduk> {
                 padding: const EdgeInsets.only(
                     left: 25, right: 25, top: 35, bottom: 15),
                 child: TextFormField(
+                    key: const Key("nama_produk"),
                     controller: formProv.namaProdukController,
                     cursorColor: Colors.black,
                     decoration: const InputDecoration(
@@ -60,6 +61,7 @@ class _TambahProdukState extends State<TambahProduk> {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
                 child: TextFormField(
+                  key: const Key("deskripsi_produk"),
                   controller: formProv.deskripsiController,
                   keyboardType: TextInputType.multiline,
                   cursorColor: Colors.black,
@@ -78,6 +80,7 @@ class _TambahProdukState extends State<TambahProduk> {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
                 child: DropdownButtonFormField(
+                  key: const Key("kategori_produk"),
                   items: produkProv.dropdownItems,
                   value: formProv.getKategoriSelected,
                   decoration: const InputDecoration(
@@ -143,6 +146,7 @@ class _TambahProdukState extends State<TambahProduk> {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
                 child: TextFormField(
+                    key: const Key("jumlah_stok_produk"),
                     controller: formProv.stokController,
                     keyboardType: TextInputType.number,
                     cursorColor: Colors.black,
@@ -161,6 +165,7 @@ class _TambahProdukState extends State<TambahProduk> {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
                 child: TextFormField(
+                  key: const Key("harga_beli_produk"),
                   controller: formProv.hargaBeliController,
                   cursorColor: Colors.black,
                   keyboardType: TextInputType.number,
@@ -193,6 +198,7 @@ class _TambahProdukState extends State<TambahProduk> {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
                 child: TextFormField(
+                  key: const Key("harga_jual_produk"),
                   controller: formProv.hargaJualController,
                   cursorColor: Colors.black,
                   keyboardType: TextInputType.number,
