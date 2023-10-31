@@ -17,7 +17,7 @@ class MyProduk extends StatefulWidget {
 class _MyProdukState extends State<MyProduk> {
   @override
   Widget build(BuildContext context) {
-    final prov = Provider.of<ProdukProvider>(context);
+    final prov = Provider.of<ProdukProvider>(context, listen: false);
     return DefaultTabController(
       length: prov.kategoriProduk.length + 1,
       child: Scaffold(
@@ -63,10 +63,19 @@ class _MyProdukState extends State<MyProduk> {
         ),
         body: TabBarView(
           children: [
-            buildProductsByCategory(context, prov.produkList, 'Semua Produk'),
+            Consumer<ProdukProvider>(
+              builder: (context, prov, child) {
+                return buildProductsByCategory(
+                    context, prov.produkList, 'Semua Produk');
+              },
+            ),
             ...prov.kategoriProduk.map((category) {
-              return buildProductsByCategory(
-                  context, prov.produkList, category);
+              return Consumer<ProdukProvider>(
+                builder: (context, prov, child) {
+                  return buildProductsByCategory(
+                      context, prov.produkList, category);
+                },
+              );
             }).toList(),
           ],
         ),

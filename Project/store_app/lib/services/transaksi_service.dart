@@ -47,7 +47,7 @@ class TransaksiApiService {
     }
   }
 
-  Future<void> updateTransaksi(String transaksiId) async {
+  Future<int?> updateTransaksi(String transaksiId) async {
     '${Url.urlTransaksi}/$transaksiId';
     final data = {'inProcess': false};
 
@@ -55,19 +55,17 @@ class TransaksiApiService {
       final response =
           await _dio.put('${Url.urlTransaksi}/$transaksiId', data: data);
 
-      if (response.statusCode == 200) {
-        print('Berhasil mengubah transaksi');
-      } else {
-        print('Gagal mengubah transaksi');
-      }
+      return response.statusCode;
     } catch (error) {
       print('Terjadi kesalahan: $error');
     }
+    return null;
   }
 
-  Future<void> deleteTransaksi(String id) async {
+  Future<int?> deleteTransaksi(String id) async {
     try {
-      await _dio.delete('${Url.urlTransaksi}/$id');
+      final response = await _dio.delete('${Url.urlTransaksi}/$id');
+      return response.statusCode;
     } catch (error) {
       throw Exception('Gagal menghapus transaksi: $error');
     }

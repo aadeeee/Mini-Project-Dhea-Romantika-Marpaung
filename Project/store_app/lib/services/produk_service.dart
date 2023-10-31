@@ -22,7 +22,7 @@ class ProdukApiService {
     }
   }
 
-  Future<void> addProduk({
+  Future<int?> addProduk({
     required String namaProduk,
     required String img,
     required int hargaJual,
@@ -42,13 +42,14 @@ class ProdukApiService {
         'stock': stock,
       };
 
-      await _dio.post(Url.urlProduk, data: data);
+      final response = await _dio.post(Url.urlProduk, data: data);
+      return response.statusCode;
     } catch (error) {
       throw Exception('Gagal menambahkan produk: $error');
     }
   }
 
-  Future<void> updateProduk(Produk produk) async {
+  Future<int?> updateProduk(Produk produk) async {
     try {
       final response = await _dio.put(
         '${Url.urlProduk}/${produk.id}',
@@ -56,42 +57,31 @@ class ProdukApiService {
         data: produk.toJson(),
       );
 
-      if (response.statusCode == 200) {
-        print('Product updated successfully.');
-      } else {
-        print('Failed to update product. Status code: ${response.statusCode}');
-      }
+      return response.statusCode;
     } catch (error) {
       print('Error updating product: $error');
       throw Exception('Gagal memperbarui produk: $error');
     }
   }
 
-  Future<void> updateProductStock(String productId, int newStock) async {
+  Future<int?> updateProductStock(String productId, int newStock) async {
     try {
       final response = await _dio.put(
         '${Url.urlProduk}/$productId',
         data: {'stok': newStock},
       );
 
-      if (response.statusCode == 200) {
-        print('Stok produk berhasil diperbarui.');
-      } else {
-        print('Gagal memperbarui stok produk.');
-      }
+      return response.statusCode;
     } catch (error) {
       print('Terjadi kesalahan: $error');
     }
+    return null;
   }
 
-  Future<void> deleteProduk(String id) async {
+  Future<int?> deleteProduk(String id) async {
     try {
       final response = await _dio.delete('${Url.urlProduk}/$id');
-      if (response.statusCode == 200) {
-        print('Product deleted successfully.');
-      } else {
-        print('Failed to delete product. Status code: ${response.statusCode}');
-      }
+      return response.statusCode;
     } catch (error) {
       print('Error deleting product: $error');
       throw Exception('Gagal menghapus produk: $error');

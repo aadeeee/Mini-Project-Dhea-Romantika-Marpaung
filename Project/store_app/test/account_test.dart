@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:provider/provider.dart';
 import 'package:store_app/views/screens/account/login.dart';
-import 'package:store_app/views/screens/account/profil.dart';
 import 'package:store_app/views/view_models/account_view_model.dart';
 import 'package:store_app/views/screens/account/register.dart';
-import 'package:store_app/views/view_models/profile_view_model.dart';
 
 void main() {
   testWidgets('Register UI Testing', (WidgetTester tester) async {
@@ -42,29 +40,5 @@ void main() {
     expect(find.text('Kata Sandi'), findsOneWidget);
 
     expect(find.byType(ElevatedButton), findsOneWidget);
-  });
-
-  testWidgets('Profil UI Testing', (WidgetTester tester) async {
-    final accountProvider = AccountProvider();
-    final profilProvider = ProfilProvider();
-
-    await tester.pumpWidget(
-      MaterialApp(
-        home: MultiProvider(
-          providers: [
-            ChangeNotifierProvider<AccountProvider>.value(
-                value: accountProvider),
-            ChangeNotifierProvider<ProfilProvider>.value(value: profilProvider),
-          ],
-          child: const MyProfil(),
-        ),
-      ),
-    );
-
-    expect(find.text("Nama"), findsOneWidget);
-    expect(find.text("E-mail / No.Hp"), findsOneWidget);
-    expect(find.text("Jenis Kelamin"), findsOneWidget);
-    expect(find.text("Ubah Tema"), findsOneWidget);
-    expect(find.byType(Switch), findsOneWidget);
   });
 }

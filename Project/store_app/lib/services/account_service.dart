@@ -47,20 +47,7 @@ class AccountApiService {
     }
   }
 
-  // Future<void> loginUser({
-  //   required String username,
-  //   required String password,
-  // }) async {
-  //   try {
-  //     final Map<String, dynamic> data = {
-  //       "username": username,
-  //       "password": password,
-  //     };
-
-  //     await _dio.post(Url.urllogin, data: data);
-  //   } catch (error) {
-  //     throw Exception('Gagal login: $error');
-  //   }
+  
   // }
   Future<Login> loginUser({
     required String username,

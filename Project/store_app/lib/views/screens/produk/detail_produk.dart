@@ -25,9 +25,9 @@ class DetailProduk extends StatefulWidget {
 class _DetailProdukState extends State<DetailProduk> {
   @override
   Widget build(BuildContext context) {
-    final qtyProvider = Provider.of<QtyProdukProvider>(context);
-    final produkProv = Provider.of<ProdukProvider>(context);
-    final transaksiProv = Provider.of<TransaksiProvider>(context);
+    final qtyProvider = Provider.of<QtyProdukProvider>(context, listen: false);
+    final produkProv = Provider.of<ProdukProvider>(context, listen: false);
+    final transaksiProv = Provider.of<TransaksiProvider>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         title: const Text(
